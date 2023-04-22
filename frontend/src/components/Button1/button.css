@@ -5,12 +5,16 @@
   font-size: 1.5rem;
   background-color: #F2441D;
   color: white;
+  border: none;
+  text-shadow: 0 0 5px #FFF;
+  transition: text-shadow 0.3s ease-out;
 }
 
 #button1:hover{
   cursor: pointer;
   box-shadow: 2px 2px 5px #0367A6;
   transition: 0.2s;
+  text-shadow: 0 0 10px #FFF, 0 0 20px #FFF, 0 0 30px #FFF;
 }
 
 button:active {
