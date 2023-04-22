@@ -1,0 +1,21 @@
+#button1{
+  width: 10rem;
+  height: 3.2rem;
+  border-radius: 0.8rem;
+  font-size: 1.5rem;
+  background-color: #F2441D;
+  color: white;
+}
+
+#button1:hover{
+  cursor: pointer;
+  box-shadow: 2px 2px 5px #0367A6;
+  transition: 0.2s;
+}
+
+button:active {
+  position: relative;
+  top: 2px;
+  left: 2px;
+  transition: 0.2s;
+}
