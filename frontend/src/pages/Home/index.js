@@ -4,10 +4,13 @@ import './home.css';
 
 const Home = () => {
   return (
-    <div>
-      <Header />
-      <video className="back_video" src={Video} autoPlay loop muted></video>
-    </div>
+    <>
+      <div>
+        <Header />
+        <video className="back_video" src={Video} autoPlay loop muted></video>
+        <p className="vid_title">Audience <br></br> Optimization</p>
+      </div>
+    </>
   );
 }
 
