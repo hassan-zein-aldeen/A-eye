@@ -12,5 +12,28 @@
   color: white;
   font-size: 4rem;
   margin-left: 4rem;
-
+  margin-top: 2rem;
 }
+
+.vid_text{
+  margin-left: 4rem;
+  margin-top: 3rem;
+  font-size: 2.2rem;
+  color: white;
+  width: 45%;
+}
+
+.vid_text:hover{
+  transition: 0.2s;
+  text-shadow: 0 0 5px #F2441D, 0 0 10px #F2441D, 0 0 10px #F2441D;
+}
+
+.directions{
+  display: flex;
+  gap: 2rem;
+  width: 25%;
+  font-size: 1.4rem;
+  color: white;
+}
+
+
