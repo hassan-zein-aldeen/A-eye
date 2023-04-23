@@ -15,22 +15,22 @@ const Home = () => {
           <table>
             <tr>
               <td id="firstcell">
-              <a id="ads" href="http://localhost:3000/">Add Ads</a>
+                <a id="ads" href="http://localhost:3000/">Add Ads</a>
               </td>
               <td>
-              <a id="offers" href="http://localhost:3000/">Add Offers</a>
+                <a id="offers" href="http://localhost:3000/">Add Offers</a>
               </td>
               <td>
-              <a id="results" href="http://localhost:3000/">Show Results</a>
+                <a id="results" href="http://localhost:3000/">Show Results</a>
               </td>
               <td>
-              <a id="plans" href="http://localhost:3000/">AI Plan</a>
+                <a id="plans" href="http://localhost:3000/">AI Plan</a>
               </td>
             </tr>
           </table>
         </div>
       </div>
-
+      
     </>
   );
 }
