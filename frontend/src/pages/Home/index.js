@@ -1,6 +1,5 @@
 import Header from "../../components/Header/header";
 import Video from "../../video/high.mp4";
-import Card from "../../components/card";
 
 import './home.css';
 
@@ -31,7 +30,6 @@ const Home = () => {
           </table>
         </div>
       </div>
-      <Card/>
     </>
   );
 }

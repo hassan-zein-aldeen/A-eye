@@ -1,0 +1,27 @@
+.card_content{
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+  background-color: #0367A6;
+  color: white;
+  padding: 1rem 2.5rem;
+  justify-content: center;
+  text-align: center;
+  width: 12%;
+  height: 13rem;
+  border-radius: 2rem;
+  font-size: 1.4rem;
+  margin-left: 10rem;
+}
+
+.row_content{
+  display: flex;
+  gap: 2rem;
+  text-align: center;
+  justify-content: left;
+}
+
+.face_txt,.lead_txt,.vis_txt{
+  text-align:center;
+  justify-content: center;
+}
