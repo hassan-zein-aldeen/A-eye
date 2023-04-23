@@ -1,4 +1,4 @@
-.back_video{
+.back_video {
   position: fixed;
   top: 0;
   left: 0;
@@ -8,32 +8,70 @@
   object-fit: cover;
 }
 
-.vid_title{
+.vid_title {
   color: white;
-  font-size: 4rem;
+  font-size: 3.5rem;
   margin-left: 4rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
-.vid_text{
+.vid_text {
   margin-left: 4rem;
-  margin-top: 3rem;
+  margin-top: 3.5rem;
   font-size: 2.2rem;
   color: white;
   width: 45%;
 }
 
-.vid_text:hover{
+.vid_text:hover {
   transition: 0.2s;
   text-shadow: 0 0 5px #F2441D, 0 0 10px #F2441D, 0 0 10px #F2441D;
 }
 
-.directions{
-  display: flex;
-  gap: 2rem;
-  width: 25%;
-  font-size: 1.4rem;
+#ads,
+#offers,
+#results,
+#plans {
+  text-decoration: none;
   color: white;
 }
 
+#ads:hover {
+  text-shadow: 0 0 5px #F2441D, 0 0 10px #F2441D, 0 0 10px #F2441D;
+  transition: 0.2s;
+}
 
+#offers:hover {
+  text-shadow: 0 0 5px #F2441D, 0 0 10px #F2441D, 0 0 10px #F2441D;
+  transition: 0.2s;
+}
+
+#results:hover {
+  text-shadow: 0 0 5px #F2441D, 0 0 10px #F2441D, 0 0 10px #F2441D;
+  transition: 0.2s;
+}
+
+#plans:hover {
+  text-shadow: 0 0 5px #F2441D, 0 0 10px #F2441D, 0 0 10px #F2441D;
+  transition: 0.2s;
+}
+
+table {
+  border: solid 1px #F2441D;
+  text-align: center;
+  margin-left: 4rem;
+  margin-top: 4rem;
+}
+
+td {
+  border-left: 1px solid #F2441D;
+  width: 10rem;
+  height: 3rem;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+#firstcell {
+  border-left: none;
+  text-align: center;
+}
