@@ -1,9 +1,10 @@
 .section{
   display: flex;
-  height: 110vh;
+  flex-direction: column;
+  height: 100vh;
   position: relative;
-  width: 70%;
-  margin-top: 20rem;
+  width: 80%;
+  margin-top: 25rem;
   margin-left: auto;
   margin-right: auto;
   color: black;
@@ -14,22 +15,50 @@
 
 .subsec{
   display: flex;
-  height: 90vh ;
+  flex-direction: column;
+  height: 100vh ;
   background-image:url("../../images/eyescan.svg");
   background-position: center center;
-  background-size: contain;
+  background-size:cover;
   background-repeat: no-repeat;
   align-items: center;
   justify-content: center;
-  width: 150%;
+  width: 100%;
+  border-radius: 30px;
+  border-radius: 20px;
+  background-clip: padding-box;
 }
 
 .title{
   position:absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 40%;
   transform: translateY(-100%);
   transition: opacity 0.5s ease-out;
   font-size: 2rem;
+  color: #F2441D;
+  font-size: 4rem;
+  font-weight: bold;
+  margin-left: 4rem;
+  text-shadow: 0px 8px 16px black;
+}
+
+
+.iconcard {
+  /* top: 0; */
+  left: 0;
+  transform: translateY(1000);
+  transition: opacity 0.5s ease-out;
+  color: #F2441D;
+  z-index: 1;
+  flex-flow: wrap;
+  width: 80rem;
+  margin-left: 4rem;
+}
+
+.sec_text{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

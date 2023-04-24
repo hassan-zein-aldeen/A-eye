@@ -1,5 +1,6 @@
 import Header from "../../components/Header/header";
 import Video from "../../video/high.mp4";
+import Section from "../../components/section";
 
 
 import './home.css';
@@ -32,7 +33,10 @@ const Home = () => {
           </table>
         </div>
       </div>
-
+      <Section />
+      <div className="hello">
+        <p>Hello</p>
+      </div>
     </>
   );
 }
