@@ -1,23 +1,9 @@
 import Header from "../../components/Header/header";
 import Video from "../../video/high.mp4";
-import TextContent from "../../components/TextContent";
 
 import './home.css';
 
 const Home = () => {
-
-  const content1 =
-  {
-    txtC1: "* Target audience ads allow you to tailor your message " +
-      "specifically to your ideal customer, increasing the chances " +
-      "that they will engage with your brand.<br/></br>" + 
-      "* Study by e-Marketer showed that " +
-      "targeted ads are 2-3 times more effective in generating conversions than non-targeted ads.</br></br>" +
-      "* All of our customers are mall shop owners who have stores within the shopping center.",
-    iconC1: require("../../icons/Group.svg").default,
-    linkC1: 'Start Your Journey',
-  };
-
 
   return (
     <>

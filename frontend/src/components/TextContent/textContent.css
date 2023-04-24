@@ -1,0 +1,42 @@
+.info {
+  display: flex;
+  flex-direction: column;
+  color: #0D0D0D;
+  width: 23%;
+  font-size: 1.4rem;
+  box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.2);
+  padding: 2rem 2rem;
+  line-height: 2.5rem;
+}
+
+#j_link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 1rem;
+  margin-top: 1rem;
+  color: #F2441D;
+}
+
+#j_link img{
+  filter: #F2441D(100%);
+  transition: filter 0.1s ease-in-out;
+}
+
+#j_link:hover { 
+  color: black;
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+#j_link:hover img{
+  filter: grayscale(100%);
+  transition: filter 0.1s ease-in-out;
+}
+
+#j_link:active {
+  position: relative;
+  top: 2px;
+  left: 2px;
+  transition: 0.2s;
+}
