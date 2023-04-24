@@ -1,0 +1,35 @@
+.section{
+  display: flex;
+  height: 110vh;
+  position: relative;
+  width: 70%;
+  margin-top: 20rem;
+  margin-left: auto;
+  margin-right: auto;
+  color: black;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+.subsec{
+  display: flex;
+  height: 90vh ;
+  background-image:url("../../images/eyescan.svg");
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  align-items: center;
+  justify-content: center;
+  width: 150%;
+}
+
+.title{
+  position:absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transform: translateY(-100%);
+  transition: opacity 0.5s ease-out;
+  font-size: 2rem;
+}
