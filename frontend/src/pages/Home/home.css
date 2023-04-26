@@ -56,6 +56,42 @@
   transition: 0.2s;
 }
 
+
+
+#ads:active {
+  position: relative;
+  top: 2px;
+  left: 2px;
+  transition: 0.2s;
+  transition: 0.2s;
+}
+
+#offers:active {
+  position: relative;
+  top: 2px;
+  left: 2px;
+  transition: 0.2s;
+  transition: 0.2s;
+}
+
+#results:active {
+  position: relative;
+  top: 2px;
+  left: 2px;
+  transition: 0.2s;
+  transition: 0.2s;
+}
+
+#plans:active {
+  position: relative;
+  top: 2px;
+  left: 2px;
+  transition: 0.2s;
+  transition: 0.2s;
+}
+
+
+
 table {
   border: solid 1px #F2441D;
   text-align: center;
