@@ -9,7 +9,6 @@ import image3 from "../../images/guc.svg";
 import image4 from "../../images/pull.svg";
 import image5 from "../../images/kids.svg";
 import Slideshow from "../../components/Slideshow";
-
 import './home.css';
 
 
@@ -22,7 +21,8 @@ const Home = () => {
         <Header />
         <video className="back_video" src={Video} autoPlay loop muted></video>
         <p className="vid_title">Audience <br></br> Optimization</p>
-        <p className="vid_text">"Targeting the right audience ensures <br></br>that your advertising efforts are not wasted."</p>
+        <p className="vid_text">"Targeting the right audience ensures 
+        <br></br>that your advertising efforts are not wasted."</p>
         <div className="directions">
           <table>
             <tr>
