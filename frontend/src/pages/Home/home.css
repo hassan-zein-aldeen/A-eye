@@ -107,12 +107,14 @@ td {
   width: 16rem;
   height: auto;
   height: 7.5rem;
+
 }
 
 .row_imgs img:hover {
   opacity: 0.8;
   width: 15rem;
   transition: 0.3s;
+  box-shadow: 0 0 5px #F2441D, 0 0 10px #F2441D, 0 0 10px #F2441D;
 }
 
 .feedback{

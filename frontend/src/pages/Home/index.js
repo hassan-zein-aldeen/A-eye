@@ -8,6 +8,7 @@ import image2 from "../../images/lac.svg";
 import image3 from "../../images/guc.svg";
 import image4 from "../../images/pull.svg";
 import image5 from "../../images/kids.svg";
+import Footer from "../../components/Footer";
 import Slideshow from "../../components/Slideshow";
 import './home.css';
 
@@ -63,7 +64,7 @@ const Home = () => {
         </div>
       </div>
       <div className="feedback">
-        <p className="feed_title">Feedback</p>
+        <p className="feed_title">Feedback "</p>
         <div id="feed_slider">
           <Slideshow >
             <p class="slide active">First feedback 1</p>
@@ -72,6 +73,7 @@ const Home = () => {
           </Slideshow>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
