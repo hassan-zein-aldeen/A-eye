@@ -1,11 +1,20 @@
 import Header from "../../components/Header/header";
 import Video from "../../video/high.mp4";
 import Section from "../../components/section";
-
+import Section2 from "../../components/section2";
+import Section3 from "../../components/section3";
+import image1 from "../../images/zara.svg";
+import image2 from "../../images/lac.svg";
+import image3 from "../../images/guc.svg";
+import image4 from "../../images/pull.svg";
+import image5 from "../../images/kids.svg";
+import Slideshow from "../../components/Slideshow";
 
 import './home.css';
 
+
 const Home = () => {
+
 
   return (
     <>
@@ -34,8 +43,34 @@ const Home = () => {
         </div>
       </div>
       <Section />
-      <div className="hello">
-        <p>Hello</p>
+      <Section2 />
+      <Section3 />
+      <div className="customers">
+        <div className="cust_title">
+          <p>Our Customers</p>
+        </div>
+        <div className="shop_pics">
+          <div className="row_imgs">
+            <img src={image1} alt="pic" />
+            <img src={image4} alt="pic" />
+            <img src={image4} alt="pic" />
+          </div>
+          <div className="row_imgs">
+            <img src={image3} alt="pic" />
+            <img src={image5} alt="pic" />
+            <img src={image2} alt="pic" />
+          </div>
+        </div>
+      </div>
+      <div className="feedback">
+        <p className="feed_title">Feedback</p>
+        <div id="feed_slider">
+          <Slideshow >
+            <p class="slide active">First feedback 1</p>
+            <p class="slide">Second feedback  2</p>
+            <p class="slide">Third feedback 3</p>
+          </Slideshow>
+        </div>
       </div>
     </>
   );

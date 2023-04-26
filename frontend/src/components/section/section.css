@@ -18,6 +18,7 @@
   flex-direction: column;
   height: 100vh ;
   background-image:url("../../images/eyescan.svg");
+  box-shadow: 15px 15px 15px -4px rgba(0, 0, 0, 0.5);
   background-position: center center;
   background-size:cover;
   background-repeat: no-repeat;
@@ -34,7 +35,6 @@
   top: 0;
   left: 0;
   width: 40%;
-  transform: translateY(-100%);
   transition: opacity 0.5s ease-out;
   font-size: 2rem;
   color: #F2441D;
@@ -42,11 +42,11 @@
   font-weight: bold;
   margin-left: 4rem;
   text-shadow: 0px 8px 16px black;
+  transition: transform 0.4s ease-out, opacity 0.4s ease-in-out;
 }
 
 
 .iconcard {
-  /* top: 0; */
   left: 0;
   transform: translateY(1000);
   transition: opacity 0.5s ease-out;
@@ -55,10 +55,17 @@
   flex-flow: wrap;
   width: 80rem;
   margin-left: 4rem;
+  transition: transform 0.4s ease-out, opacity 0.4s ease-in-out;
 }
 
 .sec_text{
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: right;
+  margin-right: 16rem;
+  margin-top: -12rem;
+}
+
+.source{
+  color: black !important;
+  text-decoration: none;
 }

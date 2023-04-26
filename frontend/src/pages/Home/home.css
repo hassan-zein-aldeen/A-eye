@@ -76,7 +76,68 @@ td {
   text-align: center;
 }
 
-.hello{
+.customers {
+  background-color: #0367A6;
+  margin-top: 10rem;
+  padding: 5rem 8rem;
+}
 
-  margin-top: 50rem;
+.cust_title,.feed_title {
+  font-size: 4rem;
+  color: white;
+  width: 40%;
+}
+
+.shop_pics {
+  display: flex;
+  gap: 10rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 5rem;
+}
+
+.row_imgs{
+  display: flex;
+  align-items: baseline;
+  gap: 15rem;
+}
+
+.row_imgs img{
+  width: 16rem;
+  height: auto;
+  height: 7.5rem;
+}
+
+.row_imgs img:hover {
+  opacity: 0.8;
+  width: 15rem;
+  transition: 0.3s;
+}
+
+.feedback{
+  background-color: #0367A6;
+  color: white;
+  padding: 6rem 8rem;
+  position: relative;
+}
+
+.slide{
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+#feed_slider{
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  margin-top: 5rem;
+  font-size: 3rem;
 }
