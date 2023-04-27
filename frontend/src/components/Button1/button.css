@@ -1,4 +1,4 @@
-#button1{
+.button1{
   width: 10rem;
   height: 3.2rem;
   border-radius: 0.8rem;
@@ -11,7 +11,7 @@
   transition: text-shadow 0.3s ease-out;
 }
 
-#button1:hover{
+.button1:hover{
   cursor: pointer;
   box-shadow: 2px 2px 5px #0367A6;
   transition: 0.2s;

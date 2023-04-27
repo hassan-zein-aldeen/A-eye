@@ -1,13 +1,8 @@
-* {
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
-}
-
 .popup {
   background: linear-gradient(to right, #0367A6, #ffff);
-  height: 100vh;
+  height: 96vh;
   width: 100%;
+  padding-top: 2rem;
 }
 
 .form {
@@ -71,3 +66,18 @@ input:focus{
   margin-top: -1rem;
   color: #F2441D;
 }
+
+#back{
+  text-decoration: none;
+  color: #F2441D;
+  font-size: 2rem;
+  margin-left: 4rem;
+  text-shadow: 0 0 5px #8d8787, 0 0 10px #8d8787, 0 0 10px #8d8787;
+}
+
+#back:hover{
+  text-decoration: none;
+  color: #F2441D;
+  text-shadow: 0 0 5px #FFFF, 0 0 10px #FFFF, 0 0 10px #FFFF;
+  transition: 0.3s;
+}  
