@@ -20,7 +20,7 @@ const Section = () => {
         const maxTranslateY = (sectionHeight - textHeight) / 2;
 
         const scrollPercentage = (sectionHeight - scrollPosition) / sectionHeight;
-        let translateY = ((textHeight + 400) * scrollPercentage) * 0.5; // speed of scrolling for items
+        let translateY = ((textHeight + 400) * scrollPercentage) * 0.5; //speed scrolling for items
         translateY = Math.min(translateY, maxTranslateY);
         translateY = Math.max(translateY, -60);
         text.style.transform = `translateY(${translateY + 100}px)`; //original position
