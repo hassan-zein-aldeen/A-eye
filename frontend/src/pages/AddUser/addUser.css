@@ -1,0 +1,31 @@
+.admin{
+  width: 70%;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  border-radius: 2rem ;
+  display: flex;
+  gap: 15rem;
+}
+
+.feature{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  text-align: left;
+  padding: 2rem 2rem;
+  font-size: 1.8rem;
+  background-color: #0367A6;
+  border-radius: 2rem ;
+  width: 25%;
+  height: 22vh;
+}
+
+.admin a{
+  text-decoration: none;
+  color: white;
+}
+
+.admin a:hover{
+  text-shadow: 0 0 5px #F2441D, 0 0 10px #F2441D, 0 0 10px #F2441D;
+  transition: 0.2s;
+}

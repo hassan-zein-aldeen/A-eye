@@ -7,8 +7,6 @@ import pass_icon from "../../icons/pass.svg";
 
 const Login = () => {
 
-
-
   return (
     <div className="popup">
 
