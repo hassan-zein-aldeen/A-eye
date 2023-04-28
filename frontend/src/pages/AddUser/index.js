@@ -4,7 +4,7 @@ import './addUser.css';
 
 const AddUser = () => {
 
-  const [activeDiv, SetActiveDiv] = useState("");
+  const [activeDiv, SetActiveDiv] = useState("create");
 
   function handleClick(event) {
     event.preventDefault();
@@ -18,14 +18,20 @@ const AddUser = () => {
       <a id="back" href="http://localhost:3000/">Home</a>
       <div className="admin">
         <div className="feature">
-          <a id="requests" href="#" onClick={handleClick} data-target="div1" >Requests</a>
-          <a id="accounts" href="#" onClick={handleClick} data-target="div2" >Accounts</a>
-          <a id="s_notif" href="#" onClick={handleClick} data-target="div3" >Send Notification</a>
+          <a href="#" onClick={handleClick} data-target="requests" >Requests</a>
+          <a href="#" onClick={handleClick} data-target="accounts" >Accounts</a>
+          <a href="#" onClick={handleClick} data-target="s_notif" >Send Notification</a>
         </div>
         <div className="admin_content">
-          {activeDiv === "div1" && <div id="div1">This is div1</div>}
-          {activeDiv === "div2" && <div id="div2">This is div2</div>}
-          {activeDiv === "div3" && <div id="div3">This is div3</div>}
+          {activeDiv === "requests" && <div id="request">This is first section</div>}
+          {activeDiv === "accounts" && <div id="account">
+            <div className="acc_title">
+              <p>Accounts</p>
+              <a href="#" onClick={handleClick} data-target="create" style={{ color: "black" }}>Create User</a>
+            </div>
+          </div>}
+          {activeDiv === "s_notif" && <div id="nofitication">This is third section</div>}
+          {activeDiv === "create" && <div id="new_user">This is new user</div>}
         </div>
       </div>
     </div>
