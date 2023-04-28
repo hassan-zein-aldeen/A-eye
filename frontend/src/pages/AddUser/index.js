@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import Header from "../../components/Header/header";
 import './addUser.css';
+import Button1 from "../../components/Button1/Button";
 
 const AddUser = () => {
 
-  const [activeDiv, SetActiveDiv] = useState("create");
+  const [activeDiv, SetActiveDiv] = useState("requests");
+  const [actveLink,SetActiveLink] = useState('#requests');
 
   function handleClick(event) {
+
     event.preventDefault();
     const target = event.target.getAttribute("data-target");
     SetActiveDiv(target);
+    SetActiveLink(event.target.hash);
   }
+
+
 
   return (
     <div>
@@ -19,9 +25,9 @@ const AddUser = () => {
       <div className="admin">
 
         <div className="feature">
-          <a href="#" onClick={handleClick} data-target="requests" >Requests</a>
-          <a href="#" onClick={handleClick} data-target="accounts" >Accounts</a>
-          <a href="#" onClick={handleClick} data-target="s_notif" >Send Notification</a>
+          <a href="#requests" className={actveLink==='#requests'? 'active':''} onClick={handleClick} data-target="requests" >Requests</a>
+          <a href="#accounts" className={actveLink==='#accounts'? 'active':''} onClick={handleClick} data-target="accounts" >Accounts</a>
+          <a href="#s_notif" onClick={handleClick} data-target="s_notif" >Send Notification</a>
         </div>
 
         <div className="admin_content">
@@ -34,7 +40,7 @@ const AddUser = () => {
             </div>
           </div>}
           {activeDiv === "create" && <div id="new_user">
-          <p className="form_title">Create New User</p>
+          <p className="form_title">New User</p>
             <div className="fields">
               <div className="user_type">
                 <label>
@@ -58,6 +64,7 @@ const AddUser = () => {
                   <input type="text" id="phone" placeholder="example(00-000000)"></input>
                 </div>
               </div>
+              <Button1>Create</Button1>
             </div>
           </div>}
         </div>
