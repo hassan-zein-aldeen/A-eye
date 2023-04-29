@@ -10,7 +10,7 @@ const Login = () => {
   return (
     <div className="popup">
 
-      <a id="back" href="http://localhost:3000/">Home</a>
+      <a id="back" href="http://localhost:3001/">Home</a>
       <div className="form">
 
         <img className="logo" src={login_img} alt="login_img" />
@@ -27,7 +27,7 @@ const Login = () => {
             <input type="password" id="password" placeholder="Password"/>
           </div>
 
-          <a className='forget' href="http:/localhost:3000/">Forget Password?</a>
+          <a className='forget' href="http:/localhost:3001/">Forget Password?</a>
         </div>
         <Button1>Login</Button1>
       </div>

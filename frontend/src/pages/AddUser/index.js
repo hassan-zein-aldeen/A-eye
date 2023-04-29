@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "./axios";
 import Header from "../../components/Header/header";
 import './addUser.css';
 import Button1 from "../../components/Button1/Button";
@@ -7,6 +8,20 @@ const AddUser = () => {
 
   const [activeDiv, SetActiveDiv] = useState("requests");
   const [actveLink, SetActiveLink] = useState('#requests');
+  const [role, setRole] = useState("");
+  const [shopname, SetShopname] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+
+
+  const validateEmail = (email) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  };
+
+
 
   function handleClick(event) {
 
@@ -21,7 +36,7 @@ const AddUser = () => {
   return (
     <div>
       <Header />
-      <a id="back" href="http://localhost:3000/">Home</a>
+      <a id="back" href="http://localhost:3001/">Home</a>
       <div className="admin">
 
         <div className="feature">
