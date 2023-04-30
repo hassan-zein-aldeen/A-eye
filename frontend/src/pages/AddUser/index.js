@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "../../components/Header/header";
 import './addUser.css';
@@ -23,10 +23,29 @@ const AddUser = () => {
   const [erremail, seterrEmail] = useState("");
   const [erraddress, seterrAddress] = useState("");
 
+  const [res_message, setRes_message] = useState("");
+
+  useEffect(() => {
+    let timeout = null;
+
+    if (res_message) {
+      timeout = setTimeout(() => {
+        setRes_message('');
+      }, 2000)
+    }
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    };
+
+  }, [res_message]);
+
   const validateEmail = (email) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
   };
+
 
   const addNewUser = async (e) => {
     e.preventDefault();
@@ -60,41 +79,47 @@ const AddUser = () => {
       return;
     }
 
+    const validateEmail = (email) => {
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailPattern.test(email);
+    };
+
     if (!email) {
       seterrEmail("email missing");
+      return;
     } else if (!validateEmail(email)) {
       seterrEmail("Enter valid email")
+      return;
     }
 
     if (!address) {
       seterrAddress("address missing");
       return;
     }
-    console.log(role)
-    console.log(shopname)
-    console.log(username)
-    console.log(email)
-    console.log(address)
 
     const userData = {
       "role": role,
       "shopname": shopname,
       "username": username,
-      "password":password,
-      "email":email,
-      "address":address,
+      "password": password,
+      "email": email,
+      "address": address,
     };
 
 
     try {
       const response = await axios.post('http://127.0.0.1:3000/auth/createUser', userData);
-      console.log("test" + userData);
       const { user } = response.data;
-      console.log("created succ", user);
-      window.location.href = "/";
+      setRes_message("User Created Successfully");
+      window.location.reload();
     } catch (error) {
-      console.log(error)
+      if (error.response && error.response.data && error.response.data.message) {
+        setRes_message(error.response.data.message);
+      } else {
+        setRes_message("An error occurred while creating the user. Please try again later.");
+      }
     }
+
 
   }
 
@@ -111,7 +136,6 @@ const AddUser = () => {
       <Header />
       <a id="back" href="http://localhost:3001/">Home</a>
       <div className="admin">
-
         <div className="feature">
           <a href="#requests" className={actveLink === '#requests' ? 'active' : ''} onClick={handleClick} data-target="requests" >Requests</a>
           <a href="#accounts" className={actveLink === '#accounts' ? 'active' : ''} onClick={handleClick} data-target="accounts" >Accounts</a>
@@ -133,7 +157,7 @@ const AddUser = () => {
             <div className="fields">
               <div className="user_type">
 
-                <label>
+                <label> User type :
                   <input type="radio" name="type" value="user" id="user" onChange={(e) => setRole(e.target.value)} />
                   User
                 </label>
@@ -165,6 +189,13 @@ const AddUser = () => {
                 <span>{errpassword}</span>
                 <span>{erremail}</span>
                 <span>{erraddress}</span>
+                <span className="response_result"
+                  style={{
+                    backgroundColor: res_message === "User Created Successfully" ? "green" : "red",
+                    fontSize: "1.5rem",
+                    borderRadius: "0.5rem"
+                  }}>
+                  {res_message && <p>{res_message}</p>}</span>
               </div>
               <Button1 onClick={addNewUser}>Create</Button1>
             </div>
