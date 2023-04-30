@@ -16,7 +16,7 @@
   font-size: 1.8rem;
   background-color: #0367A6;
   border-radius: 2rem ;
-  width: 24%;
+  width: 22%;
   height: 22vh;
 }
 
@@ -57,12 +57,14 @@
   font-size: 1.6rem;
   display: flex;
   flex-direction: column;
-  gap: 3.5rem;
+  gap: 3rem;
   padding: 1.5rem 0.5rem;
   border-radius: 2rem;
   color: white;
   align-items: center;
   justify-content: center;
+  margin-left: 10rem;
+  width: 70%;
 }
 
 .user_type{
@@ -108,7 +110,7 @@ input[type="radio"]{
 
 .form_title{
   font-size: 2.2rem;
-  margin-left: 0.5rem;
+  margin-left:12rem;
   margin-bottom: 0.5rem;
 }
 
