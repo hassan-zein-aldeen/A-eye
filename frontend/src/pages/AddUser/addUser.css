@@ -1,9 +1,8 @@
 .admin{
-  width: 70%;
+  width: 80%;
   margin-left: 2rem;
   border-radius: 2rem ;
   display: flex;
-  gap: 15rem;
 }
 
 .feature{
@@ -17,7 +16,7 @@
   font-size: 1.8rem;
   background-color: #0367A6;
   border-radius: 2rem ;
-  width: 25%;
+  width: 24%;
   height: 22vh;
 }
 
@@ -34,16 +33,23 @@
 .acc_title{
   font-size: 2.2rem;
   display: flex;
-  gap: 20rem;
+  margin-left: 2.4rem;
+  align-items: center;
+  text-align: center;
+  justify-content:center;
+  width: 100%;
+  gap: 12rem;
 }
 
 #create_user{
   color: #F2441D;
   font-weight: bold;
+  margin-left: 6rem;
 }
 
 .admin_content{
-  width: 70%;
+  width: 90%;
+  margin-right: 2rem; 
 }
 
 .fields{
@@ -129,4 +135,39 @@ nav a.active{
   color: rgb(2, 207, 2);
 }
 
+.display_users{
+  width: 100%;
+}
+
+.display_users td{
+    width: 15rem;
+    border-bottom: 1px solid #F2441D;
+    color: #0367A6;
+}
+
+.display_users th{
+  width: 15rem;
+}
+
+.key{
+  border-left: none;
+}
+
+.users_table{
+  margin-top: 1.4rem;
+  border-radius: 2rem;
+  padding: 1rem 1rem;
+  margin-left: 10rem;
+}
+
+.users_table thead{
+  font-size: 1.6rem;
+  border-bottom: 1px solid #F2441D;
+  padding-top:2rem;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  height: 4rem;
+  align-items: start;
+  justify-content: start;
+}
 

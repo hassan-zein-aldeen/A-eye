@@ -25,26 +25,30 @@ const AddUser = () => {
 
   const [res_message, setRes_message] = useState("");
 
+  const [users, setUsers] = useState([]);
+
+  function handleClick(event) {
+    event.preventDefault();
+    const target = event.target.getAttribute("data-target");
+    SetActiveDiv(target);
+    SetActiveLink(event.target.hash);
+  }
+
+  const callFunctions = async (e) => {
+    e.preventDefault();
+    handleClick(e);
+    await getUsers(e);
+  }
+
   useEffect(() => {
     let timeout = null;
-
-    if (res_message) {
-      timeout = setTimeout(() => {
-        setRes_message('');
-      }, 2000)
-    }
-    return () => {
-      if (timeout) {
-        clearTimeout(timeout);
-      }
-    };
-
+    if (res_message) { timeout = setTimeout(() => { setRes_message(''); }, 2000) }
+    return () => { if (timeout) { clearTimeout(timeout); } };
   }, [res_message]);
 
   const addNewUser = async (e) => {
     e.preventDefault();
 
-    const form = e.target;
     seterrRole("");
     seterrShopname("");
     seterrUsername("");
@@ -99,7 +103,6 @@ const AddUser = () => {
       "address": address,
     };
 
-
     try {
       const response = await axios.post('http://127.0.0.1:3000/auth/createUser', userData);
       const { user } = response.data;
@@ -114,11 +117,17 @@ const AddUser = () => {
     }
   }
 
-  function handleClick(event) {
-    event.preventDefault();
-    const target = event.target.getAttribute("data-target");
-    SetActiveDiv(target);
-    SetActiveLink(event.target.hash);
+  const getUsers = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.get('http://127.0.0.1:3000/user/');
+      const users = response.data;
+      setUsers(users);
+      console.log(users);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
 
@@ -131,7 +140,7 @@ const AddUser = () => {
           <a href="#requests" className={actveLink === '#requests' ? 'active' : ''}
             onClick={handleClick} data-target="requests" >Requests</a>
           <a href="#accounts" className={actveLink === '#accounts' ? 'active' : ''}
-            onClick={handleClick} data-target="accounts" >Accounts</a>
+            onClick={callFunctions} data-target="accounts" >Accounts</a>
           <a href="#s_notif" onClick={handleClick} data-target="s_notif" >Send Notification</a>
         </div>
 
@@ -142,6 +151,26 @@ const AddUser = () => {
             <div className="acc_title">
               <p>Accounts</p>
               <a id="create_user" href="#" onClick={handleClick} data-target="create">Create User</a>
+            </div>
+            <div className="display_users">
+              <table className="users_table">
+                <thead>
+                  <tr className="col_titles">
+                    <th>Username</th>
+                    <th>Shop Name</th>
+                    <th>Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {users && users.map(user => (
+                    <tr key={user._id}>
+                      <td className="key">{user.username}</td>
+                      <td>{user.shopname}</td>
+                      <td>{user.email}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>}
           {activeDiv === "create" && <div id="new_user">
