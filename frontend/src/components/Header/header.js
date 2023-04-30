@@ -13,7 +13,8 @@ const Header = () => {
   return (
     <div className="head">
       <img className="logo" src={Image} alt="logo" />
-      <Button1 onClick={handleClick}>Login</Button1>
+      <Button1 id="login" onClick={handleClick}>
+        {localStorage.getItem("token")? "Logout": "Login"}</Button1>
     </div>
   );
 };

@@ -46,10 +46,10 @@ const Login = () => {
       localStorage.setItem("token", token);
       localStorage.setItem("role", role.role);
 
-      if(role.role === "user"){
-        console.log("hello user");
-      } else if (role.role === "admin"){
-        console.log("hello admin");
+      if (role.role === "user") {
+        window.location.href = "/Home"
+      } else if (role.role === "admin") {
+        window.location.href = "/AddUser";
       }
 
     } catch (e) {
@@ -57,7 +57,6 @@ const Login = () => {
     }
 
   }
-
 
   return (
     <div className="popup">
