@@ -41,12 +41,6 @@ const AddUser = () => {
 
   }, [res_message]);
 
-  const validateEmail = (email) => {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email);
-  };
-
-
   const addNewUser = async (e) => {
     e.preventDefault();
 
@@ -57,7 +51,6 @@ const AddUser = () => {
     seterrPassword("");
     seterrEmail("");
     seterrAddress("");
-    e.preventDefault();
 
     if (!role) {
       seterrRole("user's role is missing");
@@ -119,8 +112,6 @@ const AddUser = () => {
         setRes_message("An error occurred while creating the user. Please try again later.");
       }
     }
-
-
   }
 
   function handleClick(event) {
@@ -137,8 +128,10 @@ const AddUser = () => {
       <a id="back" href="http://localhost:3001/">Home</a>
       <div className="admin">
         <div className="feature">
-          <a href="#requests" className={actveLink === '#requests' ? 'active' : ''} onClick={handleClick} data-target="requests" >Requests</a>
-          <a href="#accounts" className={actveLink === '#accounts' ? 'active' : ''} onClick={handleClick} data-target="accounts" >Accounts</a>
+          <a href="#requests" className={actveLink === '#requests' ? 'active' : ''}
+            onClick={handleClick} data-target="requests" >Requests</a>
+          <a href="#accounts" className={actveLink === '#accounts' ? 'active' : ''}
+            onClick={handleClick} data-target="accounts" >Accounts</a>
           <a href="#s_notif" onClick={handleClick} data-target="s_notif" >Send Notification</a>
         </div>
 
@@ -158,11 +151,13 @@ const AddUser = () => {
               <div className="user_type">
 
                 <label> User type :
-                  <input type="radio" name="type" value="user" id="user" onChange={(e) => setRole(e.target.value)} />
+                  <input type="radio" name="type" value="user" id="user"
+                    onChange={(e) => setRole(e.target.value)} />
                   User
                 </label>
                 <label>
-                  <input type="radio" name="type" value="admin" id="admin" onChange={(e) => setRole(e.target.value)} />
+                  <input type="radio" name="type" value="admin" id="admin"
+                    onChange={(e) => setRole(e.target.value)} />
                   Admin
                 </label>
               </div>
@@ -175,11 +170,16 @@ const AddUser = () => {
                   <label for="address">Address: </label>
                 </div>
                 <div className="inputs">
-                  <input type="text" id="shop_name" placeholder="Enter user's shop name" onChange={(e) => setShopname(e.target.value)} required />
-                  <input type="text" id="username" placeholder="Enter username" onChange={(e) => setUsername(e.target.value)} />
-                  <input type="text" id="password" placeholder="Enter password" onChange={(e) => setPassword(e.target.value)} />
-                  <input type="email" id="email" placeholder="Enter user's email" onChange={(e) => setEmail(e.target.value)} />
-                  <input type="text" id="address" placeholder="example(City/Mall/Floor)" onChange={(e) => setAddress(e.target.value)} />
+                  <input type="text" id="shop_name" placeholder="Enter user's shop name"
+                    onChange={(e) => setShopname(e.target.value)} required />
+                  <input type="text" id="username" placeholder="Enter username"
+                    onChange={(e) => setUsername(e.target.value)} />
+                  <input type="text" id="password" placeholder="Enter password"
+                    onChange={(e) => setPassword(e.target.value)} />
+                  <input type="email" id="email" placeholder="Enter user's email"
+                    onChange={(e) => setEmail(e.target.value)} />
+                  <input type="text" id="address" placeholder="example(City/Mall/Floor)"
+                    onChange={(e) => setAddress(e.target.value)} />
                 </div>
               </div>
               <div className="valid_input">

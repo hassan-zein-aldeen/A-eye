@@ -4,14 +4,18 @@ const jwt = require("jsonwebtoken");
 exports.login = async (req, res) => {
   const { username, password } = req.body;
   const user = await User.findOne({ username });
+  try {
+    if (!user) return res.status(404).json({ message: "Invalid Credentials" });
+    const isMatched = user.matchPassword(password);
 
-  if (!user) return res.status(404).json({ message: "Invalid Credentials" });
-  const isMatched = user.matchPassword(password);
-
-  if (!isMatched) return res.status(404).json({ message: "Invalid Credentials" });
-  const token = jwt.sign({ id: user._id, shopname: user.shopname, username: user.username }, process.env.SECRET_KEY);
-
-  res.json({ token })
+    if (!isMatched) return res.status(404).json({ message: "Invalid Credentials" });
+    const token = jwt.sign({ id: user._id, shopname: user.shopname, username: user.username, role: user.role }, process.env.SECRET_KEY);
+    const role = await User.findOne({username}).select("role");
+    res.json({ token, role })
+  } catch (e) {
+    console.error(e);
+    res.status(425).json({ message: "Failed from login" });
+  }
 
 }
 
@@ -35,7 +39,7 @@ exports.createUser = async (req, res) => {
 
   } catch (e) {
     console.error(e);
-    res.status(500).json({message:"An error occurred while creating the user. Please try again later."});
+    res.status(500).json({ message: "An error occurred while creating the user. Please try again later." });
   }
 
 
