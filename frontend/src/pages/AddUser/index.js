@@ -28,9 +28,9 @@ const AddUser = () => {
     return emailPattern.test(email);
   };
 
-
-
   const addNewUser = async (e) => {
+    e.preventDefault();
+
     const form = e.target;
     seterrRole("");
     seterrShopname("");
@@ -42,19 +42,22 @@ const AddUser = () => {
 
     if (!role) {
       seterrRole("user's role is missing");
-      return
+      return;
     }
 
     if (!shopname) {
       seterrShopname("shopname missing");
+      return;
     }
 
     if (!username) {
       seterrUsername("username missing");
+      return;
     }
 
     if (password.length < 6) {
       seterrPassword("password at least 6 characters");
+      return;
     }
 
     if (!email) {
@@ -65,6 +68,32 @@ const AddUser = () => {
 
     if (!address) {
       seterrAddress("address missing");
+      return;
+    }
+    console.log(role)
+    console.log(shopname)
+    console.log(username)
+    console.log(email)
+    console.log(address)
+
+    const userData = {
+      "role": role,
+      "shopname": shopname,
+      "username": username,
+      "password":password,
+      "email":email,
+      "address":address,
+    };
+
+
+    try {
+      const response = await axios.post('http://127.0.0.1:3000/auth/createUser', userData);
+      console.log("test" + userData);
+      const { user } = response.data;
+      console.log("created succ", user);
+      window.location.href = "/";
+    } catch (error) {
+      console.log(error)
     }
 
   }
@@ -99,10 +128,11 @@ const AddUser = () => {
             </div>
           </div>}
           {activeDiv === "create" && <div id="new_user">
-            <p className="form_title">New User {errrole} {errshopname} {errusername} {errpassword} {erremail} {erraddress}</p>
+            <p className="form_title">New User</p>
 
             <div className="fields">
               <div className="user_type">
+
                 <label>
                   <input type="radio" name="type" value="user" id="user" onChange={(e) => setRole(e.target.value)} />
                   User
@@ -127,6 +157,14 @@ const AddUser = () => {
                   <input type="email" id="email" placeholder="Enter user's email" onChange={(e) => setEmail(e.target.value)} />
                   <input type="text" id="address" placeholder="example(City/Mall/Floor)" onChange={(e) => setAddress(e.target.value)} />
                 </div>
+              </div>
+              <div className="valid_input">
+                <span>{errrole}</span>
+                <span>{errshopname}</span>
+                <span>{errusername}</span>
+                <span>{errpassword}</span>
+                <span>{erremail}</span>
+                <span>{erraddress}</span>
               </div>
               <Button1 onClick={addNewUser}>Create</Button1>
             </div>
