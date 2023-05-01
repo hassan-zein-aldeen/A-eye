@@ -21,7 +21,7 @@ const Message = () => {
           </div>
         </div>
         <div className='message_box'>
-          <input id='text_input' type='text' placeholder='Insert Your Message' />
+          <textarea id='text_input' placeholder='Insert Your Message' />
         </div>
         <div className='send_but'>
           <Button1>Send</Button1>

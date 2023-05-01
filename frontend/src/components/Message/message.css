@@ -5,7 +5,7 @@
 .mess_content {
   background-color: #0367A6;
   border-radius: 2rem;
-  padding: 2rem 2rem;
+  padding: 1rem 2rem;
   font-size: 1.8rem;
   color: white;
 }
@@ -20,7 +20,7 @@
 .mess_labels {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.2rem;
   margin-top: 2rem;
 }
 
@@ -28,8 +28,8 @@
   display: flex;
   flex-direction: column;
   background-color: transparent;
-  gap: 3.2rem;
-  margin-bottom: 2rem;
+  gap: 2rem;
+  margin-bottom: 1rem;
 }
 
 .mess_inputs input{
@@ -37,6 +37,8 @@
   border: none;
   border-bottom: 1px solid #ffffff;
   width: 30rem;
+  font-size: 1.4rem;
+  color: white;
 }
 
 .mess_inputs input::placeholder{
@@ -53,16 +55,29 @@
 
 #text_input{
   width: 91%;
-  height: 40vh;
+  height: 38vh;
   border: none;
   border-radius: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  padding-left: 1.5rem;
+  font-family: "Inria Sans";
 }
 
 #text_input::placeholder{
   font-size: 1.4rem;
-  text-align: center;
-  vertical-align: text-top;
+  text-align: left;
+  padding: 1rem 1rem;
+  font-family: "Inria Sans";
+}
+
+#text_input:focus{
+  outline: none;
+  border: 1px solid #F2441D;
+}
+
+#text_input:focus::placeholder{
+  opacity: 0;
 }
 
 .send_but{
