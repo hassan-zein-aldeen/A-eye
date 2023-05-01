@@ -13,6 +13,7 @@ const Message = () => {
           <div className='mess_labels'>
             <label>Shop Name (s):</label>
             <label>Title:</label>
+            <label>Text:</label>
           </div>
           <div className='mess_inputs'>
             <input id='shopname_input' type='text' placeholder='Enter Shop(s) Name' />
@@ -20,10 +21,11 @@ const Message = () => {
           </div>
         </div>
         <div className='message_box'>
-          <p>Text</p>
-          <input id='text_input' type='text' placeholder='Inser Your Message' />
+          <input id='text_input' type='text' placeholder='Insert Your Message' />
         </div>
-        <Button1>Send</Button1>
+        <div className='send_but'>
+          <Button1>Send</Button1>
+        </div>
       </div>
     </div>
   )
