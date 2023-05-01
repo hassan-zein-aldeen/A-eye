@@ -16,6 +16,21 @@ exports.getInactiveUsers = async (req, res) => {
 }
 
 exports.updateUserStatus = async (req, res) => {
+  const { id } = req.params;
 
+  try {
+    const user = await User.findById(id);
+
+    if (user.status === "active") {
+      user.status = "inactive";
+    } else if (user.status === "inactive") {
+      user.status = "active";
+    }
+    const updateUser = await user.save();
+    res.status(200).json({ message: "User Status Updated Successfully", user: updateUser });
+
+  } catch (error) {
+    res.status(200).json({ message: "Error Updating User Status", error });
+  }
 }
 
