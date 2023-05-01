@@ -112,6 +112,7 @@ input[type="radio"]{
   font-size: 2.2rem;
   margin-left:12rem;
   margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 nav a.active{
@@ -171,5 +172,15 @@ nav a.active{
   height: 4rem;
   align-items: start;
   justify-content: start;
+}
+
+.acc_sublinks{
+  display: flex;
+  flex-direction: row;
+  gap:2rem;
+}
+
+.acc_sublinks a{
+  color: #F2441D;
 }
 

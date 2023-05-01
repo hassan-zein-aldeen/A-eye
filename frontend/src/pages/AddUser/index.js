@@ -6,8 +6,8 @@ import Button1 from "../../components/Button1/Button";
 
 const AddUser = () => {
 
-  const [activeDiv, SetActiveDiv] = useState("requests");
-  const [actveLink, SetActiveLink] = useState('#requests');
+  const [activeDiv, setActiveDiv] = useState("requests");
+  const [actveLink, setActiveLink] = useState('#requests');
 
   const [role, setRole] = useState("");
   const [shopname, setShopname] = useState("");
@@ -27,17 +27,29 @@ const AddUser = () => {
 
   const [users, setUsers] = useState([]);
 
-  function handleClick(event) {
-    event.preventDefault();
-    const target = event.target.getAttribute("data-target");
-    SetActiveDiv(target);
-    SetActiveLink(event.target.hash);
-  }
-
   const callFunctions = async (e) => {
     e.preventDefault();
     handleClick(e);
     await getUsers(e);
+  }
+
+  function handleClick(event) {
+    event.preventDefault();
+    const target = event.target.getAttribute("data-target");
+    setActiveDiv(target);
+    setActiveLink(event.target.hash);
+  }
+
+  const getUsers = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.get('http://127.0.0.1:3000/user/');
+      const users = response.data;
+      setUsers(users);
+      console.log(users);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   useEffect(() => {
@@ -117,19 +129,6 @@ const AddUser = () => {
     }
   }
 
-  const getUsers = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await axios.get('http://127.0.0.1:3000/user/');
-      const users = response.data;
-      setUsers(users);
-      console.log(users);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
 
   return (
     <div>
@@ -149,7 +148,13 @@ const AddUser = () => {
           {activeDiv === "s_notif" && <div id="nofitication">This is third section</div>}
           {activeDiv === "accounts" && <div id="account">
             <div className="acc_title">
-              <p>Accounts</p>
+              <div>
+                <p>Accounts</p>
+                <div className="acc_sublinks">
+                  <a>Active</a>
+                  <a>Inactive</a>
+                </div>
+              </div>
               <a id="create_user" href="#" onClick={handleClick} data-target="create">Create User</a>
             </div>
             <div className="display_users">
