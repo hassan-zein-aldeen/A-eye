@@ -27,6 +27,8 @@ const AddUser = () => {
 
   const [users, setUsers] = useState([]);
   const [activeUsers, setactiveUsers] = useState([]);
+  const [inActiveUsers, setinActiveUsers] = useState([]);
+
 
   const handleClick = async (event) => {
     event.preventDefault();
@@ -35,6 +37,7 @@ const AddUser = () => {
     setActiveLink(event.target.hash);
     await getUsers(event);
     await getActiveUsers(event);
+    await getInctiveUsers(event);
   }
 
   const getUsers = async (e) => {
@@ -56,6 +59,18 @@ const AddUser = () => {
       const activeUsers = response.data;
       setactiveUsers(activeUsers);
       console.log(activeUsers);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const getInctiveUsers = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.get('http://127.0.0.1:3000/user/inactiveusers');
+      const inActiveUsers = response.data;
+      setinActiveUsers(inActiveUsers);
+      console.log(inActiveUsers);
     } catch (error) {
       console.log(error);
     }
@@ -265,10 +280,29 @@ const AddUser = () => {
             </div>
           </div>}
           {activeDiv === "inActive_users" && <div id="inactive_user">
-            <p>Here are the not active users</p>
+            <div className="display_users">
+              <p className="acc_title">Active Users</p>
+              <table className="users_table">
+                <thead>
+                  <tr className="col_titles">
+                    <th>Username</th>
+                    <th>Shop Name</th>
+                    <th>Email</th>  
+                  </tr>
+                </thead>
+                <tbody>
+                  {inActiveUsers && inActiveUsers.map(inActiveUser => (
+                    <tr key={inActiveUser._id}>
+                      <td className="key">{inActiveUser.username}</td>
+                      <td>{inActiveUser.shopname}</td>
+                      <td>{inActiveUser.email}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>}
         </div>
-
       </div>
     </div>
   );
