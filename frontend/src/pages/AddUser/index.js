@@ -296,6 +296,7 @@ const AddUser = () => {
                       <td className="key">{inActiveUser.username}</td>
                       <td>{inActiveUser.shopname}</td>
                       <td>{inActiveUser.email}</td>
+                      <td><Button1>Activate</Button1></td>
                     </tr>
                   ))}
                 </tbody>

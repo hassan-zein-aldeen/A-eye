@@ -163,6 +163,11 @@ nav a.active{
   margin-left: 10rem;
 }
 
+.users_table td{
+  height: 4rem;
+}
+
+
 .users_table thead{
   font-size: 1.6rem;
   border-bottom: 1px solid #F2441D;
