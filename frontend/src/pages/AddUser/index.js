@@ -157,7 +157,10 @@ const AddUser = () => {
   const updateStatus = async (userId) => {
     try {
       const updatedUser = await axios.put(`http://127.0.0.1:3000/user/update/${userId}`);
-      window.location.reload();
+      setRes_message("User Status updated Successfully");
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     } catch (error) {
       console.log(error);
     }
@@ -269,6 +272,12 @@ const AddUser = () => {
           {activeDiv === "active_users" && <div id="active_user">
             <div className="display_users">
               <p className="acc_title">Active Users</p>
+              <span className="response_result"
+                style={{
+                  backgroundColor: res_message === "User Status updated Successfully!" ? "green" : "red",
+                  fontSize: "1.5rem",
+                }}>
+                {res_message && <p>{res_message}</p>}</span>
               <table className="users_table">
                 <thead>
                   <tr className="col_titles">
@@ -283,7 +292,7 @@ const AddUser = () => {
                       <td className="key">{activeUser.username}</td>
                       <td>{activeUser.shopname}</td>
                       <td>{activeUser.email}</td>
-                      <td><Button1 onClick={()=>updateStatus(activeUser._id)}>Deactivate</Button1></td>
+                      <td><Button1 onClick={() => updateStatus(activeUser._id)}>Deactivate</Button1></td>
                     </tr>
                   ))}
                 </tbody>
@@ -293,6 +302,12 @@ const AddUser = () => {
           {activeDiv === "inActive_users" && <div id="inactive_user">
             <div className="display_users">
               <p className="acc_title">Deactivated Users</p>
+              <span className="response_result"
+                style={{
+                  backgroundColor: res_message === "User Status updated Successfully!" ? "green" : "red",
+                  fontSize: "1.5rem",
+                }}>
+                {res_message && <p>{res_message}</p>}</span>
               <table className="users_table">
                 <thead>
                   <tr className="col_titles">
@@ -307,7 +322,7 @@ const AddUser = () => {
                       <td className="key">{inActiveUser.username}</td>
                       <td>{inActiveUser.shopname}</td>
                       <td>{inActiveUser.email}</td>
-                      <td><Button1 onClick={()=>updateStatus(inActiveUser._id)}>Activate</Button1></td>
+                      <td><Button1 onClick={() => updateStatus(inActiveUser._id)}>Activate</Button1></td>
                     </tr>
                   ))}
                 </tbody>
