@@ -281,7 +281,7 @@ const AddUser = () => {
           </div>}
           {activeDiv === "inActive_users" && <div id="inactive_user">
             <div className="display_users">
-              <p className="acc_title">Active Users</p>
+              <p className="acc_title">Deactivated Users</p>
               <table className="users_table">
                 <thead>
                   <tr className="col_titles">
