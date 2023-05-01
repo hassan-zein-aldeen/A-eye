@@ -15,3 +15,7 @@ exports.getInactiveUsers = async (req, res) => {
   res.json(inactive_users);
 }
 
+exports.updateUserStatus = async (req, res) => {
+
+}
+
