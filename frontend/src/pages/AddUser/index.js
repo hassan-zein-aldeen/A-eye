@@ -26,18 +26,15 @@ const AddUser = () => {
   const [res_message, setRes_message] = useState("");
 
   const [users, setUsers] = useState([]);
+  const [activeUsers, setactiveUsers] = useState([]);
 
-  const callFunctions = async (e) => {
-    e.preventDefault();
-    handleClick(e);
-    await getUsers(e);
-  }
-
-  function handleClick(event) {
+  const handleClick = async (event) => {
     event.preventDefault();
     const target = event.target.getAttribute("data-target");
     setActiveDiv(target);
     setActiveLink(event.target.hash);
+    await getUsers(event);
+    await getActiveUsers(event);
   }
 
   const getUsers = async (e) => {
@@ -47,6 +44,18 @@ const AddUser = () => {
       const users = response.data;
       setUsers(users);
       console.log(users);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const getActiveUsers = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.get('http://127.0.0.1:3000/user/activeusers');
+      const activeUsers = response.data;
+      setactiveUsers(activeUsers);
+      console.log(activeUsers);
     } catch (error) {
       console.log(error);
     }
@@ -139,7 +148,7 @@ const AddUser = () => {
           <a href="#requests" className={actveLink === '#requests' ? 'active' : ''}
             onClick={handleClick} data-target="requests" >Requests</a>
           <a href="#accounts" className={actveLink === '#accounts' ? 'active' : ''}
-            onClick={callFunctions} data-target="accounts" >Accounts</a>
+            onClick={handleClick} data-target="accounts" >Accounts</a>
           <a href="#s_notif" onClick={handleClick} data-target="s_notif" >Send Notification</a>
         </div>
 
@@ -151,8 +160,8 @@ const AddUser = () => {
               <div>
                 <p>Accounts</p>
                 <div className="acc_sublinks">
-                  <a>Active</a>
-                  <a>Inactive</a>
+                  <a href="#" onClick={handleClick} data-target="active_users">Active</a>
+                  <a href="#" onClick={handleClick} data-target="inActive_users">Inactive</a>
                 </div>
               </div>
               <a id="create_user" href="#" onClick={handleClick} data-target="create">Create User</a>
@@ -180,10 +189,8 @@ const AddUser = () => {
           </div>}
           {activeDiv === "create" && <div id="new_user">
             <p className="form_title">New User</p>
-
             <div className="fields">
               <div className="user_type">
-
                 <label> User type :
                   <input type="radio" name="type" value="user" id="user"
                     onChange={(e) => setRole(e.target.value)} />
@@ -233,6 +240,32 @@ const AddUser = () => {
               </div>
               <Button1 onClick={addNewUser}>Create</Button1>
             </div>
+          </div>}
+          {activeDiv === "active_users" && <div id="active_user">
+            <div className="display_users">
+              <p className="acc_title">Active Users</p>
+              <table className="users_table">
+                <thead>
+                  <tr className="col_titles">
+                    <th>Username</th>
+                    <th>Shop Name</th>
+                    <th>Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {activeUsers && activeUsers.map(activeUser => (
+                    <tr key={activeUser._id}>
+                      <td className="key">{activeUser.username}</td>
+                      <td>{activeUser.shopname}</td>
+                      <td>{activeUser.email}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>}
+          {activeDiv === "inActive_users" && <div id="inactive_user">
+            <p>Here are the not active users</p>
           </div>}
         </div>
 
