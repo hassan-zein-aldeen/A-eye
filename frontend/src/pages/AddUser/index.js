@@ -46,7 +46,8 @@ const AddUser = () => {
       const response = await axios.get('http://127.0.0.1:3000/user/');
       const users = response.data;
       setUsers(users);
-      console.log(users);
+      const userIds = users.map(user => user._id);
+      console.log(userIds);
     } catch (error) {
       console.log(error);
     }
@@ -150,6 +151,15 @@ const AddUser = () => {
       } else {
         setRes_message("An error occurred while creating the user. Please try again later.");
       }
+    }
+  }
+
+  const updateStatus = async (userId) => {
+    try {
+      const updatedUser = await axios.put(`http://127.0.0.1:3000/user/update/${userId}`);
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -273,7 +283,7 @@ const AddUser = () => {
                       <td className="key">{activeUser.username}</td>
                       <td>{activeUser.shopname}</td>
                       <td>{activeUser.email}</td>
-                      <td><Button1>Deactivate</Button1></td>
+                      <td><Button1 onClick={()=>updateStatus(activeUser._id)}>Deactivate</Button1></td>
                     </tr>
                   ))}
                 </tbody>
@@ -288,7 +298,7 @@ const AddUser = () => {
                   <tr className="col_titles">
                     <th>Username</th>
                     <th>Shop Name</th>
-                    <th>Email</th>  
+                    <th>Email</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -297,7 +307,7 @@ const AddUser = () => {
                       <td className="key">{inActiveUser.username}</td>
                       <td>{inActiveUser.shopname}</td>
                       <td>{inActiveUser.email}</td>
-                      <td><Button1>Activate</Button1></td>
+                      <td><Button1 onClick={()=>updateStatus(inActiveUser._id)}>Activate</Button1></td>
                     </tr>
                   ))}
                 </tbody>
