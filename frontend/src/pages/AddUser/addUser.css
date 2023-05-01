@@ -55,21 +55,21 @@
 .fields{
   background-color: #0367A6;
   font-size: 1.6rem;
-  display: flex;
+  display: flex;  
   flex-direction: column;
-  gap: 3rem;
+  gap: 2rem;
   padding: 1.5rem 0.5rem;
   border-radius: 2rem;
   color: white;
   align-items: center;
   justify-content: center;
   margin-left: 10rem;
-  width: 70%;
+  width: 65%;
 }
 
 .user_type{
   display: flex;
-  gap: 9.5rem;
+  gap: 13.5rem;
   text-align: left;
   align-items: flex-start;
 }
@@ -90,7 +90,7 @@
 .add_form{
   display: flex;
   flex-direction: row;
-  gap: 4rem;
+  gap: 8rem;
 }
 
 .labels,.inputs{
@@ -110,7 +110,7 @@ input[type="radio"]{
 
 .form_title{
   font-size: 2.2rem;
-  margin-left:12rem;
+  margin-left:14.4rem;
   margin-bottom: 0.5rem;
   margin-top: 0.5rem;
 }
