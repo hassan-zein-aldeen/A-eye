@@ -1,0 +1,43 @@
+.mess_title {
+  font-size: 2.2rem;
+}
+
+.mess_content {
+  background-color: #0367A6;
+  border-radius: 2rem;
+  padding: 2rem 2rem;
+  font-size: 1.8rem;
+  color: white;
+}
+
+.message_header {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: center;
+}
+
+.mess_labels {
+  display: flex;
+  flex-direction: column;
+}
+
+.mess_inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+  background-color: transparent;
+
+}
+
+.mess_inputs input{
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #ffffff;
+  width: 30rem;
+}
+
+.mess_inputs input::placeholder{
+  color: #a19f9f;
+}

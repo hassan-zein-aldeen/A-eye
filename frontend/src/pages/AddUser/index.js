@@ -3,6 +3,7 @@ import axios from "axios";
 import Header from "../../components/Header/header";
 import './addUser.css';
 import Button1 from "../../components/Button1/Button";
+import Message from "../../components/Message";
 
 const AddUser = () => {
 
@@ -182,7 +183,9 @@ const AddUser = () => {
 
         <div className="admin_content">
           {activeDiv === "requests" && <div id="request">This is first section</div>}
-          {activeDiv === "s_notif" && <div id="nofitication">This is third section</div>}
+          {activeDiv === "s_notif" && <div id="nofitication">
+            <Message />
+            </div>}
           {activeDiv === "accounts" && <div id="account">
             <div className="acc_title">
               <div>
