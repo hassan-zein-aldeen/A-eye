@@ -43,8 +43,10 @@ const Login = () => {
       const response = await axios.post("http://127.0.0.1:3000/auth/login", crdntials);
       const token = response.data.token;
       const role = response.data.role;
+      const username = response.data.username;
       localStorage.setItem("token", token);
       localStorage.setItem("role", role.role);
+      localStorage.setItem("username", username);
 
       if (role.role === "user") {
         window.location.href = "/Home"

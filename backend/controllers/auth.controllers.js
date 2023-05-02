@@ -11,7 +11,7 @@ exports.login = async (req, res) => {
     if (!isMatched) return res.status(404).json({ message: "Invalid Credentials" });
     const token = jwt.sign({ id: user._id, shopname: user.shopname, username: user.username, role: user.role }, process.env.SECRET_KEY);
     const role = await User.findOne({username}).select("role");
-    res.json({ token, role })
+    res.json({ token, role, username })
   } catch (e) {
     console.error(e);
     res.status(425).json({ message: "Failed from login" });
