@@ -35,7 +35,7 @@ exports.sendMessage = async (req, res) => {
 
 exports.getMessage = async (req, res) => {
   const { id } = req.params;
-  
+
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({ message: 'Invalid ID' });
   }
@@ -54,5 +54,26 @@ exports.getMessage = async (req, res) => {
   } catch (e) {
     console.error(`Error while getting messages for receiver with ID ${id}: `, e)
     res.json({ message: "Error while getting messages" });
+  }
+}
+
+exports.showSentMessages = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: 'Invalid sender ID' });
+    }
+
+    const messages = await Message.find({ sender: id })
+      .populate('receiver', 'username')
+      .select('title txtContent timeSent')
+      .exec();
+
+    console.log(`Found sent messages by sender with ID ${id}: `, messages);
+    res.status(200).json(messages);
+  } catch (e) {
+    console.error(`Error while getting sent messages by sender with ID ${id}: `, e)
+    res.json({ message: "Error while getting sent messages" });
   }
 }
