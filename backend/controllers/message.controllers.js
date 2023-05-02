@@ -7,16 +7,14 @@ exports.sendMessage = async (req, res) => {
 
   try {
     const users = await User.find({}, { '_id': 1 });
-    console.log(users);
     const userIds = users.map(user => user._id.toString());
-    console.log(userIds);
     const isfound = rec.every(element => userIds.includes(element));
 
     function hasDuplicates(array) {
       return new Set(array).size !== array.length;
     }
 
-    if (isfound && !hasDuplicates(rec)) {
+    if (isfound && !hasDuplicates(rec) && !rec.includes(sender)) {
       const message = new Message();
       message.receiver = rec;
       message.sender = sender;
@@ -25,7 +23,7 @@ exports.sendMessage = async (req, res) => {
       await message.save();
       res.json(message);
     } else {
-      res.json({ message: "Not allowed to send message for duplicated user or user not found" });
+      res.json({ message: "Cannot send Message! Check Users" });
     }
   } catch (error) {
     res.json({ message: "Error while sending message Status", error });
@@ -48,8 +46,6 @@ exports.getMessage = async (req, res) => {
       .populate({ path: 'receiver', select: 'username', match: { _id: new mongoose.Types.ObjectId(id) } })
       .select('txtContent')
       .exec();
-    console.log(new mongoose.Types.ObjectId(id));
-    console.log(`Found messages for receiver with ID ${id}: `, messages);
     res.status(200).json(messages);
   } catch (e) {
     console.error(`Error while getting messages for receiver with ID ${id}: `, e)
@@ -69,8 +65,6 @@ exports.showSentMessages = async (req, res) => {
       .populate('receiver', 'username')
       .select('title txtContent timeSent')
       .exec();
-
-    console.log(`Found sent messages by sender with ID ${id}: `, messages);
     res.status(200).json(messages);
   } catch (e) {
     console.error(`Error while getting sent messages by sender with ID ${id}: `, e)
