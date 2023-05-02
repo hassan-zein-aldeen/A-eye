@@ -15,6 +15,7 @@ const Message = () => {
     setActiveDiv(target);
     setActiveLink(event.target.hash);
   }
+  
 
 
   return (
