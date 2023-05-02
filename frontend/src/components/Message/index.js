@@ -25,7 +25,6 @@ const Message = () => {
       const sent = await axios.get(`http://127.0.0.1:3000/message/sentMessages/${senderId}`);
       const sent_messages = sent.data;
       console.log(sent_messages);
-      final_messagedata = [];
       const shopnames = sent_messages.map((message) => message.receiver.map
         ((receiver) => {
           const { id, shopname } = receiver;
