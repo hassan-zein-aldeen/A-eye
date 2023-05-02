@@ -55,14 +55,13 @@ exports.getMessage = async (req, res) => {
 
 exports.showSentMessages = async (req, res) => {
   const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ message: 'Invalid sender ID' });
+  }
 
   try {
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({ message: 'Invalid sender ID' });
-    }
-
     const messages = await Message.find({ sender: id })
-      .populate('receiver', 'username')
+      .populate('receiver', 'username shopname')
       .select('title txtContent timeSent')
       .exec();
     res.status(200).json(messages);

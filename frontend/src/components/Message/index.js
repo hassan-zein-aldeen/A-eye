@@ -8,15 +8,35 @@ const Message = () => {
 
   const [activeDiv, setActiveDiv] = useState('old_messages');
   const [actveLink, setActiveLink] = useState('');
+  const senderId = localStorage.getItem('id').toString();
 
   const handleClick = async (event) => {
     event.preventDefault();
     const target = event.target.getAttribute("data-target");
     setActiveDiv(target);
     setActiveLink(event.target.hash);
+    await getSentMessages(senderId);
   }
-  
 
+
+
+  const getSentMessages = async (senderId) => {
+    try {
+      const sent = await axios.get(`http://127.0.0.1:3000/message/sentMessages/${senderId}`);
+      const sent_messages = sent.data;
+      console.log(sent_messages);
+      final_messagedata = [];
+      const shopnames = sent_messages.map((message) => message.receiver.map
+        ((receiver) => {
+          const { id, shopname } = receiver;
+          return { id, shopname };
+        })
+      );
+      console.log(shopnames)
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div>
