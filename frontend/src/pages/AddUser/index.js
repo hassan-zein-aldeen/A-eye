@@ -178,7 +178,7 @@ const AddUser = () => {
             onClick={handleClick} data-target="requests" >Requests</a>
           <a href="#accounts" className={actveLink === '#accounts' ? 'active' : ''}
             onClick={handleClick} data-target="accounts" >Accounts</a>
-          <a href="#s_notif" onClick={handleClick} data-target="s_notif" >Send Message</a>
+          <a href="#s_notif" onClick={handleClick} data-target="s_notif" >Message</a>
         </div>
 
         <div className="admin_content">
