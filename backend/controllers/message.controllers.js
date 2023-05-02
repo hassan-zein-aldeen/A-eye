@@ -35,6 +35,11 @@ exports.sendMessage = async (req, res) => {
 
 exports.getMessage = async (req, res) => {
   const { id } = req.params;
+  
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ message: 'Invalid ID' });
+  }
+
   try {
     const messages = await Message.find({
       receiver: { $in: [new mongoose.Types.ObjectId(id)] }
