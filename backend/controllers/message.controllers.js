@@ -1,12 +1,15 @@
 const Message = require("../models/messagesModel");
 const User = require("../models/userModel");
+const mongoose = require("mongoose");
 
 exports.sendMessage = async (req, res) => {
   const { rec, sender, title, txtContent } = req.body;
 
   try {
     const users = await User.find({}, { '_id': 1 });
+    console.log(users);
     const userIds = users.map(user => user._id.toString());
+    console.log(userIds);
     const isfound = rec.every(element => userIds.includes(element));
 
     function hasDuplicates(array) {
@@ -26,5 +29,25 @@ exports.sendMessage = async (req, res) => {
     }
   } catch (error) {
     res.json({ message: "Error while sending message Status", error });
+  }
+}
+
+
+exports.getMessage = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const messages = await Message.find({
+      receiver: { $in: [new mongoose.Types.ObjectId(id)] }
+    })
+      .populate('sender', 'username')
+      .populate({ path: 'receiver', select: 'username', match: { _id: new mongoose.Types.ObjectId(id) } })
+      .select('txtContent')
+      .exec();
+    console.log(new mongoose.Types.ObjectId(id));
+    console.log(`Found messages for receiver with ID ${id}: `, messages);
+    res.status(200).json(messages);
+  } catch (e) {
+    console.error(`Error while getting messages for receiver with ID ${id}: `, e)
+    res.json({ message: "Error while getting messages" });
   }
 }
