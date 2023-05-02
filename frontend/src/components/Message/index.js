@@ -9,6 +9,9 @@ const Message = () => {
   const [activeDiv, setActiveDiv] = useState('old_messages');
   const [actveLink, setActiveLink] = useState('');
   const senderId = localStorage.getItem('id').toString();
+  const [sent_messages,setSent_messages] = useState('')
+  const [date_time, setDate_time] = useState('');
+  const [shopnames, setShopnames] = useState('');
 
   const handleClick = async (event) => {
     event.preventDefault();
@@ -18,20 +21,23 @@ const Message = () => {
     await getSentMessages(senderId);
   }
 
-
-
   const getSentMessages = async (senderId) => {
     try {
       const sent = await axios.get(`http://127.0.0.1:3000/message/sentMessages/${senderId}`);
       const sent_messages = sent.data;
+      setSent_messages(sent_messages);
       console.log(sent_messages);
+      const date_time = sent_messages.map((message) => message.timeSent);
+      setDate_time(date_time);
+      // console.log(date_time);
       const shopnames = sent_messages.map((message) => message.receiver.map
         ((receiver) => {
-          const { id, shopname } = receiver;
-          return { id, shopname };
+          const { shopname } = receiver;
+          return { shopname };
         })
       );
-      console.log(shopnames)
+      setShopnames(shopnames);
+      // console.log(shopnames)
     } catch (error) {
       console.log(error);
     }
@@ -46,7 +52,26 @@ const Message = () => {
         </div>
         <a href='#' onClick={handleClick} data-target='mess_content' id='message'>Send Message</a>
       </div>
-      {activeDiv === "old_messages" && <div id="old_messages">This is first section</div>}
+      {activeDiv === "old_messages" && <div id="old_messages">
+        <table className="users_table">
+          <thead>
+            <tr className="col_titles">
+              <th>Date and Time</th>
+              <th>Shop Name</th>
+              <th>Title</th>
+            </tr>
+          </thead>
+          <tbody>
+            {sent_messages && sent_messages.map(da_ti => (
+              <tr key={da_ti._id}>
+                <td className="key">{da_ti.timeSent}</td>
+                <td>hello</td>
+                <td>hello</td>
+              </tr>
+            )).reverse()}
+          </tbody>
+        </table>
+      </div>}
       {activeDiv === "mess_content" &&
         <div className='mess_content'>
           <div className='message_header'>
@@ -72,3 +97,5 @@ const Message = () => {
 }
 
 export default Message;
+
+
