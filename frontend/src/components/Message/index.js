@@ -51,7 +51,6 @@ const Message = () => {
 
   const handleFilterClose = () =>{
     setIsOpenFilter(false);
-
   }
 
 
