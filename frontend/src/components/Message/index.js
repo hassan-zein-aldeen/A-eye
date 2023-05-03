@@ -21,6 +21,14 @@ const Message = () => {
 
   const senderId = localStorage.getItem('id').toString();
 
+
+
+
+
+  useEffect(() => {
+    const delay = 500;
+    let timeoutId;
+  
     const searchUsers = async () => {
       const response = await axios.get("http://127.0.0.1:3000/user/");
       const data = response.data;
@@ -28,6 +36,19 @@ const Message = () => {
       setShopnames(filteredUsers);
       console.log(filteredUsers);
     };
+  
+    const debounceSearch = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(searchUsers, delay);
+    };
+    debounceSearch();
+  
+    return () => clearTimeout(timeoutId);
+  }, [senderInputValue]);
+  
+  const handleInputChange = (event) => {
+    setSenderInputValue(event.target.value);
+  };
 
 
   const handleClick = async (event) => {
@@ -134,7 +155,7 @@ const Message = () => {
               <label>Text:</label>
             </div>
             <div className='mess_inputs'>
-              <input id='shopname_input' type='text' placeholder='Enter Shop(s) Name'  />
+              <input id='shopname_input' type='text' placeholder='Enter Shop(s) Name' onChange={handleInputChange} />
               <input id='title_input' type='text' placeholder='Enter message Title' onChange={(e) => setMessage_title(e.target.value)} />
             </div>
           </div>
