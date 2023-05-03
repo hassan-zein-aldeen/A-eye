@@ -12,6 +12,8 @@ const Message = () => {
   const [sent_messages, setSent_messages] = useState('')
   const [date_time, setDate_time] = useState('');
   const [shopnames, setShopnames] = useState('');
+  const [mess_id, setMessId] = useState('');
+  const [isBoxOpen, setIsBoxOpen] = useState(false);
 
   const handleClick = async (event) => {
     event.preventDefault();
@@ -41,8 +43,16 @@ const Message = () => {
     }
   }
 
+  function handleOpen(){
+    setIsBoxOpen(true);
+  }
+
+  function handleClose(){
+    setIsBoxOpen(false);
+  }
+
   return (
-    <div>
+    <div className='right_div'>
       <div className='header_title'>
         <div className='linking'>
           <p className='mess_title'>Send Message</p>
@@ -64,11 +74,16 @@ const Message = () => {
               <tr key={da_ti._id}>
                 <td className="key" style={{ width: "20rem" }}> {da_ti.timeSent.slice(0, 10)} <br /> {da_ti.timeSent.slice(11, 19)}</td>
                 <td className='key' style={{ color: "white" }}>{da_ti.receiver.map((receiver, index) => (<span key={receiver._id}>{receiver.shopname}</span>))}</td>
-                <td className="key" id='last_col'> {da_ti.title}</td>
+                <td className="key" > {da_ti.title}</td>
+                <td id='last_col'><Button1 onClick={handleOpen}>Read</Button1></td>
               </tr>
             )).reverse()}
           </tbody>
         </table>
+        {isBoxOpen && (<div className='boxMessage'>
+          <p style={{color:"black", background:"blue"}}>Hello</p>
+          <Button1 onClick={handleClose}>Close</Button1>
+        </div>)}
       </div>}
       {activeDiv === "mess_content" &&
         <div className='mess_content'>
