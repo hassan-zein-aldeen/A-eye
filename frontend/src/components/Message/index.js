@@ -7,15 +7,19 @@ const Message = () => {
 
 
   const senderId = localStorage.getItem('id').toString();
+
   const [activeDiv, setActiveDiv] = useState('old_messages');
   const [actveLink, setActiveLink] = useState('');
   const [sent_messages, setSent_messages] = useState('')
   const [date_time, setDate_time] = useState('');
   const [shopnames, setShopnames] = useState('');
-  const [mess_id, setMessId] = useState('');
   const [isBoxOpen, setIsBoxOpen] = useState(false);
   const [selectedMessage, setSelectedMessage] = useState('');
   const [isViewMess, setIsviemess] = useState(false);
+  const [message_title, setMessage_title] = useState('')
+  const [message_content, setMessage_content] = useState('');
+  const [message_receiver, setMessage_receiver] = useState('');
+
 
   const handleClick = async (event) => {
     event.preventDefault();
@@ -25,12 +29,25 @@ const Message = () => {
     await getSentMessages(senderId);
   }
 
+  const handleOpen = (id) => {
+    setSelectedMessage(sent_messages.find(message => message._id === id));
+    setIsBoxOpen(true);
+    setIsviemess(true);
+  };
+
+  useEffect(() => {
+  }, [selectedMessage]);
+
+  const handleClose = () => {
+    setIsBoxOpen(false);
+    setIsviemess(false);
+  }
+
   const getSentMessages = async (senderId) => {
     try {
       const sent = await axios.get(`http://127.0.0.1:3000/message/sentMessages/${senderId}`);
       const sent_messages = sent.data;
       setSent_messages(sent_messages);
-      console.log(sent_messages);
       const date_time = sent_messages.map((message) => message.timeSent);
       setDate_time(date_time);
       const shopnames = sent_messages.map((message) => message.receiver.map
@@ -45,19 +62,23 @@ const Message = () => {
     }
   }
 
-  const handleOpen = (id) => {
-    setSelectedMessage(sent_messages.find(message => message._id === id));
-    setIsBoxOpen(true);
-    setIsviemess(true);
-  };
 
-  useEffect(() => {
-    console.log(selectedMessage.txtContent);
-  }, [selectedMessage]);
+  const sendMessage = async (e) => {
+    e.preventDefault();
 
-  const handleClose =()=> {
-    setIsBoxOpen(false);
-    setIsviemess(false);
+    const mess_data = {
+      "rec": [message_receiver],
+      "sender": senderId,
+      "title": message_title,
+      "txtContent": message_content
+    }
+
+    try {
+      const send = await axios.post("http://127.0.0.1:3000/message/", mess_data);
+      console.log("sent Successfully");
+    } catch (e) {
+      console.log(e);
+    }
   }
 
 
@@ -104,15 +125,15 @@ const Message = () => {
               <label>Text:</label>
             </div>
             <div className='mess_inputs'>
-              <input id='shopname_input' type='text' placeholder='Enter Shop(s) Name' />
-              <input id='title_input' type='text' placeholder='Enter message Title' />
+              <input id='shopname_input' type='text' placeholder='Enter Shop(s) Name' onChange={(e) => setMessage_receiver(e.target.value)} />
+              <input id='title_input' type='text' placeholder='Enter message Title' onChange={(e) => setMessage_title(e.target.value)} />
             </div>
           </div>
           <div className='message_box'>
-            <textarea id='text_input' placeholder='Insert Your Message' />
+            <textarea id='text_input' placeholder='Insert Your Message' onChange={(e) => setMessage_content(e.target.value)} />
           </div>
           <div className='send_but'>
-            <Button1>Send</Button1>
+            <Button1 onClick={sendMessage}>Send</Button1>
           </div>
         </div>}
     </div>
