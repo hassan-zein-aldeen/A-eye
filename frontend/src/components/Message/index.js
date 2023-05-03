@@ -9,7 +9,7 @@ const Message = () => {
   const [activeDiv, setActiveDiv] = useState('old_messages');
   const [actveLink, setActiveLink] = useState('');
   const senderId = localStorage.getItem('id').toString();
-  const [sent_messages,setSent_messages] = useState('')
+  const [sent_messages, setSent_messages] = useState('')
   const [date_time, setDate_time] = useState('');
   const [shopnames, setShopnames] = useState('');
 
@@ -29,7 +29,6 @@ const Message = () => {
       console.log(sent_messages);
       const date_time = sent_messages.map((message) => message.timeSent);
       setDate_time(date_time);
-      // console.log(date_time);
       const shopnames = sent_messages.map((message) => message.receiver.map
         ((receiver) => {
           const { shopname } = receiver;
@@ -37,7 +36,6 @@ const Message = () => {
         })
       );
       setShopnames(shopnames);
-      // console.log(shopnames)
     } catch (error) {
       console.log(error);
     }
@@ -56,17 +54,17 @@ const Message = () => {
         <table className="messages_table">
           <thead>
             <tr className="col_titles">
-              <th style={{fontSize:"1.6rem"}}>Date and Time</th>
-              <th  style={{fontSize:"1.6rem"}}>Shop Name</th>
-              <th  style={{fontSize:"1.6rem"}}>Title</th>
+              <th style={{ fontSize: "1.6rem" }}>Date and Time</th>
+              <th style={{ fontSize: "1.6rem" }}>Shop Name</th>
+              <th style={{ fontSize: "1.6rem" }}>Title</th>
             </tr>
           </thead>
           <tbody>
             {sent_messages && sent_messages.map(da_ti => (
               <tr key={da_ti._id}>
-                <td className="key" style={{width:"20rem"}}>{da_ti.timeSent.replace(/T/," || ").replace(/Z/,"")}</td>
-                <td>hello</td>
-                <td className="key" id='last_col'>{da_ti.title}</td>
+                <td className="key" style={{ width: "20rem" }}> {da_ti.timeSent.slice(0, 10)} <br /> {da_ti.timeSent.slice(11, 19)}</td>
+                <td className='key' style={{ color: "white" }}>{da_ti.receiver.map((receiver, index) => (<span key={receiver._id}>{receiver.shopname}</span>))}</td>
+                <td className="key" id='last_col'> {da_ti.title}</td>
               </tr>
             )).reverse()}
           </tbody>
