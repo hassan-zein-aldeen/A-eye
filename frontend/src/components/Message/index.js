@@ -66,7 +66,7 @@ const Message = () => {
               <tr key={da_ti._id}>
                 <td className="key" style={{width:"20rem"}}>{da_ti.timeSent.replace(/T/," || ").replace(/Z/,"")}</td>
                 <td>hello</td>
-                <td id='last_col'>hello</td>
+                <td className="key" id='last_col'>{da_ti.title}</td>
               </tr>
             )).reverse()}
           </tbody>
