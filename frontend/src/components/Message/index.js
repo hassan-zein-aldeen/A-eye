@@ -87,7 +87,7 @@ const Message = () => {
           </tbody>
         </table>
         {isBoxOpen && (<div className='boxMessage'>
-          <p style={{ color: "black", background: "blue" }}>{selectedMessage.txtContent}</p>
+          <p>{selectedMessage.txtContent}</p>
           <Button1 onClick={handleClose}>Close</Button1>
         </div>)}
       </div>}

@@ -159,5 +159,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  color: #0367A6;
+  font-size: 1.4rem;
 }
 
