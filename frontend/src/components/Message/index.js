@@ -28,10 +28,8 @@ const Message = () => {
 
     const searchUsers = async () => {
       const response = await axios.get("http://127.0.0.1:3000/user/");
-      const data = response.data;
-      const filteredUsers = data.map(user => user.shopname).filter(shopname => shopname.includes(senderInputValue));
-      setShopnames(filteredUsers);
-      console.log(filteredUsers);
+      const filteredUsers = response.data;
+      setShopnamesIds(filteredUsers);
     };
 
     const debounceSearch = () => {
@@ -49,7 +47,7 @@ const Message = () => {
     setIsOpenFilter(true);
   };
 
-  const handleFilterClose = () =>{
+  const handleFilterClose = () => {
     setIsOpenFilter(false);
   }
 
@@ -160,7 +158,15 @@ const Message = () => {
             <div className='mess_inputs'>
               <input id='shopname_input' type='text' placeholder='Enter Shop(s) Name' onChange={handleInputChange} />
               {isOpenFilter && (<div className={`filter_box ${isOpenFilter ? "show" : ""}`}>
-                <p>Here is the content</p>
+                <ul className='key'>
+                  {shopnameIds
+                    .map(user => user.shopname)
+                    .filter(shopname => shopname.includes(senderInputValue))
+                    .map((shopname, index) => (
+                      <li key={index}>{shopname}</li>
+                    ))
+                  }
+                </ul>
                 <Button1 onClick={handleFilterClose}>Close</Button1>
               </div>)}
               <input id='title_input' type='text' placeholder='Enter message Title' onChange={(e) => setMessage_title(e.target.value)} />
