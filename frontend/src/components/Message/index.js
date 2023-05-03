@@ -5,15 +5,17 @@ import Button1 from '../Button1/Button';
 
 const Message = () => {
 
+
+  const senderId = localStorage.getItem('id').toString();
   const [activeDiv, setActiveDiv] = useState('old_messages');
   const [actveLink, setActiveLink] = useState('');
-  const senderId = localStorage.getItem('id').toString();
   const [sent_messages, setSent_messages] = useState('')
   const [date_time, setDate_time] = useState('');
   const [shopnames, setShopnames] = useState('');
   const [mess_id, setMessId] = useState('');
   const [isBoxOpen, setIsBoxOpen] = useState(false);
   const [selectedMessage, setSelectedMessage] = useState('');
+  const [isViewMess, setIsviemess] = useState(false);
 
   const handleClick = async (event) => {
     event.preventDefault();
@@ -46,14 +48,16 @@ const Message = () => {
   const handleOpen = (id) => {
     setSelectedMessage(sent_messages.find(message => message._id === id));
     setIsBoxOpen(true);
-  }
+    setIsviemess(true);
+  };
 
   useEffect(() => {
     console.log(selectedMessage.txtContent);
   }, [selectedMessage]);
 
-  function handleClose() {
+  const handleClose =()=> {
     setIsBoxOpen(false);
+    setIsviemess(false);
   }
 
 
@@ -81,12 +85,12 @@ const Message = () => {
                 <td className="key" style={{ width: "20rem" }}> {da_ti.timeSent.slice(0, 10)} <br /> {da_ti.timeSent.slice(11, 19)}</td>
                 <td className='key' style={{ color: "white" }}>{da_ti.receiver.map((receiver, index) => (<span key={receiver._id}>{receiver.shopname}</span>))}</td>
                 <td className="key" > {da_ti.title}</td>
-                <td id='last_col'><Button1 onClick={() => handleOpen(da_ti._id)}>Read</Button1></td>
+                <td id='last_col'><Button1 onClick={() => handleOpen(da_ti._id)} disabled={isViewMess}>Read</Button1></td>
               </tr>
             )).reverse()}
           </tbody>
         </table>
-        {isBoxOpen && (<div className='boxMessage'>
+        {isBoxOpen && (<div className={`boxMessage ${isBoxOpen ? "show" : ""}`}>
           <p>{selectedMessage.txtContent}</p>
           <Button1 onClick={handleClose}>Close</Button1>
         </div>)}
