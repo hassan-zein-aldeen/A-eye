@@ -11,6 +11,7 @@ const Message = () => {
   const [date_time, setDate_time] = useState('');
   const [shopnames, setShopnames] = useState('');
   const [isBoxOpen, setIsBoxOpen] = useState(false);
+  const [isOpenFilter, setIsOpenFilter] = useState(false);
   const [selectedMessage, setSelectedMessage] = useState('');
   const [isViewMess, setIsviemess] = useState(false);
   const [message_title, setMessage_title] = useState('')
@@ -21,14 +22,10 @@ const Message = () => {
 
   const senderId = localStorage.getItem('id').toString();
 
-
-
-
-
   useEffect(() => {
     const delay = 500;
     let timeoutId;
-  
+
     const searchUsers = async () => {
       const response = await axios.get("http://127.0.0.1:3000/user/");
       const data = response.data;
@@ -36,19 +33,26 @@ const Message = () => {
       setShopnames(filteredUsers);
       console.log(filteredUsers);
     };
-  
+
     const debounceSearch = () => {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(searchUsers, delay);
     };
     debounceSearch();
-  
+
     return () => clearTimeout(timeoutId);
   }, [senderInputValue]);
-  
+
   const handleInputChange = (event) => {
+    event.preventDefault();
     setSenderInputValue(event.target.value);
+    setIsOpenFilter(true);
   };
+
+  const handleFilterClose = () =>{
+    setIsOpenFilter(false);
+
+  }
 
 
   const handleClick = async (event) => {
@@ -156,6 +160,10 @@ const Message = () => {
             </div>
             <div className='mess_inputs'>
               <input id='shopname_input' type='text' placeholder='Enter Shop(s) Name' onChange={handleInputChange} />
+              {isOpenFilter && (<div className={`filter_box ${isOpenFilter ? "show" : ""}`}>
+                <p>Here is the content</p>
+                <Button1 onClick={handleFilterClose}>Close</Button1>
+              </div>)}
               <input id='title_input' type='text' placeholder='Enter message Title' onChange={(e) => setMessage_title(e.target.value)} />
             </div>
           </div>
