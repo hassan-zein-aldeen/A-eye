@@ -53,20 +53,20 @@ const Message = () => {
         <a href='#' onClick={handleClick} data-target='mess_content' id='message'>Send Message</a>
       </div>
       {activeDiv === "old_messages" && <div id="old_messages">
-        <table className="users_table">
+        <table className="messages_table">
           <thead>
             <tr className="col_titles">
-              <th>Date and Time</th>
-              <th>Shop Name</th>
-              <th>Title</th>
+              <th style={{fontSize:"1.6rem"}}>Date and Time</th>
+              <th  style={{fontSize:"1.6rem"}}>Shop Name</th>
+              <th  style={{fontSize:"1.6rem"}}>Title</th>
             </tr>
           </thead>
           <tbody>
             {sent_messages && sent_messages.map(da_ti => (
               <tr key={da_ti._id}>
-                <td className="key">{da_ti.timeSent}</td>
+                <td className="key" style={{width:"20rem"}}>{da_ti.timeSent.replace(/T/," || ").replace(/Z/,"")}</td>
                 <td>hello</td>
-                <td>hello</td>
+                <td id='last_col'>hello</td>
               </tr>
             )).reverse()}
           </tbody>

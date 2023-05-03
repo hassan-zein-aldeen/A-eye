@@ -142,10 +142,14 @@ nav a.active{
   width: 100%;
 }
 
+.bord_left{
+  border: 1px solid white;
+}
+
 .display_users td{
     width: 15rem;
-    border-bottom: 1px solid #F2441D;
-    color: #0367A6;
+    border-bottom: 1px solid #f7f7f7;
+    color: white;
 }
 
 .display_users th{
@@ -161,16 +165,21 @@ nav a.active{
   border-radius: 2rem;
   padding: 1rem 1rem;
   margin-left: 10rem;
+  background-color: #0367A6;
+  color: white;
+  border: none;
 }
 
 .users_table td{
   height: 4rem;
+  border-right: 1px solid #f7f7f7;
+  font-size: 1.4rem ;
 }
 
 
 .users_table thead{
   font-size: 1.6rem;
-  border-bottom: 1px solid #F2441D;
+  border-bottom: 1px solid #ffffff;
   padding-top:2rem;
   padding-bottom: 2rem;
   margin-bottom: 2rem;
@@ -192,4 +201,8 @@ nav a.active{
 #nofitication{
   margin-left: 8rem;
   margin-top: 1rem;
+}
+
+#last_bord{
+  border-right: none;
 }

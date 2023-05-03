@@ -99,7 +99,7 @@ table {
   margin-top: 4rem;
 }
 
-td {
+.directions td {
   border-left: 1px solid #F2441D;
   width: 10rem;
   height: 3rem;

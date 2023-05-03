@@ -183,7 +183,7 @@ const AddUser = () => {
           {activeDiv === "requests" && <div id="request">This is first section</div>}
           {activeDiv === "s_notif" && <div id="nofitication">
             <Message />
-            </div>}
+          </div>}
           {activeDiv === "accounts" && <div id="account">
             <div className="acc_title">
               <div>
@@ -209,7 +209,7 @@ const AddUser = () => {
                     <tr key={user._id}>
                       <td className="key">{user.username}</td>
                       <td>{user.shopname}</td>
-                      <td>{user.email}</td>
+                      <td id="last_bord">{user.email}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -284,16 +284,16 @@ const AddUser = () => {
                   <tr className="col_titles">
                     <th>Username</th>
                     <th>Shop Name</th>
-                    <th>Email</th>
+                    <th >Email</th>
                   </tr>
                 </thead>
                 <tbody>
                   {activeUsers && activeUsers.map(activeUser => (
                     <tr key={activeUser._id}>
                       <td className="key">{activeUser.username}</td>
-                      <td>{activeUser.shopname}</td>
-                      <td>{activeUser.email}</td>
-                      <td><Button1 onClick={() => updateStatus(activeUser._id)}>Deactivate</Button1></td>
+                      <td >{activeUser.shopname}</td>
+                      <td >{activeUser.email}</td>
+                      <td id="last_bord"><Button1 onClick={() => updateStatus(activeUser._id)}>Deactivate</Button1></td>
                     </tr>
                   ))}
                 </tbody>
@@ -323,7 +323,7 @@ const AddUser = () => {
                       <td className="key">{inActiveUser.username}</td>
                       <td>{inActiveUser.shopname}</td>
                       <td>{inActiveUser.email}</td>
-                      <td><Button1 onClick={() => updateStatus(inActiveUser._id)}>Activate</Button1></td>
+                      <td id="last_bord"><Button1 onClick={() => updateStatus(inActiveUser._id)}>Activate</Button1></td>
                     </tr>
                   ))}
                 </tbody>
