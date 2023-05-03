@@ -25,3 +25,7 @@ button:active {
   transition: 0.2s;
 }
 
+.button1:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
