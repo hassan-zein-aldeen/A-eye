@@ -5,9 +5,6 @@ import Button1 from '../Button1/Button';
 
 const Message = () => {
 
-
-  const senderId = localStorage.getItem('id').toString();
-
   const [activeDiv, setActiveDiv] = useState('old_messages');
   const [actveLink, setActiveLink] = useState('');
   const [sent_messages, setSent_messages] = useState('')
@@ -19,6 +16,18 @@ const Message = () => {
   const [message_title, setMessage_title] = useState('')
   const [message_content, setMessage_content] = useState('');
   const [message_receiver, setMessage_receiver] = useState('');
+  const [senderInputValue, setSenderInputValue] = useState('');
+  const [shopnameIds, setShopnamesIds] = useState([]);
+
+  const senderId = localStorage.getItem('id').toString();
+
+    const searchUsers = async () => {
+      const response = await axios.get("http://127.0.0.1:3000/user/");
+      const data = response.data;
+      const filteredUsers = data.map(user => user.shopname).filter(shopname => shopname.includes(senderInputValue));
+      setShopnames(filteredUsers);
+      console.log(filteredUsers);
+    };
 
 
   const handleClick = async (event) => {
@@ -125,7 +134,7 @@ const Message = () => {
               <label>Text:</label>
             </div>
             <div className='mess_inputs'>
-              <input id='shopname_input' type='text' placeholder='Enter Shop(s) Name' onChange={(e) => setMessage_receiver(e.target.value)} />
+              <input id='shopname_input' type='text' placeholder='Enter Shop(s) Name'  />
               <input id='title_input' type='text' placeholder='Enter message Title' onChange={(e) => setMessage_title(e.target.value)} />
             </div>
           </div>

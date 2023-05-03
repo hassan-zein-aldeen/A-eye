@@ -47,6 +47,7 @@ const AddUser = () => {
       const response = await axios.get('http://127.0.0.1:3000/user/');
       const users = response.data;
       setUsers(users);
+      // console.log('here are the users', users);
       const userIds = users.map(user => user._id);
     } catch (error) {
       console.log(error);
@@ -70,7 +71,6 @@ const AddUser = () => {
       const response = await axios.get('http://127.0.0.1:3000/user/inactiveusers');
       const inActiveUsers = response.data;
       setinActiveUsers(inActiveUsers);
-      console.log(inActiveUsers);
     } catch (error) {
       console.log(error);
     }
