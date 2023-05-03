@@ -1,6 +1,5 @@
 import './message.css';
-import React from "react";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from "axios";
 import Button1 from '../Button1/Button';
 
@@ -14,6 +13,7 @@ const Message = () => {
   const [shopnames, setShopnames] = useState('');
   const [mess_id, setMessId] = useState('');
   const [isBoxOpen, setIsBoxOpen] = useState(false);
+  const [selectedMessage, setSelectedMessage] = useState('');
 
   const handleClick = async (event) => {
     event.preventDefault();
@@ -43,13 +43,19 @@ const Message = () => {
     }
   }
 
-  function handleOpen(){
+  const handleOpen = (id) => {
+    setSelectedMessage(sent_messages.find(message => message._id === id));
     setIsBoxOpen(true);
   }
 
-  function handleClose(){
+  useEffect(() => {
+    console.log(selectedMessage.txtContent);
+  }, [selectedMessage]);
+
+  function handleClose() {
     setIsBoxOpen(false);
   }
+
 
   return (
     <div className='right_div'>
@@ -75,13 +81,13 @@ const Message = () => {
                 <td className="key" style={{ width: "20rem" }}> {da_ti.timeSent.slice(0, 10)} <br /> {da_ti.timeSent.slice(11, 19)}</td>
                 <td className='key' style={{ color: "white" }}>{da_ti.receiver.map((receiver, index) => (<span key={receiver._id}>{receiver.shopname}</span>))}</td>
                 <td className="key" > {da_ti.title}</td>
-                <td id='last_col'><Button1 onClick={handleOpen}>Read</Button1></td>
+                <td id='last_col'><Button1 onClick={() => handleOpen(da_ti._id)}>Read</Button1></td>
               </tr>
             )).reverse()}
           </tbody>
         </table>
         {isBoxOpen && (<div className='boxMessage'>
-          <p style={{color:"black", background:"blue"}}>Hello</p>
+          <p style={{ color: "black", background: "blue" }}>{selectedMessage.txtContent}</p>
           <Button1 onClick={handleClose}>Close</Button1>
         </div>)}
       </div>}

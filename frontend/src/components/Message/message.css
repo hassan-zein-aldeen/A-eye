@@ -141,6 +141,7 @@
 
 #last_col{
   border-right: none ;
+  margin: 0.5rem 0.5rem;
 }
 
 .boxMessage{
