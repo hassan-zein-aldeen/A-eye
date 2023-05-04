@@ -16,14 +16,6 @@ const Sidebar = ({ activeLink, handleClick, handleAccSubClick }) => {
     setActiveSubLink(e.target.dataset.target);
   };
 
-  const handleAccountsClick = (e) => {
-    setActiveSubLink(e.target.dataset.target);
-    if (activeSubLink === 'active') {
-      setActiveSubLink('inactive');
-    } else {
-      setActiveSubLink('active');
-    }
-  };
 
   return (
     <div className="admin_sidebar">
@@ -53,19 +45,6 @@ const Sidebar = ({ activeLink, handleClick, handleAccSubClick }) => {
           >
             Accounts
           </a>
-          {activeSubLink && (
-            <div className="accountslink_container">
-              <a href="#active_users" onClick={() =>handleAccSubClick("active_users")} data-target="active_users">
-                {" "}
-                &bull; Active
-              </a>
-              <br />
-              <a href="#inActive_users" onClick={()=>handleAccSubClick("inactive_users")} data-target="inactive_users">
-                {" "}
-                &bull; InActive
-              </a>
-            </div>
-          )}
         </div>
         <a
           href="#s_notif"

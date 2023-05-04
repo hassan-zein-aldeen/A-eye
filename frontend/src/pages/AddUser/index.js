@@ -178,7 +178,6 @@ const AddUser = () => {
           </div>}
           {activeDiv === "accounts" && <div id="account">
             <p className="shopname-title">Shopname: <span> {title_name}</span></p>
-
             <div className="display_users">
               <div className="acc_title">
                 <div className="acc_sublinks">
@@ -187,29 +186,32 @@ const AddUser = () => {
                 </div>
                 <a id="create_user" href="#" onClick={handleClick} data-target="create">Create User</a>
               </div>
-              <table className="users_table">
-                <thead>
-                  <tr className="col_titles">
-                    <tr></tr>
-                    <th>Username</th>
-                    <th>Shop Name</th>
-                    <th>Email</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {users && users.map(user => (
-                    <tr key={user._id}>
-                      <td><img className="userimage" src={userIcon} /></td>
-                      <td className="key">{user.username}</td>
-                      <td>{user.shopname}</td>
-                      <td id="last_bord">{user.email}</td>
+              <div>
+                <table className="users_table">
+                  <thead>
+                    <tr className="col_titles">
+                      <tr></tr>
+                      <th>Username</th>
+                      <th>Shop Name</th>
+                      <th>Email</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {users && users.map(user => (
+                      <tr key={user._id}>
+                        <td><img className="userimage" src={userIcon} /></td>
+                        <td className="key">{user.username}</td>
+                        <td>{user.shopname}</td>
+                        <td id="last_bord">{user.email}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>}
           {activeDiv === "create" && <div id="new_user">
+            <p className="shopname-title">Shopname: <span> {title_name}</span></p>
             <p className="form_title">New User</p>
             <div className="fields">
               <div className="user_type">
@@ -264,8 +266,15 @@ const AddUser = () => {
             </div>
           </div>}
           {activeDiv === "active_users" && <div id="active_user">
+            <p className="shopname-title">Shopname: <span> {title_name}</span></p>
             <div className="display_users">
-              <p className="acc_title">Active Users</p>
+              <div className="acc_title">
+                <div className="acc_sublinks">
+                  <a href="#" onClick={handleClick} data-target="active_users">Active</a>
+                  <a href="#" onClick={handleClick} data-target="inActive_users">Inactive</a>
+                </div>
+                <a id="create_user" href="#" onClick={handleClick} data-target="create">Create User</a>
+              </div>
               <span className="response_result"
                 style={{
                   backgroundColor: res_message === "User Status updated Successfully!" ? "green" : "red",
@@ -283,7 +292,7 @@ const AddUser = () => {
                 <tbody>
                   {activeUsers && activeUsers.map(activeUser => (
                     <tr key={activeUser._id}>
-                      <td><img className="userimage" src={userIcon}/></td>
+                      <td><img className="userimage" src={userIcon} /></td>
                       <td className="key">{activeUser.username}</td>
                       <td >{activeUser.shopname}</td>
                       <td >{activeUser.email}</td>
@@ -295,8 +304,15 @@ const AddUser = () => {
             </div>
           </div>}
           {activeDiv === "inActive_users" && <div id="inactive_user">
+            <p className="shopname-title">Shopname: <span> {title_name}</span></p>
             <div className="display_users">
-              <p className="acc_title">Deactivated Users</p>
+              <div className="acc_title">
+                <div className="acc_sublinks">
+                  <a href="#" onClick={handleClick} data-target="active_users">Active</a>
+                  <a href="#" onClick={handleClick} data-target="inActive_users">Inactive</a>
+                </div>
+                <a id="create_user" href="#" onClick={handleClick} data-target="create">Create User</a>
+              </div>
               <span className="response_result"
                 style={{
                   backgroundColor: res_message === "User Status updated Successfully!" ? "green" : "red",
@@ -314,10 +330,11 @@ const AddUser = () => {
                 <tbody>
                   {inActiveUsers && inActiveUsers.map(inActiveUser => (
                     <tr key={inActiveUser._id}>
+                      <td><img className="userimage" src={userIcon} /></td>
                       <td className="key">{inActiveUser.username}</td>
                       <td>{inActiveUser.shopname}</td>
                       <td>{inActiveUser.email}</td>
-                      <td id="last_bord"><Button1 onClick={() => updateStatus(inActiveUser._id)}>Activate</Button1></td>
+                      <td><Button1 onClick={() => updateStatus(inActiveUser._id)}>Activate</Button1></td>
                     </tr>
                   ))}
                 </tbody>
