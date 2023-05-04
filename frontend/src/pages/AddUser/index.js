@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Header from "../../components/Header/header";
 import './addUser.css';
 import Button1 from "../../components/Button1/Button";
 import Message from "../../components/Message";
+import AdminLogo from "../../images/EditedLogo.svg";
+import Sidebar from "../../components/Sidebar";
 
 const AddUser = () => {
 
@@ -47,7 +48,6 @@ const AddUser = () => {
       const response = await axios.get('http://127.0.0.1:3000/user/');
       const users = response.data;
       setUsers(users);
-      // console.log('here are the users', users);
       const userIds = users.map(user => user._id);
     } catch (error) {
       console.log(error);
@@ -165,22 +165,12 @@ const AddUser = () => {
     }
   }
 
-
   return (
     <div>
-      <Header />
-      <a id="back" href="http://localhost:3001/">Home</a>
       <div className="admin">
-        <div className="feature">
-          <a href="#requests" className={actveLink === '#requests' ? 'active' : ''}
-            onClick={handleClick} data-target="requests" >Requests</a>
-          <a href="#accounts" className={actveLink === '#accounts' ? 'active' : ''}
-            onClick={handleClick} data-target="accounts" >Accounts</a>
-          <a href="#s_notif" onClick={handleClick} data-target="s_notif" > Message</a>
-        </div>
-
+        <Sidebar activeLink={actveLink} handleClick={handleClick} />
         <div className="admin_content">
-          {activeDiv === "requests" && <div id="request">This is first section</div>}
+          {activeDiv === "requests" && <div id="request">First section</div>}
           {activeDiv === "s_notif" && <div id="nofitication">
             <Message />
           </div>}

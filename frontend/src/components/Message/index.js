@@ -178,14 +178,16 @@ const Message = () => {
               <label>Text:</label>
             </div>
             <div className='mess_inputs'>
+              <div>
+                {selectedShops.map((shop, index) => (
+                  <div key={index} className='selected_shop'>{shop.shopname}<span className='remove_shop' onClick={() => {
+                    const shopId = shop._id;
+                    setCheckedBoxes(checkedBoxes.filter(id => id !== shopId));
+                    setSelectedShops(selectedShops.filter(shop => shop._id !== shopId));
+                  }}></span></div>
+                ))}
+              </div>
               <input id='shopname_input' type='text' placeholder='Enter Shop(s) Name' onChange={handleInputChange} />
-              {selectedShops.map((shop, index)=>(
-                <div key={index} className='selected_shop'>{shop.shopname}<span className='remove_shop' onClick={()=>{
-                  const shopId = shop._id;
-                  setCheckedBoxes(checkedBoxes.filter(id=>id !== shopId));
-                  setSelectedShops(selectedShops.filter(shop=>shop._id !== shopId));
-                }}></span></div>
-              ))}
               {isOpenFilter && (<div className={`filter_box ${isOpenFilter ? "show" : ""}`}>
                 <ul className='key'>
                   {shopnameIds

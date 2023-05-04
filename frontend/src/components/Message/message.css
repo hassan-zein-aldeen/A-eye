@@ -193,3 +193,10 @@
   display: flex;
   gap: 2rem;
 }
+
+.selected_shop{
+  display: inline-block;
+  font-size: 1.2rem;
+  margin: 0px 0px;
+  gap: 1rem;
+}
