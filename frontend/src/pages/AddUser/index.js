@@ -180,6 +180,7 @@ const AddUser = () => {
             <p className="shopname-title">Shopname: <span> {title_name}</span></p>
             <div className="acc_title">
               <div>
+              <p>All Acounts</p>
                 <div className="acc_sublinks">
                   <a href="#" onClick={handleClick} data-target="active_users">Active</a>
                   <a href="#" onClick={handleClick} data-target="inActive_users">Inactive</a>
