@@ -277,7 +277,8 @@ const AddUser = () => {
               </div>
               <span className="response_result"
                 style={{
-                  backgroundColor: res_message === "User Status updated Successfully!" ? "green" : "red",
+                  backgroundColor: res_message === "User Status updated Successfully" ? "green" : "red",
+                  color:"white",
                   fontSize: "1.5rem",
                 }}>
                 {res_message && <p>{res_message}</p>}</span>
@@ -315,7 +316,8 @@ const AddUser = () => {
               </div>
               <span className="response_result"
                 style={{
-                  backgroundColor: res_message === "User Status updated Successfully!" ? "green" : "red",
+                  backgroundColor: res_message === "User Status updated Successfully" ? "green" : "red",
+                  color:"white",
                   fontSize: "1.5rem",
                 }}>
                 {res_message && <p>{res_message}</p>}</span>

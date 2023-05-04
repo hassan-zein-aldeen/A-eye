@@ -72,14 +72,14 @@
   font-size: 1.6rem;
   display: flex;  
   flex-direction: column;
-  gap: 2rem;
-  padding: 1.5rem 0.5rem;
+  gap: 2.5rem;
+  padding: 2.5rem 0.5rem;
   border-radius: 2rem;
   color: white;
   align-items: center;
   justify-content: center;
   margin-left: 12rem;
-  width: 65%;
+  width: 70%;
 }
 
 .user_type{
@@ -111,11 +111,11 @@
 .labels,.inputs{
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 3rem;
 }
 
 .inputs{
-  gap: 2.4rem;
+  gap: 3.4rem;
 }
 
 input[type="radio"]{
