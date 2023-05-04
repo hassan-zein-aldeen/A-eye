@@ -3,10 +3,11 @@ import Logo from "../../images/EditedLogo.svg";
 import Button1 from "../Button1/Button";
 import "./sidebar.css";
 
-const Sidebar = ({ activeLink, handleClick }) => {
+const Sidebar = ({ activeLink, handleClick, handleAccSubClick }) => {
   const [activeSubLink, setActiveSubLink] = useState();
 
-  const handleAll =  (e) => {
+
+  const handleAll = (e) => {
     handleClick(e);
     handleSubClick(e);
   }
@@ -16,7 +17,6 @@ const Sidebar = ({ activeLink, handleClick }) => {
   };
 
   const handleAccountsClick = (e) => {
-    e.preventDefault();
     setActiveSubLink(e.target.dataset.target);
     if (activeSubLink === 'active') {
       setActiveSubLink('inactive');
@@ -55,12 +55,12 @@ const Sidebar = ({ activeLink, handleClick }) => {
           </a>
           {activeSubLink && (
             <div className="accountslink_container">
-              <a href="#active" onClick={handleSubClick}>
+              <a href="#active_users" onClick={() =>handleAccSubClick("active_users")} data-target="active_users">
                 {" "}
                 &bull; Active
               </a>
               <br />
-              <a href="#inactive" onClick={handleSubClick}>
+              <a href="#inActive_users" onClick={()=>handleAccSubClick("inactive_users")} data-target="inactive_users">
                 {" "}
                 &bull; InActive
               </a>

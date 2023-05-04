@@ -3,8 +3,8 @@ import axios from "axios";
 import './addUser.css';
 import Button1 from "../../components/Button1/Button";
 import Message from "../../components/Message";
-import AdminLogo from "../../images/EditedLogo.svg";
 import Sidebar from "../../components/Sidebar";
+import userIcon from "../../images/user.svg";
 
 const AddUser = () => {
 
@@ -178,20 +178,19 @@ const AddUser = () => {
           </div>}
           {activeDiv === "accounts" && <div id="account">
             <p className="shopname-title">Shopname: <span> {title_name}</span></p>
-            <div className="acc_title">
-              <div>
-              <p>All Acounts</p>
+
+            <div className="display_users">
+              <div className="acc_title">
                 <div className="acc_sublinks">
                   <a href="#" onClick={handleClick} data-target="active_users">Active</a>
                   <a href="#" onClick={handleClick} data-target="inActive_users">Inactive</a>
                 </div>
+                <a id="create_user" href="#" onClick={handleClick} data-target="create">Create User</a>
               </div>
-              <a id="create_user" href="#" onClick={handleClick} data-target="create">Create User</a>
-            </div>
-            <div className="display_users">
               <table className="users_table">
                 <thead>
                   <tr className="col_titles">
+                    <tr></tr>
                     <th>Username</th>
                     <th>Shop Name</th>
                     <th>Email</th>
@@ -200,6 +199,7 @@ const AddUser = () => {
                 <tbody>
                   {users && users.map(user => (
                     <tr key={user._id}>
+                      <td><img className="userimage" src={userIcon} /></td>
                       <td className="key">{user.username}</td>
                       <td>{user.shopname}</td>
                       <td id="last_bord">{user.email}</td>
@@ -283,6 +283,7 @@ const AddUser = () => {
                 <tbody>
                   {activeUsers && activeUsers.map(activeUser => (
                     <tr key={activeUser._id}>
+                      <td><img className="userimage" src={userIcon}/></td>
                       <td className="key">{activeUser.username}</td>
                       <td >{activeUser.shopname}</td>
                       <td >{activeUser.email}</td>
