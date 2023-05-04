@@ -19,17 +19,20 @@ const Message = () => {
   const [message_receiver, setMessage_receiver] = useState('');
   const [senderInputValue, setSenderInputValue] = useState('');
   const [shopnameIds, setShopnamesIds] = useState([]);
+  const [checkedBoxes, setCheckedBoxes] = useState([]);
+  const [selectedShops, setSelectedShops] = useState([]);
 
   const senderId = localStorage.getItem('id').toString();
 
   useEffect(() => {
-    const delay = 500;
+    const delay = 1000;
     let timeoutId;
 
     const searchUsers = async () => {
       const response = await axios.get("http://127.0.0.1:3000/user/");
       const filteredUsers = response.data;
       setShopnamesIds(filteredUsers);
+      console.log(shopnameIds);
     };
 
     const debounceSearch = () => {
@@ -48,7 +51,9 @@ const Message = () => {
   };
 
   const handleFilterClose = () => {
+    console.log(checkedBoxes);
     setIsOpenFilter(false);
+
   }
 
 
@@ -112,6 +117,23 @@ const Message = () => {
     }
   }
 
+  function handleCheckboxChange(shopId) {
+    if (checkedBoxes.includes(shopId)) {
+      setCheckedBoxes(checkedBoxes.filter(id => id !== shopId));
+      setSelectedShops(selectedShops.filter(shop => shop._id !== shopId));
+      console.log(checkedBoxes);
+    } else {
+      setCheckedBoxes([...checkedBoxes, shopId]);
+      const selectedShop = shopnameIds.find(shop => shop._id === shopId);
+      setSelectedShops([...selectedShops, selectedShop]);
+      console.log(checkedBoxes);
+    }
+  }
+
+  function isChecked(shopId) {
+    return checkedBoxes.includes(shopId);
+  }
+
 
   return (
     <div className='right_div'>
@@ -157,13 +179,28 @@ const Message = () => {
             </div>
             <div className='mess_inputs'>
               <input id='shopname_input' type='text' placeholder='Enter Shop(s) Name' onChange={handleInputChange} />
+              {selectedShops.map((shop, index)=>(
+                <div key={index} className='selected_shop'>{shop.shopname}<span className='remove_shop' onClick={()=>{
+                  const shopId = shop._id;
+                  setCheckedBoxes(checkedBoxes.filter(id=>id !== shopId));
+                  setSelectedShops(selectedShops.filter(shop=>shop._id !== shopId));
+                }}></span></div>
+              ))}
               {isOpenFilter && (<div className={`filter_box ${isOpenFilter ? "show" : ""}`}>
                 <ul className='key'>
                   {shopnameIds
-                    .map(user => user.shopname)
-                    .filter(shopname => shopname.includes(senderInputValue))
-                    .map((shopname, index) => (
-                      <li key={index}>{shopname}</li>
+                    .filter(shop => shop.shopname.includes(senderInputValue))
+                    .map((shop, index) => (
+                      <div className='rowsend' key={index}>
+                        <input
+                          className='checksend'
+                          style={{ width: "1rem" }}
+                          type='checkbox'
+                          checked={isChecked(shop._id)}
+                          onChange={() => handleCheckboxChange(shop._id)}
+                        />
+                        {shop.shopname}
+                      </div>
                     ))
                   }
                 </ul>

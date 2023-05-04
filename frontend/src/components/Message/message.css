@@ -172,8 +172,24 @@
 
 .filter_box {
   position: absolute;
-  margin-top: 1.5rem;
-  margin-left: 7.5rem;
+  margin-top: 8rem;
+  margin-left: 30rem;
   width: 20rem;
-  height: fit-content;
+  height: 60vh;
+  font-size: 1.2rem;
+}
+
+.checksend{
+  margin: 0px 0px;
+  width: 1rem;
+}
+
+.key li{
+  margin: 0px 0px;
+}
+
+.rowsend{
+  font-size: 1.2rem;
+  display: flex;
+  gap: 2rem;
 }
