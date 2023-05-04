@@ -31,6 +31,8 @@ const AddUser = () => {
   const [activeUsers, setactiveUsers] = useState([]);
   const [inActiveUsers, setinActiveUsers] = useState([]);
 
+  const title_name = localStorage.getItem("shopname");
+
 
   const handleClick = async (event) => {
     event.preventDefault();
@@ -175,9 +177,9 @@ const AddUser = () => {
             <Message />
           </div>}
           {activeDiv === "accounts" && <div id="account">
+            <p className="shopname-title">Shopname: <span> {title_name}</span></p>
             <div className="acc_title">
               <div>
-                <p>Accounts</p>
                 <div className="acc_sublinks">
                   <a href="#" onClick={handleClick} data-target="active_users">Active</a>
                   <a href="#" onClick={handleClick} data-target="inActive_users">Inactive</a>

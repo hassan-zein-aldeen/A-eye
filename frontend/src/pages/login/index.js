@@ -45,10 +45,12 @@ const Login = () => {
       const role = response.data.role;
       const username = response.data.username;
       const id = response.data.role._id;
+      const shopname = response.data.shopname.shopname;
       localStorage.setItem("token", token);
       localStorage.setItem("role", role.role);
       localStorage.setItem("username", username);
       localStorage.setItem("id",id)
+      localStorage.setItem("shopname",shopname);
 
       if (role.role === "user") {
         window.location.href = "/Home"
