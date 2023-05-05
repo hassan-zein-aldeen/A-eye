@@ -3,10 +3,15 @@
 }
 
 .header_title {
+  font-size: 2.2rem;
   display: flex;
-  flex-direction: row;
-  gap: 20rem;
+  margin-top: 9rem;
   align-items: center;
+  text-align: center;
+  justify-content:space-between;
+  margin-left: 12.2rem;
+  gap: 26rem;
+  border-bottom: 2px solid rgb(117, 116, 116) ;
 }
 
 .mess_content {
@@ -96,7 +101,6 @@
 
 .linking {
   display: flex;
-  margin-left: 2rem;
   flex-direction: column;
 }
 
@@ -106,14 +110,14 @@
   font-size: 2.2rem;
 }
 
-.messages_table {
+.messages_table{
+  width: 80%;
   margin-top: 1.4rem;
-  border-radius: 2rem;
-  padding: 1rem 1rem;
-  margin-left: 2rem;
-  background-color: #0367A6;
-  color: white;
+  padding: 1rem 0.5rem;
+  color: #0367A6;
   border: none;
+  align-items: start;
+  margin-left: 12rem;
 }
 
 .messages_table th {
@@ -137,6 +141,19 @@
   border-bottom: 1px solid #fafafa;
   border-right: 1px solid #ffffff;
   font-size: 1.4rem;
+}
+
+.right_div{
+  width: 95%;
+  border-radius: 2rem ;
+  display: flex;
+  flex-direction: column;
+  height: 130vh;
+}
+
+.rightdiv_content{
+  width: 85%;
+  margin-right: 2rem; 
 }
 
 #last_col {
@@ -200,3 +217,14 @@
   margin: 0px 0px;
   gap: 1rem;
 }
+
+
+#sentIcon{
+  width: 4rem;
+}
+
+.old_messages{
+  display: flex;
+  flex-direction: row;
+}
+

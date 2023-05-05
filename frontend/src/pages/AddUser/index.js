@@ -145,7 +145,9 @@ const AddUser = () => {
       const response = await axios.post('http://127.0.0.1:3000/auth/createUser', userData);
       const { user } = response.data;
       setRes_message("User Created Successfully");
-      window.location.reload();
+      setTimeout(function () {
+        window.location.reload();
+      }, 2000);
     } catch (error) {
       if (error.response && error.response.data && error.response.data.message) {
         setRes_message(error.response.data.message);
@@ -278,13 +280,14 @@ const AddUser = () => {
               <span className="response_result"
                 style={{
                   backgroundColor: res_message === "User Status updated Successfully" ? "green" : "red",
-                  color:"white",
+                  color: "white",
                   fontSize: "1.5rem",
                 }}>
                 {res_message && <p>{res_message}</p>}</span>
               <table className="users_table">
                 <thead>
                   <tr className="col_titles">
+                    <th></th>
                     <th>Username</th>
                     <th>Shop Name</th>
                     <th >Email</th>
@@ -317,13 +320,14 @@ const AddUser = () => {
               <span className="response_result"
                 style={{
                   backgroundColor: res_message === "User Status updated Successfully" ? "green" : "red",
-                  color:"white",
+                  color: "white",
                   fontSize: "1.5rem",
                 }}>
                 {res_message && <p>{res_message}</p>}</span>
               <table className="users_table">
                 <thead>
                   <tr className="col_titles">
+                    <th></th>
                     <th>Username</th>
                     <th>Shop Name</th>
                     <th>Email</th>
