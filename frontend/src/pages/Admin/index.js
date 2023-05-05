@@ -6,7 +6,7 @@ import Message from "../../components/Message";
 import Sidebar from "../../components/Sidebar";
 import userIcon from "../../images/user.svg";
 
-const AddUser = () => {
+const Admin = () => {
 
   const [activeDiv, setActiveDiv] = useState("requests");
   const [actveLink, setActiveLink] = useState('#requests');
@@ -353,4 +353,4 @@ const AddUser = () => {
   );
 }
 
-export default AddUser
+export default Admin;
