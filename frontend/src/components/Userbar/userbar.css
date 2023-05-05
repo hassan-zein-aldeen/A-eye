@@ -3,10 +3,11 @@
   background-color: #0367A6;
   display: flex;
   flex-direction: column;
-  gap: 8rem;
+  gap: 6rem;
   align-items: center;
+  justify-content: flex-start;
+  margin-top: 0;
   text-align: center;
-  padding: 7rem 2rem;
   width: 18%;
 }
 
