@@ -44,7 +44,7 @@ exports.getMessage = async (req, res) => {
     })
       .populate('sender', 'username')
       .populate({ path: 'receiver', select: 'username', match: { _id: new mongoose.Types.ObjectId(id) } })
-      .select('txtContent')
+      .select('txtContent timeSent title')
       .exec();
     res.status(200).json(messages);
   } catch (e) {

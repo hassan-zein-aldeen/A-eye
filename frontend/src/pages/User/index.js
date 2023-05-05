@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import "./user.css";
 import Userbar from "../../components/Userbar";
+import Button1 from "../../components/Button1/Button";
 import axios from "axios";
+import messIcon from "../../images/sent1.svg"
 
 
 const User = () => {
   const [activeDiv, setActiveDiv] = useState('');
-  const [adminMessage, setAdminMessage] = useState('');
+  const [adminMessage, setAdminMessage] = useState([]);
   const userShopNameTitle = localStorage.getItem("shopname");
   const receiverId = localStorage.getItem('id').toString();
 
@@ -60,10 +62,34 @@ const User = () => {
           {/*Start of messages div */}
           {activeDiv === "user_messages" && <div id="user_messages">
             <div className="messages">
-              <a href="#" className="message_title" onClick={getMessages}>
-                Show Messages
-              </a>
-              
+              <div className="titlediv">
+                <a href="#" className="message_title" onClick={getMessages}>
+                  Show Messages
+                </a>
+              </div>
+              <div className="user_message">
+                <table className="usermess_table">
+                  <tbody>
+                    <tr>
+                      <th></th>
+                      <th>Date And Time</th>
+                      <th>Title</th>
+                    </tr>
+                    {adminMessage.map(adminMess => (
+                      <tr key={adminMess._id}>
+                        <td className="iconCell"> <img className="message_icon" src={messIcon} /></td>
+                        <td>
+                          {adminMess.timeSent.slice(0, 10)}
+                          <br />
+                          {adminMess.timeSent.slice(11, 19)}
+                        </td>
+                        <td>{adminMess.title}</td>
+                        <td><Button1>Read</Button1></td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>}
           {/*End of messages div */}

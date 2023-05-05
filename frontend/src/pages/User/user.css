@@ -1,11 +1,30 @@
-.all_page{
+.all_page {
   width: 95%;
   border-radius: 2rem;
   display: flex;
   height: 130vh;
 }
 
-.userbar{
+.titlediv{
+  width: 60rem;
+  display: flex;
+}
+
+.userTitleShopName {
+  margin-top: 4.2rem;
+  margin-left: 12rem;
+  font-size: 2.2rem;
+}
+
+
+.user_message {
+  width: 50rem;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+}
+
+.userbar {
   height: 90%;
   background-color: #0367A6;
   display: flex;
@@ -18,31 +37,65 @@
   width: 19.3%;
 }
 
-.userTitleShopName {
-  margin-top: 4.2rem;
-  margin-left: 12rem;
-  font-size: 2.2rem;
-}
+
 
 .message_title {
-  width: 20rem;
+  width: 46rem;
   border-bottom: 2px solid rgb(117, 116, 116);
   font-size: 2.2rem;
   color: #F2441D;
   text-decoration: none;
 }
 
-.userTitleShopName span{
+.userTitleShopName span {
   color: #F2441D;
 }
 
-.messages{
+.messages {
   margin-top: 9rem;
   width: 50rem;
-  border-bottom: 2px solid rgb(117, 116, 116);
   margin-left: 12.2rem;
 }
 
-.content{
+.content {
   width: 78%;
+}
+
+.usermess_table {
+  width: 100%;
+  margin-top: 3rem;
+  padding: 1rem 0rem;
+  color: #0367A6;
+  border: none;
+  align-items: start;
+  margin-left: 0;
+  text-align: left;
+}
+
+.usermess_table th{
+  font-size: 1.6rem;
+  text-align: left;
+  width: 10rem;
+}
+
+
+.usermess_table td {
+  height: 6rem;
+  font-size: 1.4rem;
+  width: 8rem;
+  text-align: left;
+}
+
+
+.message_icon {
+  width: 4rem;
+}
+
+.user_message{
+  display: flex;
+  width: 50rem;
+}
+
+.iconCell{
+  width:1rem;
 }
