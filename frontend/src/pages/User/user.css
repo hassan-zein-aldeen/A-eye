@@ -5,7 +5,7 @@
   height: 130vh;
 }
 
-.titlediv{
+.titlediv {
   width: 60rem;
   display: flex;
 }
@@ -45,7 +45,15 @@
   font-size: 2.2rem;
   color: #F2441D;
   text-decoration: none;
+
+
 }
+
+.message_title:hover {
+  text-shadow: 0 0 5px #F2441D, 0 0 10px #F2441D, 0 0 10px #F2441D;
+  transition: 0.2s;
+}
+
 
 .userTitleShopName span {
   color: #F2441D;
@@ -72,7 +80,7 @@
   text-align: left;
 }
 
-.usermess_table th{
+.usermess_table th {
   font-size: 1.6rem;
   text-align: left;
   width: 10rem;
@@ -91,11 +99,7 @@
   width: 4rem;
 }
 
-.user_message{
+.user_message {
   display: flex;
   width: 50rem;
-}
-
-.iconCell{
-  width:1rem;
 }
