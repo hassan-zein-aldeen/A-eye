@@ -189,9 +189,7 @@ nav a.active{
   height: 4rem;
   font-size: 1.4rem ;
   width: 50rem;
-
 }
-
 
 .users_table thead{
   font-size: 1.6rem;
@@ -212,11 +210,6 @@ nav a.active{
 
 .acc_sublinks a{
   color: #F2441D;
-}
-
-#nofitication{
-  margin-left: 8rem;
-  margin-top: 1rem;
 }
 
 
