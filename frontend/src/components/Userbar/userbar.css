@@ -7,13 +7,28 @@
   align-items: center;
   text-align: center;
   padding: 7rem 2rem;
-  font-size: 1.5rem;
-  width: 22%;
+  width: 18%;
 }
 
 .user_links {
   display: flex;
   flex-direction: column;
-  gap: 3.5rem;
-  font-size: 1.4em;
+  text-align: center;
+  align-items: center;
+  font-size: 1.6rem;
+  margin-top: 1rem;
+  color:#0367A6;
+  gap: 2rem;
+  font-size: 2rem;
 }
+
+.user_links a{
+  text-decoration: none;
+  color: white;
+}
+
+.user_links a:hover{
+  text-shadow: 0 0 5px #F2441D, 0 0 10px #F2441D, 0 0 10px #F2441D;
+  transition: 0.2s;
+}
+
