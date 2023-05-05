@@ -8,10 +8,10 @@
   margin-top: 9rem;
   align-items: center;
   text-align: center;
-  justify-content:space-between;
   margin-left: 12.2rem;
-  gap: 26rem;
+  gap: 33rem;
   border-bottom: 2px solid rgb(117, 116, 116) ;
+  width: 55rem;
 }
 
 .mess_content {
@@ -20,6 +20,9 @@
   padding: 1rem 2rem;
   font-size: 1.8rem;
   color: white;
+  margin-left: 12.3rem;
+  margin-top: 3.4rem;
+  width: 51rem;
 }
 
 .message_header {
@@ -40,8 +43,8 @@
   display: flex;
   flex-direction: column;
   background-color: transparent;
-  gap: 2rem;
-  margin-bottom: 1rem;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
 }
 
 .mess_inputs input {
@@ -214,8 +217,12 @@
 .selected_shop{
   display: inline-block;
   font-size: 1.2rem;
-  margin: 0px 0px;
-  gap: 1rem;
+  margin: 0px 4px;
+  padding: 10px;
+  color: #0367A6;
+  background-color: white;
+  border-radius: 0.5rem;
+  margin-bottom: 2px;
 }
 
 
@@ -228,3 +235,23 @@
   flex-direction: row;
 }
 
+.contacts{
+  margin-bottom: 3rem;
+  margin-left: 5rem;
+}
+
+#shopname_input {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 25%;
+  z-index: 9999;
+}
+
+#title_input{
+  position:absolute;
+  top: 55%;
+  left: 50%;
+  width: 25%;
+  z-index: 9999;
+}

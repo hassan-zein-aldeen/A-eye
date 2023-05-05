@@ -145,7 +145,6 @@ const Message = () => {
       <div className='right_div'>
         <p className="shopname-title">Shopname: <span> {title_name}</span></p>
         <div className='header_title'>
-
           <div className='linking'>
             <a href='#' onClick={handleClick} data-target='old_messages' id='history'>History</a>
           </div>
@@ -164,7 +163,7 @@ const Message = () => {
             <tbody>
               {sent_messages && sent_messages.map(da_ti => (
                 <tr key={da_ti._id}>
-                  <td className='key'><img id='sentIcon' src={messIcon}/></td>
+                  <td className='key'><img id='sentIcon' src={messIcon} /></td>
                   <td className="key" style={{ width: "20rem" }}> {da_ti.timeSent.slice(0, 10)} <br /> {da_ti.timeSent.slice(11, 19)}</td>
                   <td className='key'>{da_ti.receiver.map((receiver, index) => (<span key={receiver._id}>{receiver.shopname}</span>))}</td>
                   <td className="key" > {da_ti.title}</td>
@@ -187,7 +186,7 @@ const Message = () => {
                 <label>Text:</label>
               </div>
               <div className='mess_inputs'>
-                <div>
+                <div className='contacts'>
                   {selectedShops.map((shop, index) => (
                     <div key={index} className='selected_shop'>{shop.shopname}<span className='remove_shop' onClick={() => {
                       const shopId = shop._id;
@@ -196,7 +195,7 @@ const Message = () => {
                     }}></span></div>
                   ))}
                 </div>
-                <input id='shopname_input' type='text' placeholder='Enter Shop(s) Name' onChange={handleInputChange} />
+                <input id='shopname_input' type='text' onChange={handleInputChange} />
                 {isOpenFilter && (<div className={`filter_box ${isOpenFilter ? "show" : ""}`}>
                   <ul className='key'>
                     {shopnameIds
@@ -228,8 +227,6 @@ const Message = () => {
             </div>
           </div>}
       </div>
-
-
     </div>
 
   )
