@@ -11,6 +11,9 @@ const User = () => {
   const [adminMessage, setAdminMessage] = useState([]);
   const userShopNameTitle = localStorage.getItem("shopname");
   const receiverId = localStorage.getItem('id').toString();
+  const [isBoxOpen, setIsBoxOpen] = useState(false);
+  const [selectedMessage, setSelectedMessage] = useState('');
+  const [isViewMess, setIsviemess] = useState(false);
 
   const getMessages = async (senderId) => {
     try {
@@ -21,6 +24,18 @@ const User = () => {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  const handleOpen = (id) => {
+    setSelectedMessage(adminMessage.find(message => message._id === id));
+    console.log("hello 2")
+    setIsBoxOpen(true);
+    setIsviemess(true);
+  };
+
+  const handleClose = () => {
+    setIsBoxOpen(false);
+    setIsviemess(false);
   }
 
 
@@ -84,9 +99,13 @@ const User = () => {
                           {adminMess.timeSent.slice(11, 19)}
                         </td>
                         <td>{adminMess.title}</td>
-                        <td><Button1>Read</Button1></td>
+                        <td><Button1 onClick={() => handleOpen(adminMess._id)} disabled={isViewMess}>Read</Button1></td>
                       </tr>
                     ))}
+                    {isBoxOpen && (<div className={`boxMessage ${isBoxOpen ? "show" : ""}`}>
+                      <p>{selectedMessage.txtContent}</p>
+                      <Button1 onClick={handleClose}>Close</Button1>
+                    </div>)}
                   </tbody>
                 </table>
               </div>
