@@ -12,6 +12,8 @@ const User = () => {
     setActiveDiv(target);
   };
 
+  
+
   return (
     <div>
       <div className="all_page">
@@ -19,14 +21,14 @@ const User = () => {
           <Userbar handleAnchorClick={handleAnchorClick} />
         </div>
         <div className="content">
-        <p className="userTitleShopName">Shopname: {}</p>
+          <p className="userTitleShopName">Shopname:<span>{userShopNameTitle}</span></p>
 
 
-          {/*Start of Ads div */}
-          {activeDiv === "ads" && <div id="ads">
-            Hello from Creating ads
+          {/*Start of requesting ads div */}
+          {activeDiv === "user_adver" && <div id="user_adver" >
+            Hello from creating ads
           </div>}
-          {/*End of Ads div */}
+          {/*End of requesting ads div */}
 
 
 
@@ -41,7 +43,11 @@ const User = () => {
 
           {/*Start of messages div */}
           {activeDiv === "user_messages" && <div id="user_messages">
-            Hello from messages of user
+            <div className="messages">
+              <p className="section_title">
+                All Messages
+              </p>
+            </div>
           </div>}
           {/*End of messages div */}
 

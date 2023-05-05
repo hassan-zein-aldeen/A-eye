@@ -1,8 +1,4 @@
-#ads{
-  background-color: blue;
-  width: 20rem;
-  height: 25vh;
-}
+
 
 .all_page{
   width: 95%;
@@ -24,12 +20,23 @@
   width: 19.3%;
 }
 
-.userTitleShopName {
+.userTitleShopName, .section_title {
   margin-top: 4.2rem;
   margin-left: 12rem;
   font-size: 2.2rem;
 }
 
+.section_title {
+  margin-top: 9rem;
+  width: 50rem;
+  border-bottom: 2px solid rgb(117, 116, 116)
+}
+
+
 .userTitleShopName span{
   color: #F2441D;
+}
+
+.section_title{
+  font-size: 2.2rem;
 }

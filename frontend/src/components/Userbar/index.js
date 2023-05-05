@@ -19,9 +19,9 @@ const Userbar = ({handleAnchorClick }) => {
       </a>
       <div className="user_links">
         <a
-          href="#ads"
-          onClick={(e) => handleAnchorClick(e, "ads")}
-          data-target="ads"
+          href="#user_adver"
+          onClick={(e) => handleAnchorClick(e, "user_adver")}
+          data-target="user_adver"
         >
           Ads
         </a>
