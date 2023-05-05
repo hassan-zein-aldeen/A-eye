@@ -1,11 +1,11 @@
-.admin{
+.admin {
   width: 95%;
-  border-radius: 2rem ;
+  border-radius: 2rem;
   display: flex;
   height: 130vh;
 }
 
-.feature{
+.feature {
   height: 90%;
   background-color: #0367A6;
   display: flex;
@@ -18,59 +18,59 @@
   width: 22%;
 }
 
-.admin_links{
+.admin_links {
   display: flex;
   flex-direction: column;
   gap: 3.5rem;
   font-size: 1.4em;
 }
 
-.admin a{
+.admin a {
   text-decoration: none;
   color: white;
 }
 
-.admin a:hover{
+.admin a:hover {
   text-shadow: 0 0 5px #F2441D, 0 0 10px #F2441D, 0 0 10px #F2441D;
   transition: 0.2s;
 }
 
-.shopname-title{
+.shopname-title {
   margin-top: 4.2rem;
   margin-left: 12rem;
-  font-size: 2rem;
+  font-size: 2.2rem;
 }
 
-.shopname-title span{
+.shopname-title span {
   color: #F2441D;
 }
 
-.acc_title{
+.acc_title {
   font-size: 2.2rem;
   display: flex;
   margin-top: 9rem;
   align-items: center;
   text-align: center;
-  justify-content:space-between;
+  justify-content: space-between;
   margin-left: 6.2rem;
   gap: 26rem;
-  border-bottom: 2px solid rgb(117, 116, 116) ;
+  border-bottom: 2px solid rgb(117, 116, 116);
 }
 
-#create_user{
+#create_user {
   color: #F2441D;
   font-weight: bold;
 }
 
-.admin_content{
+.admin_content {
   width: 85%;
-  margin-right: 2rem; 
+  margin-right: 2rem;
 }
 
-.fields{
+.fields {
   background-color: #0367A6;
   font-size: 1.6rem;
-  display: flex;  
+  display: flex;
   flex-direction: column;
   gap: 2.5rem;
   padding: 2.5rem 0.5rem;
@@ -82,14 +82,14 @@
   width: 70%;
 }
 
-.user_type{
+.user_type {
   display: flex;
   gap: 13.5rem;
   text-align: left;
   align-items: flex-start;
 }
 
-.fields input{
+.fields input {
   border: none;
   background-color: transparent;
   border-bottom: 1px solid white;
@@ -97,85 +97,88 @@
   font-size: 1.2rem;
 }
 
-.fields input::placeholder{
-  color:rgb(156, 156, 156);
+.fields input::placeholder {
+  color: rgb(156, 156, 156);
   margin-right: 1rem;
 }
 
-.add_form{
+.add_form {
   display: flex;
   flex-direction: row;
   gap: 8rem;
 }
 
-.labels,.inputs{
+.labels,
+.inputs {
   display: flex;
   flex-direction: column;
   gap: 3rem;
 }
 
-.inputs{
+.inputs {
   gap: 3.4rem;
 }
 
-input[type="radio"]{
-  width:20px;
+input[type="radio"] {
+  width: 20px;
   height: 20px;
 }
 
-.form_title{
+.form_title {
+  border-bottom: 2px solid rgb(117, 116, 116);
   font-size: 2.2rem;
   margin-left: 12rem;
   margin-bottom: 0.5rem;
   margin-top: 9rem;
+  width: 53rem;
 }
 
-nav a.active{
+nav a.active {
   background-color: red;
 }
 
-.valid_input{
+.valid_input {
   display: flex;
   flex-direction: row;
   gap: 0.3rem;
   text-align: center;
 }
 
-.valid_input span{
+.valid_input span {
   color: white;
   font-size: 1rem;
   background-color: #F2441D;
 }
 
-.response_result{
+.response_result {
   text-align: center;
   background-color: white;
   color: rgb(2, 207, 2);
 }
 
-.display_users{
+.display_users {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.display_users td{
-    width: 11rem;
-    color: #0367A6;
-    text-align: left;
-    border-bottom: 1px solid rgb(204, 197, 197);
+.display_users td {
+  width: 11rem;
+  color: #0367A6;
+  text-align: left;
+  border-bottom: 1px solid rgb(204, 197, 197);
 }
 
-.display_users th{
+.display_users th {
   text-align: left;
 }
 
-.key{
+.key {
   border-left: none;
 }
 
-.users_table{
+.users_table {
   width: 80%;
   margin-top: 1.4rem;
   padding: 1rem 0rem;
@@ -185,16 +188,16 @@ nav a.active{
   margin-left: 12rem;
 }
 
-.users_table td{
+.users_table td {
   height: 4rem;
-  font-size: 1.4rem ;
+  font-size: 1.4rem;
   width: 50rem;
 }
 
-.users_table thead{
+.users_table thead {
   font-size: 1.6rem;
   border-bottom: 1px solid #ffffff;
-  padding-top:2rem;
+  padding-top: 2rem;
   padding-bottom: 2rem;
   margin-bottom: 2rem;
   height: 4rem;
@@ -202,22 +205,21 @@ nav a.active{
   justify-content: start;
 }
 
-.acc_sublinks{
+.acc_sublinks {
   display: flex;
   flex-direction: row;
-  gap:6rem;
+  gap: 6rem;
 }
 
-.acc_sublinks a{
+.acc_sublinks a {
   color: #F2441D;
 }
 
 
-#admin_logo{
+#admin_logo {
   width: 20rem;
 }
 
-.userimage{
+.userimage {
   width: 4rem;
 }
-
