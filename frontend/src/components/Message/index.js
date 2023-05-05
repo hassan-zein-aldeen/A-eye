@@ -108,11 +108,16 @@ const Message = () => {
     e.preventDefault();
 
     const mess_data = {
-      "rec": [message_receiver],
+      "rec": checkedBoxes,
       "sender": senderId,
       "title": message_title,
       "txtContent": message_content
     }
+
+    console.log(mess_data);
+    console.log(senderId);
+    console.log(message_title);
+    console.log(message_content);
 
     try {
       const send = await axios.post("http://127.0.0.1:3000/message/", mess_data);
