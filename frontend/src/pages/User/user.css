@@ -23,3 +23,13 @@
   font-size: 1.5rem;
   width: 19.3%;
 }
+
+.userTitleShopName {
+  margin-top: 4.2rem;
+  margin-left: 12rem;
+  font-size: 2.2rem;
+}
+
+.userTitleShopName span{
+  color: #F2441D;
+}

@@ -3,7 +3,8 @@ import Logo from "../../images/EditedLogo.svg";
 import Button1 from "../Button1/Button";
 import "./userbar.css";
 
-const Userbar = ({handleAnchorClick}) => {
+const Userbar = ({handleAnchorClick }) => {
+
 
 
   return (
@@ -40,6 +41,7 @@ const Userbar = ({handleAnchorClick}) => {
         </a>
         <a
           href="#ai_tool"
+
           onClick={(e) => handleAnchorClick(e, "ai_tool")}
           data-target="ai_tool"
         >

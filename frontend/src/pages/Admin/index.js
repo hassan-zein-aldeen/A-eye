@@ -44,6 +44,7 @@ const Admin = () => {
     await getInctiveUsers(event);
   }
 
+  
   const getUsers = async (e) => {
     e.preventDefault();
     try {

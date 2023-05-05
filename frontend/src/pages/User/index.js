@@ -4,7 +4,8 @@ import Userbar from "../../components/Userbar";
 
 
 const User = () => {
-  const [activeDiv, setActiveDiv] = useState('')
+  const [activeDiv, setActiveDiv] = useState('');
+  const userShopNameTitle = localStorage.getItem("shopname");
 
   const handleAnchorClick = (e, target) => {
     e.preventDefault();
@@ -18,7 +19,7 @@ const User = () => {
           <Userbar handleAnchorClick={handleAnchorClick} />
         </div>
         <div className="content">
-
+        <p className="userTitleShopName">Shopname: {}</p>
 
 
           {/*Start of Ads div */}

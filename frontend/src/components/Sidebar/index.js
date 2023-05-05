@@ -6,7 +6,6 @@ import "./sidebar.css";
 const Sidebar = ({ activeLink, handleClick, handleAccSubClick }) => {
   const [activeSubLink, setActiveSubLink] = useState();
 
-
   const handleAll = (e) => {
     handleClick(e);
     handleSubClick(e);
