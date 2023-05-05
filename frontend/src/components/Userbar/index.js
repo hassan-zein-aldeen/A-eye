@@ -3,15 +3,7 @@ import Logo from "../../images/EditedLogo.svg";
 import Button1 from "../Button1/Button";
 import "./userbar.css";
 
-const Userbar = () => {
-
-  const [activeDiv, setActiveDiv] = useState('');
-
-  const handleClick = (e) => {
-    e.preventDefault();
-    const target = e.target.getAttribute("data-target");
-    setActiveDiv(target);
-  }
+const Userbar = ({handleAnchorClick}) => {
 
 
   return (
@@ -27,28 +19,28 @@ const Userbar = () => {
       <div className="user_links">
         <a
           href="#ads"
-          onClick={handleClick}
+          onClick={(e) => handleAnchorClick(e, "ads")}
           data-target="ads"
         >
           Ads
         </a>
         <a
           href="#user_requests"
-          onClick={handleClick}
+          onClick={(e) => handleAnchorClick(e, "user_requests")}
           data-target="user_requests"
         >
           Requests
         </a>
         <a
           href="#user_messages"
-          onClick={handleClick}
+          onClick={(e) => handleAnchorClick(e, "user_messages")}
           data-target="user_messages"
         >
           Messages
         </a>
         <a
           href="#ai_tool"
-          onClick={handleClick}
+          onClick={(e) => handleAnchorClick(e, "ai_tool")}
           data-target="ai_tool"
         >
           AI - Tool

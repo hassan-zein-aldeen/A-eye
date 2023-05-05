@@ -17,7 +17,6 @@ const Message = () => {
   const [isViewMess, setIsviemess] = useState(false);
   const [message_title, setMessage_title] = useState('')
   const [message_content, setMessage_content] = useState('');
-  const [message_receiver, setMessage_receiver] = useState('');
   const [senderInputValue, setSenderInputValue] = useState('');
   const [shopnameIds, setShopnamesIds] = useState([]);
   const [checkedBoxes, setCheckedBoxes] = useState([]);
