@@ -162,7 +162,7 @@ const Message = () => {
                 <tr></tr>
                 <th>Date and Time</th>
                 <th>Shop Name</th>
-                <th>Email</th>
+                <th>Title</th>
               </tr>
             </thead>
             <tbody>
@@ -170,7 +170,11 @@ const Message = () => {
                 <tr key={da_ti._id}>
                   <td className='key'><img id='sentIcon' src={messIcon} /></td>
                   <td className="key" style={{ width: "20rem" }}> {da_ti.timeSent.slice(0, 10)} <br /> {da_ti.timeSent.slice(11, 19)}</td>
-                  <td className='key'>{da_ti.receiver.map((receiver, index) => (<span key={receiver._id}>{receiver.shopname}</span>))}</td>
+                  <td className='key'>
+                    {da_ti.receiver.map((receiver, index) =>
+                    (<span key={receiver._id}> &bull; {receiver.shopname}
+                      {index !== da_ti.receiver.length - 1 && <br />}
+                    </span>))}</td>
                   <td className="key" > {da_ti.title}</td>
                   <td id='last_col'><Button1 onClick={() => handleOpen(da_ti._id)} disabled={isViewMess}>Read</Button1></td>
                 </tr>
