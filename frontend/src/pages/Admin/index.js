@@ -44,7 +44,7 @@ const Admin = () => {
     await getInctiveUsers(event);
   }
 
-  
+
   const getUsers = async (e) => {
     e.preventDefault();
     try {
@@ -158,7 +158,9 @@ const Admin = () => {
     }
   }
 
+
   const updateStatus = async (userId) => {
+    console.log(userId)
     try {
       const updatedUser = await axios.put(`http://127.0.0.1:3000/user/update/${userId}`);
       setRes_message("User Status updated Successfully");
