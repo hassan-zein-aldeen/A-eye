@@ -30,5 +30,17 @@ exports.createAd = async (req, res, next) => {
     })
 }
 
+exports.getAllAds = async (req, res) => {
+  try {
+    const allAds = await Ads.find().populate("user", "shopname");
+    res.json(allAds);
+  } catch(error){
+    console.error(error);
+    res.status(500).json({message:"Server Error"});
+  }
+}
+
+
+
 
 
