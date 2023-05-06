@@ -11,12 +11,13 @@ const adsSchema = new mongoose.Schema({
   },
   age: {
     type: String,
-    enum:["(4-12)","(12-53)"],
+    enum: ["(4-12)", "(12-53)"],
     required: true,
   },
-  files: [
-    Object
-  ],
+  image: {
+    type: String,
+    required: true,
+  },
   description: {
     type: String
   },
@@ -25,7 +26,7 @@ const adsSchema = new mongoose.Schema({
     enum: ["active", "inactive", "pending", "rejected"],
     default: "pending"
   },
-  userId_req: {
+  user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true
@@ -35,7 +36,7 @@ const adsSchema = new mongoose.Schema({
     default: Date.now,
   },
 
-})
+});
 
 const Ads = mongoose.model("Ads", adsSchema);
 module.exports = Ads;

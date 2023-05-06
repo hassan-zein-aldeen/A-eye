@@ -15,6 +15,9 @@ app.use('/user', userRouter)
 const messRouter = require("./routes/messages.routes");
 app.use('/message', messRouter);
 
+const adsRouter = require("./routes/ads.routes");
+app.use('/ads', adsRouter);
+
 app.listen(process.env.PORT || 3001, (err) => {
   if (err) console.error(err)
   console.log("Server is running on port", process.env.PORT);
