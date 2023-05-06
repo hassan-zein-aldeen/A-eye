@@ -16,7 +16,6 @@
   font-size: 2.2rem;
 }
 
-
 .user_message {
   width: 50rem;
   display: flex;
@@ -37,23 +36,18 @@
   width: 19.3%;
 }
 
-
-
 .message_title {
   width: 46rem;
   border-bottom: 2px solid rgb(117, 116, 116);
   font-size: 2.2rem;
   color: #F2441D;
   text-decoration: none;
-
-
 }
 
 .message_title:hover {
   text-shadow: 0 0 5px #F2441D, 0 0 10px #F2441D, 0 0 10px #F2441D;
   transition: 0.2s;
 }
-
 
 .userTitleShopName span {
   color: #F2441D;
@@ -86,14 +80,13 @@
   width: 10rem;
 }
 
-
 .usermess_table td {
   height: 6rem;
   font-size: 1.4rem;
   width: 8rem;
   text-align: left;
+  border-bottom: 1px solid rgb(158, 157, 157);
 }
-
 
 .message_icon {
   width: 4rem;
@@ -102,4 +95,24 @@
 .user_message {
   display: flex;
   width: 50rem;
+}
+
+.ads_title{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid rgb(117, 116, 116);
+  margin-left: 12rem;
+  margin-top: 9rem;
+  width: 50rem;
+}
+
+.ads_title a{
+  text-decoration: none;
+  color: #F2441D;
+  font-size: 2.2rem;
+}
+
+.ads_title a:hover{
+text-shadow: 0 0 5px #F2441D, 0 0 10px #F2441D, 0 0 10px #F2441D;
+transition: 0.2s;
 }

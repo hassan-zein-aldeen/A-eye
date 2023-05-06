@@ -3,47 +3,47 @@ import "./user.css";
 import Userbar from "../../components/Userbar";
 import Button1 from "../../components/Button1/Button";
 import axios from "axios";
-import messIcon from "../../images/sent1.svg"
+import messIcon from "../../images/sent1.svg";
 
 
 const User = () => {
-  const [activeDiv, setActiveDiv] = useState('');
+  const [activeDiv, setActiveDiv] = useState("");
   const [adminMessage, setAdminMessage] = useState([]);
   const userShopNameTitle = localStorage.getItem("shopname");
-  const receiverId = localStorage.getItem('id').toString();
+  const receiverId = localStorage.getItem("id").toString();
   const [isBoxOpen, setIsBoxOpen] = useState(false);
-  const [selectedMessage, setSelectedMessage] = useState('');
-  const [isViewMess, setIsviemess] = useState(false);
+  const [selectedMessage, setSelectedMessage] = useState("");
+  const [isViewMess, setIsViewMess] = useState(false);
 
-  const getMessages = async (senderId) => {
+  const getMessages = async () => {
     try {
       const response = await axios.get(`http://127.0.0.1:3000/message/${receiverId}`);
       const admin_message = response.data;
       setAdminMessage(admin_message);
-      console.log(adminMessage);
+      console.log(admin_message);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   const handleOpen = (id) => {
-    setSelectedMessage(adminMessage.find(message => message._id === id));
-    console.log("hello 2")
+    setSelectedMessage(adminMessage.find((message) => message._id === id));
+    console.log("hello 2");
     setIsBoxOpen(true);
-    setIsviemess(true);
+    setIsViewMess(true);
   };
 
   const handleClose = () => {
     setIsBoxOpen(false);
-    setIsviemess(false);
-  }
-
-
-  const handleAnchorClick = (e, target) => {
-    e.preventDefault();
-    setActiveDiv(target);
+    setIsViewMess(false);
   };
 
+  const handleAnchorClick = (e) => {
+    e.preventDefault();
+    const target = e.target.getAttribute("data-target");
+    setActiveDiv(target);
+    console.log("hello");
+  };
 
 
 
@@ -54,12 +54,20 @@ const User = () => {
           <Userbar handleAnchorClick={handleAnchorClick} />
         </div>
         <div className="content">
-          <p className="userTitleShopName">Shopname:<span>{userShopNameTitle}</span></p>
+          <p className="userTitleShopName">Shopname: <span>{userShopNameTitle}</span></p>
 
 
           {/*Start of requesting ads div */}
           {activeDiv === "user_adver" && <div id="user_adver" >
-            Hello from creating ads
+            <div className="ads_title">
+              <a href="#" onClick={handleAnchorClick} data-target="active_ads">Active</a>
+              <a href="#" onClick={handleAnchorClick} data-target="inActive_ads">Pending</a>
+              <a href="#" onClick={handleAnchorClick} data-target="rejected_ads">Rejected</a>
+              {activeDiv === "active_ads" && (<div id="active_ads" style={{ color: "black" }}>
+                here are active ads
+              </div>)}
+            </div>
+
           </div>}
           {/*End of requesting ads div */}
 
