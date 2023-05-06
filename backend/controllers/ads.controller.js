@@ -40,34 +40,29 @@ exports.getAllAds = async (req, res) => {
   }
 }
 
-exports.changeAdStatus = async (req, res) => {
+exports.deactivateAd = async (req, res) => {
   const { id } = req.params;
 
   try {
     const ads = await Ads.findById(id);
-
-    if (ads.status === "active") {
+    if (ads.status === "active" || ads.status == "pending") {
       ads.status = "inactive";
-    } else if (ads.status === "inactive") {
-      ads.status = "pending";
-    } else if (ads.status == "pending") {
-      ads.status = "active";
     }
     const updateStatusAd = await ads.save();
     res.status(200).json({ message: "Ads Status Updated Successfully", ads: updateStatusAd });
-
   } catch (error) {
     res.status(200).json({ message: "Error Updating Ads Status", error });
   }
 }
 
-exports.rejectAd = async (req, res) => {
+
+exports.acceptRequest = async (req, res) => {
   const { id } = req.params;
 
   try {
     const ad = await Ads.findById(id);
     if (ad.status === "pending") {
-      ad.status = "inactive";
+      ad.status = "active";
       await ad.save();
     }
     res.json(ad);
@@ -75,6 +70,22 @@ exports.rejectAd = async (req, res) => {
     res.status(200).json({ message: "Error Updating Ads Status", error });
   }
 }
+
+exports.cancelRequest = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const ads = await Ads.findById(id);
+    if (ads.status == "pending") {
+      ads.status = "inactive";
+    }
+    const updateStatusAd = await ads.save();
+    res.status(200).json({ message: "Ads Status Updated Successfully", ads: updateStatusAd });
+  } catch (error) {
+    res.status(200).json({ message: "Error Updating Ads Status", error });
+  }
+}
+
 
 
 
