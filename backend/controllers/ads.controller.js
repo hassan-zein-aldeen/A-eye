@@ -87,13 +87,13 @@ exports.acceptRequest = async (req, res) => {
   }
 }
 
-exports.cancelRequest = async (req, res) => {
+exports.rejectRequest = async (req, res) => {
   const { id } = req.params;
 
   try {
     const ads = await Ad.findById(id);
     if (ads.status == "pending") {
-      ads.status = "inactive";
+      ads.status = "rejected";
     }
     const updateStatusAd = await ads.save();
     res.status(200).json({ message: "Ads Status Updated Successfully", ads: updateStatusAd });
