@@ -71,6 +71,21 @@ exports.deactivateAd = async (req, res) => {
   }
 }
 
+exports.requestInactive = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const ads = await Ad.findById(id);
+    if (ads.status === "inactive") {
+      ads.status = "pending";
+    }
+    const updateStatusAd = await ads.save();
+    res.status(200).json({ message: "Ads Status Updated Successfully", ads: updateStatusAd });
+  } catch (error) {
+    res.status(200).json({ message: "Error Updating Ads Status", error });
+  }
+}
+
 
 exports.acceptRequest = async (req, res) => {
   const { id } = req.params;

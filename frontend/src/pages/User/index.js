@@ -25,6 +25,7 @@ const User = () => {
   const [activeResults, setActiveResults] = useState("");
   const [inActiveResults, setinActiveResults] = useState("");
   const [res_message, setRes_message] = useState("");
+  const [rejectedResults, setRejectedResults] = useState("");
 
 
   const [userResult, setUserResult] = useState([{
@@ -67,9 +68,12 @@ const User = () => {
       setActiveResults(active);
       const inActive = userResult.filter(result => result.status === 'inactive');
       setinActiveResults(inActive);
+      const rejected = userResult.filter(result => result.status === 'rejected');
+      setRejectedResults(rejected);
       console.log("pending", pendingResults);
       console.log("active", activeResults);
       console.log("inactive", inActiveResults);
+      console.log("rejected", rejectedResults);
     } catch (error) {
       console.log(error);
     }
@@ -200,6 +204,11 @@ const User = () => {
                 handleAnchorClick(e);
                 getUserAds(receiverId);
               }} data-target="show_inActive">InActive</a>
+
+              <a href="#" onClick={(e) => {
+                handleAnchorClick(e);
+                getUserAds(receiverId);
+              }} data-target="show_rejected">Rejected</a>
             </div>
           </div>}
           {/*End of requesting ads div */}
@@ -361,6 +370,28 @@ const User = () => {
               </tbody>
             </table>
           </div>}
+          
+          {activeDiv === "show_rejected" && <div id="show_rejected">
+          <table>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Image</th>
+                  <th>Age</th>
+                </tr>
+              </thead>
+              <tbody>
+                {rejectedResults && rejectedResults.map((result) => (
+                  <tr key={result._id}>
+                    <td>{result.title}</td>
+                    <td><img src={`http://127.0.0.1:3000/${result.image}`} alt="" /></td>
+                    <td>{result.age}</td>
+                    <Button1>Request</Button1>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            </div>}
         </div>
       </div>
     </div>
