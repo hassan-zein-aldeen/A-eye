@@ -1,39 +1,55 @@
-const Ads = require("../models/adsModel");
+const Ad = require("../models/adsModel");
 const User = require("../models/userModel");
-const mongoose = require("mongoose");
-const path = require("path");
-const fileUpload = require("express-fileupload");
+
 
 exports.createAd = async (req, res, next) => {
+  const { title, gender, age, description, user } = req.body;
 
-  const ad = new Ads({
-    title: req.body.title,
-    gender: req.body.gender,
-    age: req.body.age,
-    description: req.body.description,
-    user: req.body.user,
-    timeReq: req.body.timeReq
-  })
+  const relatedUser = await User.findOne({ _id: user });
 
-  if (req.file) {
-    ad.image = req.file.path
+  try {
+
+    if(relatedUser.status === "inactive"){
+
+      return res.json({message:"User cant ad Ads, User Deactivated"});
+    }
+
+    const userReqAd = new Ad();
+    userReqAd.title = title;
+    userReqAd.gender = gender;
+    userReqAd.age = age;
+    userReqAd.description = description;
+    userReqAd.user = user;
+
+    if (req.file) {
+      userReqAd.image = req.file.path
+    }
+
+    await userReqAd.save();
+    res.status(201).json({ message: "Ad created successfully", userReqAd });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal server error abcd" });
   }
 
-  ad.save()
-    .then(response => {
-      res.json({
-        message: "Ad created successfully"
-      })
-    })
-    .catch(error => {
-      res.json({ message: "Error!" })
-    })
 }
 
 exports.getAllAds = async (req, res) => {
   try {
-    const allAds = await Ads.find().populate("user", "shopname");
+    const allAds = await Ad.find().populate("user", "shopname");
     res.json(allAds);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+}
+
+exports.getUserAds = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const userAds = await Ad.find({ user: id }).exec();
+    res.status(200).json(userAds);
+
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server Error" });
@@ -44,7 +60,7 @@ exports.deactivateAd = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const ads = await Ads.findById(id);
+    const ads = await Ad.findById(id);
     if (ads.status === "active" || ads.status == "pending") {
       ads.status = "inactive";
     }
@@ -60,7 +76,7 @@ exports.acceptRequest = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const ad = await Ads.findById(id);
+    const ad = await Ad.findById(id);
     if (ad.status === "pending") {
       ad.status = "active";
       await ad.save();
@@ -75,7 +91,7 @@ exports.cancelRequest = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const ads = await Ads.findById(id);
+    const ads = await Ad.findById(id);
     if (ads.status == "pending") {
       ads.status = "inactive";
     }

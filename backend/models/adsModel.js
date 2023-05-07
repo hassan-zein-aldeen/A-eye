@@ -17,6 +17,7 @@ const adsSchema = new mongoose.Schema({
   image: {
     type: String,
     required: true,
+    default:"4111"
   },
   description: {
     type: String

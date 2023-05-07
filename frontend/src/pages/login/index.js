@@ -53,9 +53,9 @@ const Login = () => {
       localStorage.setItem("shopname",shopname);
 
       if (role.role === "user") {
-        window.location.href = "/Home"
+        window.location.href = "/User"
       } else if (role.role === "admin") {
-        window.location.href = "/AddUser";
+        window.location.href = "/Admin";
       }
 
     } catch (e) {
