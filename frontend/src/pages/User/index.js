@@ -24,6 +24,7 @@ const User = () => {
   const [pendingResults, setPendingResults] = useState("");
   const [activeResults, setActiveResults] = useState("");
   const [inActiveResults, setinActiveResults] = useState("");
+  const [res_message,setRes_message] = useState("");
 
 
   const [userResult, setUserResult] = useState([{
@@ -103,6 +104,21 @@ const User = () => {
     console.log(response.data.message);
 
   }
+
+  const deactivateAd = async (adId) => {
+    try {
+      const updateAd = await axios.put(`http://127.0.0.1:3000/ads/deactivate/${adId}`);
+      setRes_message("User Status updated Successfully");
+      console.log(res_message);
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  
 
 
   const handleResult = async (e) => {
@@ -280,7 +296,7 @@ const User = () => {
                     <td>{result.title}</td>
                     <td><img src={`http://127.0.0.1:3000/${result.image}`} alt="" /></td>
                     <td>{result.age}</td>
-                    <Button1>Deactivate</Button1>
+                    <Button1 onClick={() => deactivateAd(result._id)}>Deactivate</Button1>
                   </tr>
                 ))}
               </tbody>
