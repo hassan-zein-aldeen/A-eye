@@ -3,7 +3,7 @@ import Logo from "../../images/EditedLogo.svg";
 import Button1 from "../Button1/Button";
 import "./userbar.css";
 
-const Userbar = ({handleAnchorClick }) => {
+const Userbar = ({ handleAnchorClick }) => {
 
 
 
@@ -20,7 +20,10 @@ const Userbar = ({handleAnchorClick }) => {
       <div className="user_links">
         <a
           href="#user_adver"
-          onClick={(e) => handleAnchorClick(e, "user_adver")}
+          onClick={(e) => {
+            handleAnchorClick(e, "user_adver");
+          }
+          }
           data-target="user_adver"
         >
           Ads

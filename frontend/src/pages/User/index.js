@@ -5,9 +5,6 @@ import Button1 from "../../components/Button1/Button";
 import axios from "axios";
 import messIcon from "../../images/sent1.svg";
 
-
-
-
 const User = () => {
   const [activeDiv, setActiveDiv] = useState("");
   const [adminMessage, setAdminMessage] = useState([]);
@@ -23,6 +20,11 @@ const User = () => {
   const [age, setAge] = useState("");
   const [userReqTitle, setUserReqTitle] = useState("");
   const [userReqDesc, setUserRecDesc] = useState("");
+
+  const [pendingResults, setPendingResults] = useState("");
+  const [activeResults, setActiveResults] = useState("");
+  const [inActiveResults, setinActiveResults] = useState("");
+
 
   const [userResult, setUserResult] = useState([{
     "_id": "",
@@ -57,41 +59,20 @@ const User = () => {
       const requests = await axios.get(`http://127.0.0.1:3000/ads/userads/${receiverId}`);
       const req_data = requests.data;
       setUserResult(req_data);
+      console.log("here is the user result of get ads", userResult);
+      const pend = userResult.filter(result => result.status === 'pending');
+      setPendingResults(pend);
+      const active = userResult.filter(result => result.status === 'active');
+      setActiveResults(active);
+      const inActive = userResult.filter(result => result.status === 'inactive');
+      setinActiveResults(inActive);
+      console.log("pending", pendingResults);
+      console.log("active", activeResults);
+      console.log("inactive", inActiveResults);
     } catch (error) {
       console.log(error);
     }
   }
-
-  const handleResult = async (e) => {
-    e.preventDefault();
-    await getUserAds(receiverId)
-    console.log(userResult);
-  }
-
-  const handleOpen = (id) => {
-    setSelectedMessage(adminMessage.find((message) => message._id === id));
-    console.log("hello 2");
-    setIsBoxOpen(true);
-    setIsViewMess(true);
-  };
-
-  const handleClose = () => {
-    setIsBoxOpen(false);
-    setIsViewMess(false);
-  };
-
-  function handleImageUpload(e) {
-    const file = e.target.files[0];
-    setAdsImage(file);
-  }
-
-  const handleAnchorClick = (e) => {
-    e.preventDefault();
-    const target = e.target.getAttribute("data-target");
-    setActiveDiv(target);
-    console.log("hello");
-  };
-
 
   const getMessages = async () => {
     try {
@@ -119,9 +100,45 @@ const User = () => {
     }
 
     const response = await axios.post("http://127.0.0.1:3000/ads/create", formData);
-    console.log("ads created successfully");
+    console.log(response.data.message);
 
   }
+
+
+  const handleResult = async (e) => {
+    e.preventDefault();
+    await getUserAds(receiverId)
+    console.log("this is user result", userResult);
+  }
+
+  const handleOpen = (id) => {
+    setSelectedMessage(adminMessage.find((message) => message._id === id));
+    console.log("hello 2");
+    setIsBoxOpen(true);
+    setIsViewMess(true);
+  };
+
+  const handleClose = () => {
+    setIsBoxOpen(false);
+    setIsViewMess(false);
+  };
+
+  function handleImageUpload(e) {
+    const file = e.target.files[0];
+    setAdsImage(file);
+  }
+
+  const handleAnchorClick = (e) => {
+    e.preventDefault();
+    const target = e.target.getAttribute("data-target");
+    setActiveDiv(target);
+    console.log("hello");
+  };
+
+
+
+
+
 
   return (
     <div>
@@ -129,6 +146,8 @@ const User = () => {
         <div className="userbar">
           <Userbar handleAnchorClick={handleAnchorClick} />
         </div>
+        <div>
+        </div> {/* for testng child comp */}
         <div className="content">
           <p className="userTitleShopName">Shopname: <span>{userShopNameTitle}</span></p>
 
@@ -137,28 +156,22 @@ const User = () => {
           {activeDiv === "user_adver" && <div id="user_adver" >
             <div className="ads_title">
               <a onClick={handleAnchorClick} data-target="createAds">Create Ad</a>
-              <a href="#" onClick={handleResult}>Active</a>
-              <a href="#" onClick={() => handleResult("")}>Pending</a>
-              <a href="#" onClick={() => handleResult("")}>Rejected</a>
+
+              <a href="#" onClick={(e) => {
+                handleAnchorClick(e);
+                getUserAds(receiverId);
+              }} data-target="show_active">Active</a>
+
+              <a href="#" onClick={(e) => {
+                handleAnchorClick(e);
+                getUserAds(receiverId);
+              }} data-target="show_pending">Pending</a>
+
+              <a href="#" onClick={(e) => {
+                handleAnchorClick(e);
+                getUserAds(receiverId);
+              }} data-target="show_inActive">InActive</a>
             </div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Image</th>
-                  <th>Age</th>
-                </tr>
-              </thead>
-              <tbody>
-                {userResult && userResult.map((result) => (
-                  <tr key={result._id}>
-                    <td>{result.title}</td>
-                    {/* <td><img src={require(`http://127.0.0.1:3000/uploads/${result.image}`)} alt="" /></td> */}
-                    <td>{result.age}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
           </div>}
           {/*End of requesting ads div */}
 
@@ -252,10 +265,73 @@ const User = () => {
             </div>
           </div>}
 
+          {activeDiv === "show_active" && <div id="show_active">
+            <table>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Image</th>
+                  <th>Age</th>
+                </tr>
+              </thead>
+              <tbody>
+                {activeResults && activeResults.map((result) => (
+                  <tr key={result._id}>
+                    <td>{result.title}</td>
+                    <td><img src={`http://127.0.0.1:3000/${result.image}`} alt="" /></td>
+                    <td>{result.age}</td>
+                    <Button1>Deactivate</Button1>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>}
 
 
+          {activeDiv === "show_pending" && <div id="show_pending">
+            <table>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Image</th>
+                  <th>Age</th>
+                </tr>
+              </thead>
+              <tbody>
+                {pendingResults && pendingResults.map((result) => (
+                  <tr key={result._id}>
+                    <td>{result.title}</td>
+                    <td><img src={`http://127.0.0.1:3000/${result.image}`} alt="" /></td>
+                    <td>{result.age}</td>
+                    <Button1>Deactivate</Button1>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>}
 
 
+          {activeDiv === "show_inActive" && <div id="show_inActive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Image</th>
+                  <th>Age</th>
+                </tr>
+              </thead>
+              <tbody>
+                {inActiveResults && inActiveResults.map((result) => (
+                  <tr key={result._id}>
+                    <td>{result.title}</td>
+                    <td><img src={`http://127.0.0.1:3000/${result.image}`} alt="" /></td>
+                    <td>{result.age}</td>
+                    <Button1>Request</Button1>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>}
         </div>
       </div>
     </div>
@@ -263,3 +339,7 @@ const User = () => {
 }
 
 export default User;
+
+
+
+

@@ -26,7 +26,7 @@ exports.createAd = async (req, res, next) => {
     }
 
     await userReqAd.save();
-    res.status(201).json({ message: "Ad created successfully", userReqAd });
+    res.status(201).json({ message: "Ad created successfully!", userReqAd });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Internal server error abcd" });
