@@ -24,7 +24,7 @@ const User = () => {
   const [pendingResults, setPendingResults] = useState("");
   const [activeResults, setActiveResults] = useState("");
   const [inActiveResults, setinActiveResults] = useState("");
-  const [res_message,setRes_message] = useState("");
+  const [res_message, setRes_message] = useState("");
 
 
   const [userResult, setUserResult] = useState([{
@@ -107,8 +107,8 @@ const User = () => {
 
   const deactivateAd = async (adId) => {
     try {
-      const updateAd = await axios.put(`http://127.0.0.1:3000/ads/deactivate/${adId}`);
-      setRes_message("User Status updated Successfully");
+      const deactivatedAd = await axios.put(`http://127.0.0.1:3000/ads/deactivate/${adId}`);
+      setRes_message("Ad Deactivated Successfully");
       console.log(res_message);
       setTimeout(() => {
         window.location.reload();
@@ -118,7 +118,20 @@ const User = () => {
     }
   }
 
-  
+  const cancelReqAd = async (adId) => {
+    try {
+      const canceledAd = await axios.put(`http://127.0.0.1:3000/ads/cancel/${adId}`);
+      setRes_message("Ad request canceled Successfully");
+      console.log(res_message);
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
 
 
   const handleResult = async (e) => {
@@ -319,7 +332,7 @@ const User = () => {
                     <td>{result.title}</td>
                     <td><img src={`http://127.0.0.1:3000/${result.image}`} alt="" /></td>
                     <td>{result.age}</td>
-                    <Button1>Deactivate</Button1>
+                    <Button1 onClick={() => cancelReqAd(result._id)}>Deactivate</Button1>
                   </tr>
                 ))}
               </tbody>
