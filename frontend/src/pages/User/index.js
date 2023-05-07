@@ -122,18 +122,18 @@ const User = () => {
     }
   }
 
-  // const cancelReqAd = async (adId) => {
-  //   try {
-  //     const canceledAd = await axios.put(`http://127.0.0.1:3000/ads/cancel/${adId}`);
-  //     setRes_message("Ad request canceled Successfully");
-  //     console.log(res_message);
-  //     setTimeout(() => {
-  //       window.location.reload();
-  //     }, 2000);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
+  const requestInActiveAd = async (adId) => {
+    try {
+      const canceledAd = await axios.put(`http://127.0.0.1:3000/ads/request/${adId}`);
+      setRes_message("InActive Ad requested Successfully");
+      console.log(res_message);
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
 
 
@@ -364,7 +364,7 @@ const User = () => {
                     <td>{result.title}</td>
                     <td><img src={`http://127.0.0.1:3000/${result.image}`} alt="" /></td>
                     <td>{result.age}</td>
-                    <Button1>Request</Button1>
+                    <Button1 onClick={() =>requestInActiveAd(result._id)}>Request</Button1>
                   </tr>
                 ))}
               </tbody>
@@ -386,7 +386,6 @@ const User = () => {
                     <td>{result.title}</td>
                     <td><img src={`http://127.0.0.1:3000/${result.image}`} alt="" /></td>
                     <td>{result.age}</td>
-                    <Button1>Request</Button1>
                   </tr>
                 ))}
               </tbody>

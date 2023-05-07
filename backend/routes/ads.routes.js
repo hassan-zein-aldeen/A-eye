@@ -9,7 +9,7 @@ router.get("/allads", getAllAds);
 router.put("/deactivate/:id", deactivateAd);
 router.put("/accept/:id", acceptRequest)
 router.put("/reject/:id", rejectRequest)
-router.put("/request",requestInactive)
+router.put("/request/:id",requestInactive)
 router.get("/userads/:id", getUserAds);
 
 
