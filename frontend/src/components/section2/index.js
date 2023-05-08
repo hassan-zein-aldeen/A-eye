@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from 'react';
 import Card from "../Card";
 import TextContent from "../TextContent";
-// import { useScrollEffect } from "../scrollE";
 import "./section2.css";
+import visualImg from "../../images/visual.svg";
 
 
 const Section2 = () => {
@@ -37,7 +37,7 @@ const Section2 = () => {
         <div className="subsec_ads"></div>
         <p className="title_ads">Add Ads</p>
         <div className="iconcard_ads">
-          <div>
+          <div className='j_card2'>
             <Card
               text1={cardData.text1}
               text2={cardData.text2}
@@ -55,6 +55,7 @@ const Section2 = () => {
           iconC1={content.iconC1}
           linkC1={content.linkC1}
         />
+        <img className='visual' src={visualImg} />
       </div>
     </>
   );

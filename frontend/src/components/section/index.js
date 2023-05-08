@@ -1,38 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState, useRef } from "react";
 import "./section.css";
 import Card from "../Card";
 import TextContent from "../TextContent";
+import AI_Ill from "../../images/ai.svg";
 
 const Section = () => {
 
-  useEffect(() => {
-    const text = document.querySelector('.title');
-    const section = document.querySelector(`.section`);
-    const icon_card = document.querySelector('.iconcard');
-
-    window.addEventListener('scroll', () => {
-      const scrollPosition = window.scrollY;
-      const sectionTop = section.getBoundingClientRect().top;
-      const sectionHeight = section.offsetHeight;
-      const textHeight = text.offsetHeight;
-
-      if (sectionTop < (window.innerHeight) && window.innerHeight >= 0) {
-        const maxTranslateY = (sectionHeight - textHeight) / 2;
-
-        const scrollPercentage = (sectionHeight - scrollPosition) / sectionHeight;
-        let translateY = ((textHeight + 400) * scrollPercentage) * 0.5; //speed scrolling for items
-        translateY = Math.min(translateY, maxTranslateY);
-        translateY = Math.max(translateY, -60);
-        text.style.transform = `translateY(${translateY + 100}px)`; //original position
-        icon_card.style.transform = `translateY(${translateY - 50}px)`; // original position
-        icon_card.classList.add('show');
-        section.classList.add('show');
-      } else {
-        section.classList.remove('show');
-        icon_card.classList.remove('show');
-      }
-    });
-  }, );
 
   const cardData =
   {
@@ -77,6 +50,7 @@ const Section = () => {
       </div>
     </div >
       <div className="sec_text">
+        <img className="illu_ai" src={AI_Ill}></img>
         <TextContent
           txtC1={content.txtC1}
           iconC1={content.iconC1}

@@ -12,7 +12,7 @@
   color: white;
   font-size: 3.5rem;
   margin-left: 4rem;
-  margin-top: 1.5rem;
+  margin-top: 10.5rem;
 }
 
 .vid_text {
@@ -90,13 +90,11 @@
   transition: 0.2s;
 }
 
-
-
 table {
   border: solid 1px #F2441D;
   text-align: center;
-  margin-left: 4rem;
-  margin-top: 4rem;
+  margin-left: 4.4rem;
+  margin-top: 6rem;
 }
 
 .directions td {
