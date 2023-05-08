@@ -230,9 +230,13 @@ const Admin = () => {
         <div className="admin_content">
           {activeDiv === "allads" && <div id="allads">
             <a href="#" style={{ color: "black" }}
-             onClick={(e) => {handleClick(e); getAllRequests(e)}} data-target="activeAds">Active Ads</a>
-            <a href="#" style={{ color: "black" }} onClick={getAllRequests} data-target="pendingAds">Show Pending</a>
-
+              onClick={(e) => { handleClick(e); getAllRequests(e) }} data-target="activeAds">Active</a>
+            <a href="#" style={{ color: "black" }}
+              onClick={(e) => { handleClick(e); getAllRequests(e) }} data-target="pendingAds">Pending</a>
+            <a href="#" style={{ color: "black" }}
+              onClick={(e) => { handleClick(e); getAllRequests(e) }} data-target="inActiveAds">InActive</a>
+            <a href="#" style={{ color: "black" }}
+              onClick={(e) => { handleClick(e); getAllRequests(e) }} data-target="rejectedAds">Rejected</a>
           </div>}
           {activeDiv === "s_notif" && <div id="nofitication">
             <Message />
@@ -428,14 +432,44 @@ const Admin = () => {
                     <td>{ad.description}</td>
                     <td>{ad.age}</td>
                     <td>{ad.gender}</td>
+                    <Button1>Deactivate</Button1>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>}
-
-          {activeDiv === "pending_requests" && <div id="pending_requests">
+          {activeDiv === "pendingAds" && <div id="pendingAds">
             <a href="#" onClick={(e) => getAllRequests(e)} style={{ color: "black" }}>Pending</a>
+            <p style={{ color: "black" }}>Test1</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Shop Name</th>
+                  <th>Title</th>
+                  <th>Image</th>
+                  <th>Description</th>
+                  <th>Age</th>
+                  <th>Gender</th>
+                  <Button1>Accept Request</Button1>
+                  <Button1>Reject Request</Button1>
+                </tr>
+              </thead>
+              <tbody>
+                {pendingResults && pendingResults.map((ad) => (
+                  <tr key={ad._id}>
+                    <td>{ad.user.shopname}</td>
+                    <td>{ad.title}</td>
+                    <td><img src={`http://127.0.0.1:3000/${ad.image}`} alt="" /></td>
+                    <td>{ad.description}</td>
+                    <td>{ad.age}</td>
+                    <td>{ad.gender}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>}
+          {activeDiv === "inActiveAds" && <div id="inActiveAds">
+            <a href="#" onClick={(e) => getAllRequests(e)} style={{ color: "black" }}>InActive</a>
             <p style={{ color: "black" }}>Test1</p>
             <table>
               <thead>
@@ -449,7 +483,35 @@ const Admin = () => {
                 </tr>
               </thead>
               <tbody>
-                {pendingResults && pendingResults.map((ad) => (
+                {inActiveResults && inActiveResults.map((ad) => (
+                  <tr key={ad._id}>
+                    <td>{ad.user.shopname}</td>
+                    <td>{ad.title}</td>
+                    <td><img src={`http://127.0.0.1:3000/${ad.image}`} alt="" /></td>
+                    <td>{ad.description}</td>
+                    <td>{ad.age}</td>
+                    <td>{ad.gender}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>}
+          {activeDiv === "rejectedAds" && <div id="rejectedAds">
+            <a href="#" onClick={(e) => getAllRequests(e)} style={{ color: "black" }}>Rejected</a>
+            <p style={{ color: "black" }}>Test1</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Shop Name</th>
+                  <th>Title</th>
+                  <th>Image</th>
+                  <th>Description</th>
+                  <th>Age</th>
+                  <th>Gender</th>
+                </tr>
+              </thead>
+              <tbody>
+                {rejectedResults && rejectedResults.map((ad) => (
                   <tr key={ad._id}>
                     <td>{ad.user.shopname}</td>
                     <td>{ad.title}</td>
