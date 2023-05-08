@@ -1,8 +1,8 @@
 import React from "react";
 import Card from "../Card";
 import TextContent from "../TextContent";
-// import { useScrollEffect } from "../scrollE";
 import "./section3.css";
+import planImg from "../../images/plan.svg";
 
 
 const Section3 = () => {
@@ -50,6 +50,7 @@ const Section3 = () => {
         </div>
       </div>
       <div className="sec_textres">
+        <img className="plan" src={planImg} />
         <TextContent
           txtC1={content.txtC1}
           iconC1={content.iconC1}

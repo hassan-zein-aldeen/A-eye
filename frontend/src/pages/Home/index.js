@@ -11,9 +11,35 @@ import image5 from "../../images/kids.svg";
 import Footer from "../../components/Footer";
 import Slideshow from "../../components/Slideshow";
 import './home.css';
+import { useState, useEffect } from "react";
+
 
 
 const Home = () => {
+  const [isLoggedIn, setIsloggedIn] = useState(false);
+
+  const handleRedirectAd = (e) => {
+    e.preventDefault();
+    if (isLoggedIn) {
+      window.location.href = "http://localhost:3001/User/";
+    } else {
+      window.location.href = "http://localhost:3001/login";
+    }
+  }
+
+
+  const handleLogout = () => {
+    setIsloggedIn(false);
+    localStorage.removeItem("token");
+  }
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsloggedIn(true);
+    }
+  }, []);
+
 
 
   return (
@@ -28,16 +54,13 @@ const Home = () => {
           <table>
             <tr>
               <td id="firstcell">
-                <a id="ads" href="http://localhost:3001/">Add Ads</a>
+                <a id="ads" onClick={handleRedirectAd} href="create">Create Ads</a>
               </td>
               <td>
-                <a id="offers" href="http://localhost:3001/">Add Offers</a>
+                <a id="results" onClick={handleRedirectAd} href="show">Show Results</a>
               </td>
               <td>
-                <a id="results" href="http://localhost:3001/">Show Results</a>
-              </td>
-              <td>
-                <a id="plans" href="http://localhost:3001/">AI Plan</a>
+                <a id="plans" onClick={handleRedirectAd} href="res">AI Plan</a>
               </td>
             </tr>
           </table>
