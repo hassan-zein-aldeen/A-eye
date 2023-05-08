@@ -71,6 +71,21 @@ exports.deactivateAd = async (req, res) => {
   }
 }
 
+exports.getCondAds = async (req, res) =>{
+  const {gender, age} = req.body;
+  console.log(gender);
+  console.log(age);
+
+  try{
+    const adsResult = await Ad.find({ gender: gender, age: age, status: "active" });
+    res.status(200).json(adsResult);
+  }
+  catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+}
+
 exports.adminDeactivateAd = async (req, res) => {
   const { id } = req.params;
 

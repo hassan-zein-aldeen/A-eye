@@ -131,9 +131,6 @@ const User = () => {
     }
   }
 
-
-
-
   const handleResult = async (e) => {
     e.preventDefault();
     await getUserAds(receiverId)
