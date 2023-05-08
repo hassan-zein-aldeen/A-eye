@@ -12,7 +12,8 @@ exports.login = async (req, res) => {
     const token = jwt.sign({ id: user._id, shopname: user.shopname, username: user.username, role: user.role }, process.env.SECRET_KEY);
     const role = await User.findOne({username}).select("role");
     const shopname = await User.findOne({username}).select("shopname");
-    res.json({ token, role, username, shopname })
+    const status = await User.findOne({username}).select("status");
+    res.json({ token, role, username, shopname, status });
   } catch (e) {
     console.error(e);
     res.status(425).json({ message: "Failed from login" });

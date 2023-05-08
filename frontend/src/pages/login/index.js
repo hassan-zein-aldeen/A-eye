@@ -46,11 +46,13 @@ const Login = () => {
       const username = response.data.username;
       const id = response.data.role._id;
       const shopname = response.data.shopname.shopname;
+      const status = response.data.status;
       localStorage.setItem("token", token);
       localStorage.setItem("role", role.role);
       localStorage.setItem("username", username);
       localStorage.setItem("id",id)
       localStorage.setItem("shopname",shopname);
+      localStorage.setItem("status", status.status);
 
       if (role.role === "user") {
         window.location.href = "/User"

@@ -11,7 +11,7 @@ exports.createAd = async (req, res, next) => {
 
     if(relatedUser.status === "inactive"){
 
-      return res.json({message:"User cant ad Ads, User Deactivated"});
+      return res.json({message:"Deactivated Users can't create Ads"});
     }
 
     const userReqAd = new Ad();
@@ -29,7 +29,7 @@ exports.createAd = async (req, res, next) => {
     res.status(201).json({ message: "Ad created successfully!", userReqAd });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "Internal server error abcd" });
+    res.status(500).json({ message: "Internal server error" });
   }
 
 }

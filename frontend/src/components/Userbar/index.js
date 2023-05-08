@@ -4,9 +4,7 @@ import Button1 from "../Button1/Button";
 import "./userbar.css";
 
 const Userbar = ({ handleAnchorClick }) => {
-
-
-
+  
   return (
     <div className="user_sidebar">
       <a href="http://127.0.0.1:3001/Home">
@@ -27,13 +25,6 @@ const Userbar = ({ handleAnchorClick }) => {
           data-target="user_adver"
         >
           Ads
-        </a>
-        <a
-          href="#user_requests"
-          onClick={(e) => handleAnchorClick(e, "user_requests")}
-          data-target="user_requests"
-        >
-          Requests
         </a>
         <a
           href="#user_messages"
