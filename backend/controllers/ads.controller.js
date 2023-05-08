@@ -9,9 +9,9 @@ exports.createAd = async (req, res, next) => {
 
   try {
 
-    if(relatedUser.status === "inactive"){
+    if (relatedUser.status === "inactive") {
 
-      return res.json({message:"Deactivated Users can't create Ads"});
+      return res.json({ message: "Deactivated Users can't create Ads" });
     }
 
     const userReqAd = new Ad();
@@ -62,6 +62,21 @@ exports.deactivateAd = async (req, res) => {
   try {
     const ads = await Ad.findById(id);
     if (ads.status === "active" || ads.status == "pending") {
+      ads.status = "inactive";
+    }
+    const updateStatusAd = await ads.save();
+    return res.status(200).json({ message: "Ads Status Updated Successfully", ads: updateStatusAd });
+  } catch (error) {
+    res.status(200).json({ message: "Error Updating Ads Status", error });
+  }
+}
+
+exports.adminDeactivateAd = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const ads = await Ad.findById(id);
+    if (ads.status === "active") {
       ads.status = "inactive";
     }
     const updateStatusAd = await ads.save();

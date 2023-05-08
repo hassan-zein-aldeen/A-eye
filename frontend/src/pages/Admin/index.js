@@ -235,7 +235,7 @@ const Admin = () => {
     } catch (error) {
       console.log(error);
     }
-  } 
+  }
 
   const rejectAd = async (adId) => {
     try {
@@ -250,6 +250,21 @@ const Admin = () => {
       console.log(error);
     }
   }
+
+  const deActivate = async (adId) => {
+    try {
+      const deactivated = await axios.put(`http://127.0.0.1:3000/ads/adminDeactivate/${adId}`);
+      setRes_message("see here");
+      console.log(res_message);
+      console.log("this is rejected");
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
 
   return (
@@ -461,7 +476,7 @@ const Admin = () => {
                     <td>{ad.description}</td>
                     <td>{ad.age}</td>
                     <td>{ad.gender}</td>
-                    <Button1 onClick={() => acceptAd(ad._id)}>Deactivate</Button1>
+                    <Button1 onClick={() => deActivate(ad._id)}>Deactivate</Button1>
                   </tr>
                 ))}
               </tbody>
