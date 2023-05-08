@@ -32,6 +32,32 @@ const Admin = () => {
   const [inActiveUsers, setinActiveUsers] = useState([]);
 
   const title_name = localStorage.getItem("shopname");
+  const [userReqResult, setUserReqResult] = useState([{
+    "_id": "",
+    "title": "",
+    "gender": "",
+    "age": "",
+    "description": "",
+    "status": "",
+    "user": "",
+    "timeReq": "",
+    "image": "",
+    "__v": 0
+  },
+  {
+    "_id": "",
+    "title": "",
+    "gender": "",
+    "age": "",
+    "description": "",
+    "status": "",
+    "user": "",
+    "timeReq": "",
+    "image": "",
+    "__v": 0
+  }
+  ]);
+
 
 
   const handleClick = async (event) => {
@@ -172,12 +198,51 @@ const Admin = () => {
     }
   }
 
+  const getAllRequests = async (e) => {
+
+    try {
+      const response = await axios.get("http://127.0.0.1:3000/ads/allads")
+      const usersRequests = response.data;
+      setUserReqResult(usersRequests);
+      console.log(usersRequests);
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div>
       <div className="admin">
         <Sidebar activeLink={actveLink} handleClick={handleClick} />
         <div className="admin_content">
-          {activeDiv === "requests" && <div id="request">First section</div>}
+          {activeDiv === "requests" && <div id="request">
+            <a href="#" style={{ color: "black" }} onClick={getAllRequests} data-target="users_requests">Show requests</a>
+            <table>
+              <thead>
+                <tr>
+                  <th>Shop Name</th>
+                  <th>Title</th>
+                  <th>Image</th>
+                  <th>Description</th>
+                  <th>Age</th>
+                  <th>Gender</th>
+                </tr>
+              </thead>
+              <tbody>
+                {userReqResult.map((ad) => (
+                  <tr key={ad._id}>
+                    <td>{ad.user.shopname}</td>
+                    <td>{ad.title}</td>
+                    <td><img src={`http://127.0.0.1:3000/${ad.image}`} alt="" /></td>
+                    <td>{ad.description}</td>
+                    <td>{ad.age}</td>
+                    <td>{ad.gender}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>}
           {activeDiv === "s_notif" && <div id="nofitication">
             <Message />
           </div>}
@@ -350,6 +415,10 @@ const Admin = () => {
               </table>
             </div>
           </div>}
+          {/* {activeDiv === "users_requests" && <div id="users_requests">
+            <a href="#" onClick={(e) => getAllRequests(e)} style={{color:"black"}}>Open Requests</a>
+            <p>Test1</p>
+          </div>} */}
         </div>
       </div>
     </div>

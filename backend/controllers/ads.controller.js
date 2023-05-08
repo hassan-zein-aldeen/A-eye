@@ -65,7 +65,7 @@ exports.deactivateAd = async (req, res) => {
       ads.status = "inactive";
     }
     const updateStatusAd = await ads.save();
-    res.status(200).json({ message: "Ads Status Updated Successfully", ads: updateStatusAd });
+    return res.status(200).json({ message: "Ads Status Updated Successfully", ads: updateStatusAd });
   } catch (error) {
     res.status(200).json({ message: "Error Updating Ads Status", error });
   }

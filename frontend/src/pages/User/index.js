@@ -26,6 +26,7 @@ const User = () => {
   const [inActiveResults, setinActiveResults] = useState("");
   const [res_message, setRes_message] = useState("");
   const [rejectedResults, setRejectedResults] = useState("");
+  const userStatus = localStorage.getItem("status");
 
 
   const [userResult, setUserResult] = useState([{
@@ -70,10 +71,6 @@ const User = () => {
       setinActiveResults(inActive);
       const rejected = userResult.filter(result => result.status === 'rejected');
       setRejectedResults(rejected);
-      console.log("pending", pendingResults);
-      console.log("active", activeResults);
-      console.log("inactive", inActiveResults);
-      console.log("rejected", rejectedResults);
     } catch (error) {
       console.log(error);
     }
@@ -84,7 +81,6 @@ const User = () => {
       const response = await axios.get(`http://127.0.0.1:3000/message/${receiverId}`);
       const admin_message = response.data;
       setAdminMessage(admin_message);
-      // console.log(admin_message);
     } catch (error) {
       console.log(error);
     }
@@ -112,8 +108,9 @@ const User = () => {
   const deactivateAd = async (adId) => {
     try {
       const deactivatedAd = await axios.put(`http://127.0.0.1:3000/ads/deactivate/${adId}`);
-      setRes_message("Ad Deactivated Successfully");
+      setRes_message("see here");
       console.log(res_message);
+      console.log("this is deactivated");
       setTimeout(() => {
         window.location.reload();
       }, 2000);
@@ -188,7 +185,7 @@ const User = () => {
           {/*Start of requesting ads div */}
           {activeDiv === "user_adver" && <div id="user_adver" >
             <div className="ads_title">
-              <a onClick={handleAnchorClick} data-target="createAds">Create Ad</a>
+              <a onClick={handleAnchorClick} disabled={"inactive" ? true : false} data-target="createAds" id="create_newAdd">Create Ad</a>
 
               <a href="#" onClick={(e) => {
                 handleAnchorClick(e);
@@ -364,15 +361,15 @@ const User = () => {
                     <td>{result.title}</td>
                     <td><img src={`http://127.0.0.1:3000/${result.image}`} alt="" /></td>
                     <td>{result.age}</td>
-                    <Button1 onClick={() =>requestInActiveAd(result._id)}>Request</Button1>
+                    <Button1 onClick={() => requestInActiveAd(result._id)}>Request</Button1>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>}
-          
+
           {activeDiv === "show_rejected" && <div id="show_rejected">
-          <table>
+            <table>
               <thead>
                 <tr>
                   <th>Title</th>
@@ -390,7 +387,7 @@ const User = () => {
                 ))}
               </tbody>
             </table>
-            </div>}
+          </div>}
         </div>
       </div>
     </div>

@@ -116,3 +116,9 @@
 text-shadow: 0 0 5px #F2441D, 0 0 10px #F2441D, 0 0 10px #F2441D;
 transition: 0.2s;
 }
+
+#create_newAdd:disabled{
+  color: gray;
+  text-decoration: none;
+  cursor: not-allowed;
+}
