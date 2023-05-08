@@ -223,6 +223,35 @@ const Admin = () => {
     }
   }
 
+  const acceptAd = async (adId) => {
+    try {
+      const activateAd = await axios.put(`http://127.0.0.1:3000/ads/accept/${adId}`);
+      setRes_message("see here");
+      console.log(res_message);
+      console.log("this is Activated");
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    } catch (error) {
+      console.log(error);
+    }
+  } 
+
+  const rejectAd = async (adId) => {
+    try {
+      const rejectAd = await axios.put(`http://127.0.0.1:3000/ads/reject/${adId}`);
+      setRes_message("see here");
+      console.log(res_message);
+      console.log("this is rejected");
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
   return (
     <div>
       <div className="admin">
@@ -432,7 +461,7 @@ const Admin = () => {
                     <td>{ad.description}</td>
                     <td>{ad.age}</td>
                     <td>{ad.gender}</td>
-                    <Button1>Deactivate</Button1>
+                    <Button1 onClick={() => acceptAd(ad._id)}>Deactivate</Button1>
                   </tr>
                 ))}
               </tbody>
@@ -450,8 +479,6 @@ const Admin = () => {
                   <th>Description</th>
                   <th>Age</th>
                   <th>Gender</th>
-                  <Button1>Accept Request</Button1>
-                  <Button1>Reject Request</Button1>
                 </tr>
               </thead>
               <tbody>
@@ -463,6 +490,8 @@ const Admin = () => {
                     <td>{ad.description}</td>
                     <td>{ad.age}</td>
                     <td>{ad.gender}</td>
+                    <Button1 onClick={() => acceptAd(ad._id)}>Accept Request</Button1>
+                    <Button1 onClick={() => rejectAd(ad._id)}>Reject Request</Button1>
                   </tr>
                 ))}
               </tbody>
