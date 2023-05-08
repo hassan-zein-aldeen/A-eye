@@ -27,6 +27,11 @@ const Admin = () => {
 
   const [res_message, setRes_message] = useState("");
 
+  const [pendingResults, setPendingResults] = useState("");
+  const [activeResults, setActiveResults] = useState("");
+  const [inActiveResults, setinActiveResults] = useState("");
+  const [rejectedResults, setRejectedResults] = useState("");
+
   const [users, setUsers] = useState([]);
   const [activeUsers, setactiveUsers] = useState([]);
   const [inActiveUsers, setinActiveUsers] = useState([]);
@@ -61,7 +66,6 @@ const Admin = () => {
 
 
   const handleClick = async (event) => {
-    event.preventDefault();
     const target = event.target.getAttribute("data-target");
     setActiveDiv(target);
     setActiveLink(event.target.hash);
@@ -205,6 +209,14 @@ const Admin = () => {
       const usersRequests = response.data;
       setUserReqResult(usersRequests);
       console.log(usersRequests);
+      const pend = usersRequests.filter(result => result.status === 'pending');
+      setPendingResults(pend);
+      const active = usersRequests.filter(result => result.status === 'active');
+      setActiveResults(active);
+      const inActive = usersRequests.filter(result => result.status === 'inactive');
+      setinActiveResults(inActive);
+      const rejected = usersRequests.filter(result => result.status === 'rejected');
+      setRejectedResults(rejected);
 
     } catch (error) {
       console.log(error)
@@ -216,32 +228,11 @@ const Admin = () => {
       <div className="admin">
         <Sidebar activeLink={actveLink} handleClick={handleClick} />
         <div className="admin_content">
-          {activeDiv === "requests" && <div id="request">
-            <a href="#" style={{ color: "black" }} onClick={getAllRequests} data-target="users_requests">Show requests</a>
-            <table>
-              <thead>
-                <tr>
-                  <th>Shop Name</th>
-                  <th>Title</th>
-                  <th>Image</th>
-                  <th>Description</th>
-                  <th>Age</th>
-                  <th>Gender</th>
-                </tr>
-              </thead>
-              <tbody>
-                {userReqResult.map((ad) => (
-                  <tr key={ad._id}>
-                    <td>{ad.user.shopname}</td>
-                    <td>{ad.title}</td>
-                    <td><img src={`http://127.0.0.1:3000/${ad.image}`} alt="" /></td>
-                    <td>{ad.description}</td>
-                    <td>{ad.age}</td>
-                    <td>{ad.gender}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          {activeDiv === "allads" && <div id="allads">
+            <a href="#" style={{ color: "black" }}
+             onClick={(e) => {handleClick(e); getAllRequests(e)}} data-target="activeAds">Active Ads</a>
+            <a href="#" style={{ color: "black" }} onClick={getAllRequests} data-target="pendingAds">Show Pending</a>
+
           </div>}
           {activeDiv === "s_notif" && <div id="nofitication">
             <Message />
@@ -415,10 +406,62 @@ const Admin = () => {
               </table>
             </div>
           </div>}
-          {/* {activeDiv === "users_requests" && <div id="users_requests">
-            <a href="#" onClick={(e) => getAllRequests(e)} style={{color:"black"}}>Open Requests</a>
-            <p>Test1</p>
-          </div>} */}
+          {activeDiv === "activeAds" && <div id="activeAds">
+            <p style={{ color: "black" }}>Active Ads</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Shop Name</th>
+                  <th>Title</th>
+                  <th>Image</th>
+                  <th>Description</th>
+                  <th>Age</th>
+                  <th>Gender</th>
+                </tr>
+              </thead>
+              <tbody>
+                {activeResults && activeResults.map((ad) => (
+                  <tr key={ad._id}>
+                    <td>{ad.user.shopname}</td>
+                    <td>{ad.title}</td>
+                    <td><img src={`http://127.0.0.1:3000/${ad.image}`} alt="" /></td>
+                    <td>{ad.description}</td>
+                    <td>{ad.age}</td>
+                    <td>{ad.gender}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>}
+
+          {activeDiv === "pending_requests" && <div id="pending_requests">
+            <a href="#" onClick={(e) => getAllRequests(e)} style={{ color: "black" }}>Pending</a>
+            <p style={{ color: "black" }}>Test1</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Shop Name</th>
+                  <th>Title</th>
+                  <th>Image</th>
+                  <th>Description</th>
+                  <th>Age</th>
+                  <th>Gender</th>
+                </tr>
+              </thead>
+              <tbody>
+                {pendingResults && pendingResults.map((ad) => (
+                  <tr key={ad._id}>
+                    <td>{ad.user.shopname}</td>
+                    <td>{ad.title}</td>
+                    <td><img src={`http://127.0.0.1:3000/${ad.image}`} alt="" /></td>
+                    <td>{ad.description}</td>
+                    <td>{ad.age}</td>
+                    <td>{ad.gender}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>}
         </div>
       </div>
     </div>

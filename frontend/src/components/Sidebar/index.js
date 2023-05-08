@@ -28,12 +28,12 @@ const Sidebar = ({ activeLink, handleClick, handleAccSubClick }) => {
       </a>
       <div className="admin_links">
         <a
-          href="#requests"
-          className={activeLink === "#requests" ? "active" : ""}
+          href="#allAds"
+          className={activeLink === "#allads" ? "active" : ""}
           onClick={handleClick}
-          data-target="requests"
+          data-target="allads"
         >
-          Requests
+          All Ads
         </a>
         <div>
           <a

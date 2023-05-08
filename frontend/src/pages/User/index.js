@@ -28,7 +28,6 @@ const User = () => {
   const [rejectedResults, setRejectedResults] = useState("");
   const userStatus = localStorage.getItem("status");
 
-
   const [userResult, setUserResult] = useState([{
     "_id": "",
     "title": "",
@@ -164,10 +163,6 @@ const User = () => {
     setActiveDiv(target);
     console.log("hello");
   };
-
-
-
-
 
 
   return (
