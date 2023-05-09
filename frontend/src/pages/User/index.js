@@ -4,7 +4,7 @@ import Userbar from "../../components/Userbar";
 import Button1 from "../../components/Button1/Button";
 import axios from "axios";
 import messIcon from "../../images/sent1.svg";
-
+import user_logo from "../../images/EditedLogo.svg"
 const User = () => {
   const [activeDiv, setActiveDiv] = useState("");
   const [adminMessage, setAdminMessage] = useState([]);
@@ -165,15 +165,36 @@ const User = () => {
   return (
     <div>
       <div className="all_page">
-        <div className="userbar">
+        {/* <div className="userbar">
           <Userbar handleAnchorClick={handleAnchorClick} />
-        </div>
+        </div> */}
         <div>
         </div> {/* for testng child comp */}
         <div className="content">
-          <p className="userTitleShopName">Shopname: <span>{userShopNameTitle}</span></p>
-
-
+          <div className="userHeader">
+            <a href="http://127.0.0.1:3001/Home">
+              <img
+                id="user_logopage"
+                style={{ width: "8rem" }}
+                src={user_logo}
+                alt="user Logo"
+              />
+            </a>
+            <div className="userheader_links">
+              <a>Messages</a>
+              <a>Logout</a>
+            </div>
+          </div>
+          <div className="content_header">
+            <p className="title_userSection">My Ads</p>
+            <Button1 className="New_User">Create Ad</Button1>
+          </div>
+          <div className="directional_links">
+            <a>Active</a>
+            <a>Pending</a>
+            <a>Archive</a>
+            <a>Rejected</a>
+          </div>
           {/*Start of requesting ads div */}
           {activeDiv === "user_adver" && <div id="user_adver" >
             <div className="ads_title">

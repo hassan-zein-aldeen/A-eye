@@ -1,5 +1,5 @@
 .all_page {
-  width: 95%;
+  width: 100%;
   border-radius: 2rem;
   display: flex;
   height: 130vh;
@@ -60,7 +60,7 @@
 }
 
 .content {
-  width: 78%;
+  width: 100%;
 }
 
 .usermess_table {
@@ -97,7 +97,7 @@
   width: 50rem;
 }
 
-.ads_title{
+.ads_title {
   display: flex;
   justify-content: space-between;
   border-bottom: 2px solid rgb(117, 116, 116);
@@ -106,19 +106,101 @@
   width: 50rem;
 }
 
-.ads_title a{
+.ads_title a {
   text-decoration: none;
   color: #F2441D;
   font-size: 2.2rem;
 }
 
-.ads_title a:hover{
-text-shadow: 0 0 5px #F2441D, 0 0 10px #F2441D, 0 0 10px #F2441D;
-transition: 0.2s;
+.ads_title a:hover {
+  text-shadow: 0 0 5px #F2441D, 0 0 10px #F2441D, 0 0 10px #F2441D;
+  transition: 0.2s;
 }
 
-#create_newAdd:disabled{
+#create_newAdd:disabled {
   color: gray;
   text-decoration: none;
   cursor: not-allowed;
 }
+
+.userHeader {
+  background-color: #0367A6;
+  height: 11vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#user_logopage {
+  width: 2rem;
+  margin-left: 8rem;
+}
+
+.userheader_links {
+  display: flex;
+  gap: 4rem;
+  font-size: 1.5rem;
+  margin-right: 8rem;
+}
+
+.userheader_links a {
+  text-decoration: none;
+  color: white;
+}
+
+.userheader_links a:hover {
+  text-shadow: 0 0 5px #F2441D, 0 0 10px #F2441D, 0 0 10px #F2441D;
+  transition: 0.2s;
+}
+
+.userheader_links a:active {
+  position: relative;
+  top: 2px;
+  left: 2px;
+  transition: 0.2s;
+}
+
+.title_userSection {
+  font-size: 2.6rem;
+  font-weight: bold;
+  letter-spacing: 0.2rem;
+}
+
+.content_header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4rem;
+  gap: 70.5rem;
+}
+
+
+.directional_links {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  margin-left: 8rem;
+  font-size: 1.7rem;
+}
+
+
+.directional_links a{
+  text-decoration: none;
+  color: #F2441D;
+}
+
+.directional_links a:hover{
+  text-decoration: none;
+  color: #F2441D;
+  text-shadow: 0 0 5px rgb(233, 63, 25), 0 0 10px rgb(233, 63, 25), 0 0 10px rgb(233, 63, 25);
+  transition: 0.3s;
+}
+
+.directional_links a:active{
+  position: relative;
+  top: 2px;
+  left: 2px;
+  transition: 0.2s;
+}
+
