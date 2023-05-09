@@ -50,8 +50,8 @@ const Login = () => {
       localStorage.setItem("token", token);
       localStorage.setItem("role", role.role);
       localStorage.setItem("username", username);
-      localStorage.setItem("id",id)
-      localStorage.setItem("shopname",shopname);
+      localStorage.setItem("id", id)
+      localStorage.setItem("shopname", shopname);
       localStorage.setItem("status", status.status);
 
       if (role.role === "user") {
@@ -69,10 +69,15 @@ const Login = () => {
   return (
     <div className="popup">
 
-      <a id="back" href="http://localhost:3001/">Home</a>
       <div className="form">
-
-        <img className="logo" src={login_img} alt="login_img" />
+        <a href="http://127.0.0.1:3001/Home">
+        <img
+          id="loginImg"
+          style={{ width: "11rem" }}
+          src={login_img}
+          alt="login Logo"
+        />
+      </a>
         <p>Login</p>
         <div className="cred">
 
@@ -87,8 +92,6 @@ const Login = () => {
             <input type="password" id="password" placeholder="Password"
               onChange={(e) => { setPassword(e.target.value) }} />
           </div>
-
-          <a className='forget' href="http:/localhost:3001/">Forget Password?</a>
         </div>
         <Button1 onClick={submit}>Login</Button1>
       </div>

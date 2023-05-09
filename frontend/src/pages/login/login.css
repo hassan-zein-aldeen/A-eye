@@ -20,8 +20,8 @@
   padding: 3rem 3rem;
   border-radius: 2rem;
   background-color: white;
-  width: 30%;
-  height: 70vh;
+  width: 25%;
+  height: 60vh;
 }
 
 .form p {
@@ -33,7 +33,7 @@
 .cred {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .cred input {
