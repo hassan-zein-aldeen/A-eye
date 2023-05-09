@@ -113,13 +113,14 @@ table {
 .customers {
   background-color: #0367A6;
   margin-top: 10rem;
-  padding: 5rem 8rem;
+  padding: 3rem 8rem;
 }
 
 .cust_title,.feed_title {
-  font-size: 4rem;
+  font-size: 3rem;
   color: white;
   width: 40%;
+  margin-left: 4rem;
 }
 
 .shop_pics {
@@ -134,19 +135,17 @@ table {
 .row_imgs{
   display: flex;
   align-items: baseline;
-  gap: 15rem;
+  gap: 24rem;
 }
 
 .row_imgs img{
-  width: 16rem;
+  width: 9.5rem;
   height: auto;
   height: 7.5rem;
-
 }
 
 .row_imgs img:hover {
   opacity: 0.8;
-  width: 15rem;
   transition: 0.3s;
   box-shadow: 0 0 5px #F2441D, 0 0 10px #F2441D, 0 0 10px #F2441D;
 }
@@ -154,7 +153,10 @@ table {
 .feedback{
   background-color: #0367A6;
   color: white;
-  padding: 6rem 8rem;
+  padding-top: 1rem;
+  padding-bottom: 6rem;
+  padding-left: 8rem;
+  padding-right: 8rem;
   position: relative;
 }
 
@@ -176,4 +178,12 @@ table {
   width: 100%;
   margin-top: 5rem;
   font-size: 3rem;
+}
+
+.shops_logos{
+  width: 2rem;
+}
+
+.titleSection{
+  font-size: 3rem ;
 }

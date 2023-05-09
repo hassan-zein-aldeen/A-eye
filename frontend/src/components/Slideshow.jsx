@@ -9,7 +9,7 @@ function Slideshow() {
   }
 
   useEffect(() => {
-    const slideInterval = setInterval(nextSlide, 5000);
+    const slideInterval = setInterval(nextSlide, 4000);
 
     return () => clearInterval(slideInterval);
   }, [currentSlide, slides.length]);

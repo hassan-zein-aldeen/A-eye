@@ -13,7 +13,7 @@ const Footer = () => {
   return (
     <div className="footer">
       <div className="footer_info">
-        <p className='hover'>Mobile app</p>
+        <a className='hover-link' style={{textDecoration:"none", color:"white"}}>Contact Us</a>
         <p className='hover'>Community</p>
         <p className='hover'>Company</p>
         <img  id="center_logo" src={logo_image} alt="footerlogo"/>

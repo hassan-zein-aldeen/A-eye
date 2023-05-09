@@ -71,18 +71,18 @@ const Home = () => {
       <Section3 />
       <div className="customers">
         <div className="cust_title">
-          <p>Our Customers</p>
+          <p className="titleSection">Our Customers</p>
         </div>
         <div className="shop_pics">
           <div className="row_imgs">
-            <img src={image1} alt="pic" />
-            <img src={image4} alt="pic" />
-            <img src={image4} alt="pic" />
+            <img className="shops_logos" src={image1} alt="pic" />
+            <img className="shops_logos" src={image4} alt="pic" />
+            <img className="shops_logos" src={image4} alt="pic" />
           </div>
           <div className="row_imgs">
-            <img src={image3} alt="pic" />
-            <img src={image5} alt="pic" />
-            <img src={image2} alt="pic" />
+            <img className="shops_logos" src={image3} alt="pic" />
+            <img className="shops_logos" src={image5} alt="pic" />
+            <img className="shops_logos" src={image2} alt="pic" />
           </div>
         </div>
       </div>
@@ -90,9 +90,9 @@ const Home = () => {
         <p className="feed_title">Feedback "</p>
         <div id="feed_slider">
           <Slideshow >
-            <p class="slide active">First feedback 1</p>
-            <p class="slide">Second feedback  2</p>
-            <p class="slide">Third feedback 3</p>
+            <p class="slide active">Shop One Feedback</p>
+            <p class="slide">Shop Two Feedback</p>
+            <p class="slide">Shop Three Feedback</p>
           </Slideshow>
         </div>
       </div>

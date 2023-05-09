@@ -1,9 +1,9 @@
-.footer{
+.footer {
   background-color: #0367A6;
   height: 30vh;
 }
 
-.footer_info{
+.footer_info {
   display: flex;
   flex-direction: row;
   gap: 9rem;
@@ -16,17 +16,17 @@
   font-size: 1.4rem;
 }
 
-#center_logo{
+#center_logo {
   width: 8rem;
   margin-right: 3rem;
 }
 
-.sm_icons{
+.sm_icons {
   width: 2.5rem;
   height: 2.5rem;
 }
 
-.connect{
+.connect {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,14 +35,14 @@
   background-color: #0367A6;
 }
 
-.footer_icons{
+.footer_icons {
   display: flex;
   gap: 2rem;
   align-items: center;
   justify-content: center;
 }
 
-.slogan{
+.slogan {
   text-align: center;
   font-size: 0.8rem;
   margin-top: 1.5rem;
@@ -50,14 +50,41 @@
   margin-bottom: 1rem;
 }
 
-.hover{
+.hover {
   display: flex;
 
 }
-.hover:hover{
+
+.hover:hover {
   text-shadow: 0 0 5px #F2441D, 0 0 10px #F2441D, 0 0 10px #F2441D;
   transition: 0.2s;
   cursor: pointer;
 }
 
+.hover-link {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+}
 
+.hover-link:hover {
+  text-shadow: 0 0 5px #F2441D, 0 0 10px #F2441D, 0 0 10px #F2441D;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.hover-link:hover::after {
+  content: "A-Eye@gmail.com";
+  position: absolute;
+  left: 50%;
+  bottom: -100px;
+  transform: translateX(-50%);
+  width: 250px;
+  height: 100px;
+  color: #F2441D;
+  background-color: #ddd;
+  border: 1px solid #999;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+}
