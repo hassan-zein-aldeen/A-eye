@@ -176,7 +176,7 @@
   align-items: center;
   justify-content: center;
   margin-top: 2.5rem;
-  gap: 70.5rem;
+  gap: 77.5rem;
 }
 
 
@@ -252,6 +252,7 @@
   flex-direction: column;
   justify-content: space-between;
   gap: 0.5rem;
+  align-items: center;
 }
 
 #children_button {
