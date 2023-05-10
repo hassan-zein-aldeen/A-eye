@@ -5,6 +5,7 @@ import Button1 from "../../components/Button1/Button";
 import Message from "../../components/Message";
 import Sidebar from "../../components/Sidebar";
 import userIcon from "../../images/user.svg";
+import Button2 from "../../components/Button2";
 
 const Admin = () => {
 
@@ -455,32 +456,19 @@ const Admin = () => {
             </div>
           </div>}
           {activeDiv === "activeAds" && <div id="activeAds">
-            <p style={{ color: "black" }}>Active Ads</p>
-            <table>
-              <thead>
-                <tr>
-                  <th>Shop Name</th>
-                  <th>Title</th>
-                  <th>Image</th>
-                  <th>Description</th>
-                  <th>Age</th>
-                  <th>Gender</th>
-                </tr>
-              </thead>
-              <tbody>
-                {activeResults && activeResults.map((ad) => (
-                  <tr key={ad._id}>
-                    <td>{ad.user.shopname}</td>
-                    <td>{ad.title}</td>
-                    <td><img src={`http://127.0.0.1:3000/${ad.image}`} alt="" /></td>
-                    <td>{ad.description}</td>
-                    <td>{ad.age}</td>
-                    <td>{ad.gender}</td>
-                    <Button1 onClick={() => deActivate(ad._id)}>Deactivate</Button1>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <p className="titleOfActive">Active Ads</p>
+          {activeResults && activeResults.map((result) => (
+              <div key={result._id} className="shownResultCard">
+                <div className="respActiveCard">
+                  <img src={`http://127.0.0.1:3000/${result.image}`} alt="" />
+                  <div className="respActiveCard_text">
+                    <p>{result.title}</p>
+                    <td>{result.description}</td>
+                    <Button2 onClick={() => deActivate(result._id)}>Deactivate</Button2>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>}
           {activeDiv === "pendingAds" && <div id="pendingAds">
             <a href="#" onClick={(e) => getAllRequests(e)} style={{ color: "black" }}>Pending</a>

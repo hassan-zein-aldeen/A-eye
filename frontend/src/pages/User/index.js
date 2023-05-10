@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./user.css";
-import Userbar from "../../components/Userbar";
 import Button1 from "../../components/Button1/Button";
 import axios from "axios";
 import messIcon from "../../images/sent1.svg";
-import user_logo from "../../images/EditedLogo.svg"
+import user_logo from "../../images/EditedLogo.svg";
+import Button2 from "../../components/Button2";
+import { ReactDOM } from "react";
 const User = () => {
   const [activeDiv, setActiveDiv] = useState("");
   const [adminMessage, setAdminMessage] = useState([]);
@@ -16,8 +17,8 @@ const User = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [result, setResult] = useState(""); //for test
   const [adsImage, setAdsImage] = useState("")
-  const [gender, setGender] = useState("");
-  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("male");
+  const [age, setAge] = useState("(4-12)");
   const [userReqTitle, setUserReqTitle] = useState("");
   const [userReqDesc, setUserRecDesc] = useState("");
 
@@ -27,6 +28,7 @@ const User = () => {
   const [res_message, setRes_message] = useState("");
   const [rejectedResults, setRejectedResults] = useState("");
   const userStatus = localStorage.getItem("status");
+  const [isShowing, setIsShowing] = useState("");
 
   const [userResult, setUserResult] = useState([{
     "_id": "",
@@ -55,10 +57,12 @@ const User = () => {
   ]);
 
 
-
   const getUserAds = async (userId) => {
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    }
     try {
-      const requests = await axios.get(`http://127.0.0.1:3000/ads/userads/${receiverId}`);
+      const requests = await axios.get(`http://127.0.0.1:3000/ads/userads/${receiverId}`, config);
       const req_data = requests.data;
       setUserResult(req_data);
       console.log("here is the user result of get ads", userResult);
@@ -75,11 +79,15 @@ const User = () => {
     }
   }
 
-  const getMessages = async () => {
+  const getMessages = async (e) => {
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    }
     try {
-      const response = await axios.get(`http://127.0.0.1:3000/message/${receiverId}`);
+      const response = await axios.get(`http://127.0.0.1:3000/message/${receiverId}`, config);
       const admin_message = response.data;
       setAdminMessage(admin_message);
+      handleAnchorClick(e);
     } catch (error) {
       console.log(error);
     }
@@ -87,6 +95,17 @@ const User = () => {
 
   const createAd = async (e) => {
 
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    }
+
+    if(!userReqTitle || !userReqDesc || !gender || !age || !receiverId || !adsImage){
+      setRes_message("Please fill all the form!");
+    }
+
+     else {
+      setRes_message("Your Ad is Successfully requested to Admin");
+     }
     const formData = new FormData();
     formData.append("title", userReqTitle);
     formData.append("description", userReqDesc);
@@ -99,14 +118,17 @@ const User = () => {
       console.log(`${key}: ${value}`);
     }
 
-    const response = await axios.post("http://127.0.0.1:3000/ads/create", formData);
+    const response = await axios.post("http://127.0.0.1:3000/ads/create", formData, config);
     console.log(response.data.message);
-
+    window.location.reload();
   }
 
   const deactivateAd = async (adId) => {
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    }
     try {
-      const deactivatedAd = await axios.put(`http://127.0.0.1:3000/ads/deactivate/${adId}`);
+      const deactivatedAd = await axios.put(`http://127.0.0.1:3000/ads/deactivate/${adId}`, config);
       setRes_message("see here");
       console.log(res_message);
       console.log("this is deactivated");
@@ -119,8 +141,11 @@ const User = () => {
   }
 
   const requestInActiveAd = async (adId) => {
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    }
     try {
-      const canceledAd = await axios.put(`http://127.0.0.1:3000/ads/request/${adId}`);
+      const canceledAd = await axios.put(`http://127.0.0.1:3000/ads/request/${adId}`, config);
       setRes_message("InActive Ad requested Successfully");
       console.log(res_message);
       setTimeout(() => {
@@ -158,16 +183,27 @@ const User = () => {
     e.preventDefault();
     const target = e.target.getAttribute("data-target");
     setActiveDiv(target);
-    console.log("hello");
   };
+
+  const backUser = (event)=>{
+    event.preventDefault();
+    window.location.href = "http://localhost:3001/User";
+  }
+
+  function logout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    localStorage.removeItem('status');
+    localStorage.removeItem('username');
+    localStorage.removeItem('shopname');
+    localStorage.removeItem('role');
+    window.location.href = 'http://localhost:3001/login';
+  }
 
 
   return (
     <div>
       <div className="all_page">
-        {/* <div className="userbar">
-          <Userbar handleAnchorClick={handleAnchorClick} />
-        </div> */}
         <div>
         </div> {/* for testng child comp */}
         <div className="content">
@@ -181,20 +217,37 @@ const User = () => {
               />
             </a>
             <div className="userheader_links">
-              <a>Messages</a>
-              <a>Logout</a>
+              <a onClick = {backUser} data-target="">My Ads</a>
+              <a onClick={(event) => getMessages(event)} data-target="user_messages">Messages</a>
+              <a onClick={logout}>Logout</a>
             </div>
           </div>
           <div className="content_header">
             <p className="title_userSection">My Ads</p>
-            <Button1 className="New_User">Create Ad</Button1>
+            <Button1 onClick={(e) => handleAnchorClick(e)}
+              className="New_User" data-target="createTheAd">
+              <button data-target="createTheAd" id="children_button">Create Ad</button></Button1>
           </div>
           <div className="directional_links">
-            <a>Active</a>
-            <a>Pending</a>
-            <a>Archive</a>
-            <a>Rejected</a>
+            <a href="#" onClick={(e) => {
+              handleAnchorClick(e);
+              getUserAds(receiverId);
+            }} data-target="show_active">Active</a>
+            <a href="#" onClick={(e) => {
+              handleAnchorClick(e);
+              getUserAds(receiverId);
+            }} data-target="show_pending" >Pending</a>
+            <a href="#" onClick={(e) => {
+              handleAnchorClick(e);
+              getUserAds(receiverId);
+            }} data-target="show_inActive">Archive</a>
+            <a href="#" onClick={(e) => {
+              handleAnchorClick(e);
+              getUserAds(receiverId);
+            }} data-target="show_rejected">Rejected</a>
           </div>
+
+
           {/*Start of requesting ads div */}
           {activeDiv === "user_adver" && <div id="user_adver" >
             <div className="ads_title">
@@ -238,9 +291,9 @@ const User = () => {
           {activeDiv === "user_messages" && <div id="user_messages">
             <div className="messages">
               <div className="titlediv">
-                <a href="#" className="message_title" onClick={getMessages}>
-                  Show Messages
-                </a>
+                <p href="#" className="message_title">
+                  Messages
+                </p>
               </div>
               <div className="user_message">
                 <table className="usermess_table">
@@ -281,129 +334,114 @@ const User = () => {
           {/*End of of AI tools div */}
 
 
-          {activeDiv === "createAds" && <div id="createAds">
+
+          {activeDiv === "show_active" && <div id="show_active">
+
+            {activeResults && activeResults.map((result) => (
+              <div key={result._id} className="shownResultCard">
+                <div className="respActiveCard">
+                  <img src={`http://127.0.0.1:3000/${result.image}`} alt="" />
+                  <div className="respActiveCard_text">
+                    <p>{result.title}</p>
+                    <td>{result.description}</td>
+                    <Button2 onClick={() => deactivateAd(result._id)}>Deactivate</Button2>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>}
+
+
+          {activeDiv === "show_pending" && <div id="show_pending">
+            {pendingResults && pendingResults.map((result) => (
+              <div key={result._id} className="shownResultCard">
+                <div className="respActiveCard">
+                  <img src={`http://127.0.0.1:3000/${result.image}`} alt="" />
+                  <div className="respActiveCard_text">
+                    <p>{result.title}</p>
+                    <td>{result.description}</td>
+                    <Button2 onClick={() => deactivateAd(result._id)}>Delete Request</Button2>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>}
+
+
+          {activeDiv === "show_inActive" && <div id="show_inActive">
+            {inActiveResults && inActiveResults.map((result) => (
+              <div key={result._id} className="shownResultCard">
+                <div className="respActiveCard">
+                  <img src={`http://127.0.0.1:3000/${result.image}`} alt="" />
+                  <div className="respActiveCard_text">
+                    <p>{result.title}</p>
+                    <td>{result.description}</td>
+                    <Button2 onClick={() => requestInActiveAd(result._id)}>Request</Button2>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>}
+
+          {activeDiv === "show_rejected" && <div id="show_rejected">
+            {rejectedResults && rejectedResults.map((result) => (
+              <div key={result._id} className="shownResultCard">
+                <div className="respActiveCard">
+                  <img src={`http://127.0.0.1:3000/${result.image}`} alt="" />
+                  <div className="respActiveCard_text">
+                    <p>{result.title}</p>
+                    <td>{result.description}</td>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>}
+          {activeDiv === "createTheAd" && <div id="createTheAd">
             <div className="createAdsBox">
-              <p>Create Your Ad</p>
-              <input type="text" id="userAd_title" placeholder="Enter title of your Ad"
-                onChange={(e) => setUserReqTitle(e.target.value)} />
-              <p>Select the Picture you want to Show</p>
-              <div className="input_image">
-                <input
-                  accept="image/*"
-                  type="file"
-                  onChange={handleImageUpload}
-                />
-                {adsImage == "" || adsImage == null ? "" : <img width={100} height={100} src={adsImage} />}
-                <p>Description</p>
-                <input type="text" placeholder="Enter the Description of your Ad" id="userAd_desc"
+              <p className="createBoxTitle">Create Your Ad</p>
+              <div className="oneinput">
+                <label>Title</label>
+                <input type="text" id="userAd_title" placeholder="Enter your title here"
+                  onChange={(e) => setUserReqTitle(e.target.value)} />
+              </div>
+              <div className="twoinput" >
+                <label>Description</label>
+                <input type="text" placeholder="Here goes your Ads Description" id="userAd_desc"
                   onChange={(e) => setUserRecDesc(e.target.value)} />
+              </div>
+              <div className="threeinput">
                 <label>Targeted Gender:</label>
                 <select id="user_gender" onChange={(e) => setGender(e.target.value)}>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                 </select>
-
                 <label>Targeted Age:</label>
                 <select id="user_age" onChange={(e) => setAge(e.target.value)}>
-                  <option value="(4-12)">Kid (4-12)</option>
-                  <option value="(12-53)">Adult (12-53)</option>
+                  <option value="(4-12)">Kids</option>
+                  <option value="(12-53)">Adults</option>
                 </select>
-                <button onClick={createAd}>Request</button>
+              </div>
+              <div className="threeinput">
+                <label>Select the Picture you want to Show</label>
+                <div className="input_image">
+                  <input
+                    accept="image/*"
+                    type="file"
+                    onChange={handleImageUpload}
+                  />
+                </div>
+                <div className="buttonDivs">
+                  <button id="requesttheAd" onClick={handleAnchorClick}>Cancel</button>
+                  <button id="requesttheAdn" onClick={createAd}>Request</button>
+                </div>
+                <p style={{color:"blue"}}>{res_message}</p>
               </div>
             </div>
           </div>}
-
-          {activeDiv === "show_active" && <div id="show_active">
-            <table>
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Image</th>
-                  <th>Age</th>
-                </tr>
-              </thead>
-              <tbody>
-                {activeResults && activeResults.map((result) => (
-                  <tr key={result._id}>
-                    <td>{result.title}</td>
-                    <td><img src={`http://127.0.0.1:3000/${result.image}`} alt="" /></td>
-                    <td>{result.age}</td>
-                    <Button1 onClick={() => deactivateAd(result._id)}>Deactivate</Button1>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>}
-
-
-          {activeDiv === "show_pending" && <div id="show_pending">
-            <table>
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Image</th>
-                  <th>Age</th>
-                </tr>
-              </thead>
-              <tbody>
-                {pendingResults && pendingResults.map((result) => (
-                  <tr key={result._id}>
-                    <td>{result.title}</td>
-                    <td><img src={`http://127.0.0.1:3000/${result.image}`} alt="" /></td>
-                    <td>{result.age}</td>
-                    <Button1 onClick={() => deactivateAd(result._id)}>Deactivate</Button1>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>}
-
-
-          {activeDiv === "show_inActive" && <div id="show_inActive">
-            <table>
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Image</th>
-                  <th>Age</th>
-                </tr>
-              </thead>
-              <tbody>
-                {inActiveResults && inActiveResults.map((result) => (
-                  <tr key={result._id}>
-                    <td>{result.title}</td>
-                    <td><img src={`http://127.0.0.1:3000/${result.image}`} alt="" /></td>
-                    <td>{result.age}</td>
-                    <Button1 onClick={() => requestInActiveAd(result._id)}>Request</Button1>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>}
-
-          {activeDiv === "show_rejected" && <div id="show_rejected">
-            <table>
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Image</th>
-                  <th>Age</th>
-                </tr>
-              </thead>
-              <tbody>
-                {rejectedResults && rejectedResults.map((result) => (
-                  <tr key={result._id}>
-                    <td>{result.title}</td>
-                    <td><img src={`http://127.0.0.1:3000/${result.image}`} alt="" /></td>
-                    <td>{result.age}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>}
         </div>
+
       </div>
-    </div>
+    </div >
   );
 }
 

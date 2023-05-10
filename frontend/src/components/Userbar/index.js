@@ -4,7 +4,18 @@ import Button1 from "../Button1/Button";
 import "./userbar.css";
 
 const Userbar = ({ handleAnchorClick }) => {
-  
+
+
+  function logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    localStorage.removeItem('status');
+    localStorage.removeItem('username');
+    localStorage.removeItem('shopname');
+    localStorage.removeItem('role');
+    window.location.href = 'http://localhost:3001/login';
+  }
+
   return (
     <div className="user_sidebar">
       <a href="http://127.0.0.1:3001/Home">
@@ -42,7 +53,7 @@ const Userbar = ({ handleAnchorClick }) => {
           AI - Tool
         </a>
       </div>
-      <Button1 id="Logout">Logout</Button1>
+      <Button1 onClick={logout} id="Logout">Logout</Button1>
     </div>
   );
 };

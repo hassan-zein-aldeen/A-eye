@@ -6,7 +6,7 @@
 }
 
 .titlediv {
-  width: 60rem;
+  width:89.5rem;
   display: flex;
 }
 
@@ -37,30 +37,34 @@
 }
 
 .message_title {
-  width: 46rem;
+  width: 95rem;
   border-bottom: 2px solid rgb(117, 116, 116);
-  font-size: 2.2rem;
-  color: #F2441D;
+  font-size: 2.6rem;
+  color: black;
   text-decoration: none;
+  font-weight: bold;
 }
 
-.message_title:hover {
-  text-shadow: 0 0 5px #F2441D, 0 0 10px #F2441D, 0 0 10px #F2441D;
-  transition: 0.2s;
-}
+
 
 .userTitleShopName span {
   color: #F2441D;
 }
 
 .messages {
-  margin-top: 9rem;
   width: 50rem;
-  margin-left: 12.2rem;
+  margin-left: 8rem;
+  margin-top: -7.4rem;
+  background-color: white;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: white;
 }
 
 .content {
   width: 100%;
+  position: relative;
 }
 
 .usermess_table {
@@ -94,7 +98,7 @@
 
 .user_message {
   display: flex;
-  width: 50rem;
+  width: 90rem;
 }
 
 .ads_title {
@@ -167,7 +171,7 @@
   letter-spacing: 0.2rem;
 }
 
-.content_header{
+.content_header {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -185,22 +189,183 @@
 }
 
 
-.directional_links a{
+.directional_links a {
   text-decoration: none;
   color: #F2441D;
 }
 
-.directional_links a:hover{
+.directional_links a:hover {
   text-decoration: none;
   color: #F2441D;
   text-shadow: 0 0 5px rgb(233, 63, 25), 0 0 10px rgb(233, 63, 25), 0 0 10px rgb(233, 63, 25);
   transition: 0.3s;
 }
 
-.directional_links a:active{
+.directional_links a:active {
   position: relative;
   top: 2px;
   left: 2px;
   transition: 0.2s;
 }
 
+.shownResultCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.2);
+  border-radius: 2rem;
+  width: 30%;
+  height: 50vh;
+  border: 0.5px solid rgb(214, 214, 214);
+}
+
+.respActiveCard {
+  display: flex;
+  flex-direction: column;
+  width: 55%;
+  margin-top: 2rem;
+  height: 80%;
+  gap: 1rem;
+  justify-content: space-between;
+  font-size: 1.2rem;
+}
+
+#show_active,
+#show_pending,
+#show_inActive {
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  margin-left: 8rem;
+  margin-top: 2rem;
+}
+
+.respActiveCard_text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+#children_button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 1.3rem;
+  height: 100%;
+  width: 100%;
+}
+
+#createTheAd {
+  margin-left: 43.5rem;
+  border: 1px solid rgb(160, 158, 158);
+  z-index: 999;
+  background-color: #fff;
+  width: 32rem;
+  height: 35rem;
+  box-shadow: 0 0 400px #0367A6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 2rem;
+  border-radius: 3rem;
+}
+
+
+.createAdsBox {
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  gap: 1.2rem;
+  font-size: 1.4rem;
+  color: rgb(70, 70, 70);
+}
+
+.oneinput,
+.twoinput,
+.threeinput,
+.fourinput {
+  display: flex;
+  flex-direction: column;
+}
+
+.createTheAd label {
+  font-size: 3rem;
+}
+
+.threeinput {
+  gap: 0.5rem;
+}
+
+.createAdsBox input {
+  height: 2rem;
+  border-radius: 0.4rem;
+}
+
+.createBoxTitle {
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+
+.threeinput select {
+  height: 2rem;
+}
+
+
+
+#requesttheAd,
+#requesttheAdn {
+  width: 16rem;
+  height: 3.2rem;
+  border-radius: 0.8rem;
+  font-size: 1.5rem;
+  font-family: 'Inria Sans', sans-serif;
+  background-color: #F2441D;
+  color: white;
+  border: none;
+  text-shadow: 0 0 5px #FFF;
+  transition: text-shadow 0.3s ease-out;
+}
+
+
+#requesttheAd:active {
+  position: relative;
+  top: 2px;
+  left: 2px;
+  transition: 0.2s;
+}
+
+#requesttheAdn:active {
+  position: relative;
+  top: 2px;
+  left: 2px;
+  transition: 0.2s;
+}
+
+
+#requesttheAd:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 5px #0367A6;
+  transition: 0.2s;
+  text-shadow: 0 0 10px #FFF, 0 0 20px #FFF, 0 0 30px #FFF;
+}
+
+#requesttheAdn:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 5px #0367A6;
+  transition: 0.2s;
+  text-shadow: 0 0 10px #FFF, 0 0 20px #FFF, 0 0 30px #FFF;
+}
+
+.buttonDivs {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+#requesttheAdn {
+  background-color: #0367A6;
+}

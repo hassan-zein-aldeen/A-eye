@@ -224,3 +224,10 @@ nav a.active {
 .userimage {
   width: 4rem;
 }
+
+.titleOfActive{
+  font-size: 2.2rem;
+  margin-top: 6.3rem;
+  margin-left: 2rem;
+  font-weight: bold;
+}
