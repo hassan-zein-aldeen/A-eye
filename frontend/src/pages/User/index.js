@@ -6,6 +6,9 @@ import messIcon from "../../images/sent1.svg";
 import user_logo from "../../images/EditedLogo.svg";
 import Button2 from "../../components/Button2";
 import { ReactDOM } from "react";
+
+
+
 const User = () => {
   const [activeDiv, setActiveDiv] = useState("");
   const [adminMessage, setAdminMessage] = useState([]);
@@ -28,7 +31,6 @@ const User = () => {
   const [res_message, setRes_message] = useState("");
   const [rejectedResults, setRejectedResults] = useState("");
   const userStatus = localStorage.getItem("status");
-  const [isShowing, setIsShowing] = useState("");
 
   const [userResult, setUserResult] = useState([{
     "_id": "",
@@ -56,14 +58,15 @@ const User = () => {
   }
   ]);
 
-
   const getUserAds = async (userId) => {
+
     const config = {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     }
     try {
-      const requests = await axios.get(`http://127.0.0.1:3000/ads/userads/${receiverId}`, config);
+      const requests = await axios.get(`http://127.0.0.1:3000/ads/userads/${userId}`, config);
       const req_data = requests.data;
+      console.log(req_data);
       setUserResult(req_data);
       console.log("here is the user result of get ads", userResult);
       const pend = userResult.filter(result => result.status === 'pending');
@@ -78,6 +81,24 @@ const User = () => {
       console.log(error);
     }
   }
+
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+      try {
+        const adsResult = await getUserAds(receiverId);
+        setResult(adsResult);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  console.log('results from useEffect', userResult);
+
 
   const getMessages = async (e) => {
     const config = {
@@ -99,13 +120,13 @@ const User = () => {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     }
 
-    if(!userReqTitle || !userReqDesc || !gender || !age || !receiverId || !adsImage){
+    if (!userReqTitle || !userReqDesc || !gender || !age || !receiverId || !adsImage) {
       setRes_message("Please fill all the form!");
     }
 
-     else {
+    else {
       setRes_message("Your Ad is Successfully requested to Admin");
-     }
+    }
     const formData = new FormData();
     formData.append("title", userReqTitle);
     formData.append("description", userReqDesc);
@@ -185,12 +206,8 @@ const User = () => {
     setActiveDiv(target);
   };
 
-  const backUser = (event)=>{
-    event.preventDefault();
-    window.location.href = "http://localhost:3001/User";
-  }
 
-  function logout(){
+  function logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('id');
     localStorage.removeItem('status');
@@ -217,7 +234,10 @@ const User = () => {
               />
             </a>
             <div className="userheader_links">
-              <a onClick = {backUser} data-target="">My Ads</a>
+              <a onClick={(e) => {
+                getUserAds(receiverId);
+                handleAnchorClick(e);
+              }} data-target="newDiv">My Ads</a>
               <a onClick={(event) => getMessages(event)} data-target="user_messages">Messages</a>
               <a onClick={logout}>Logout</a>
             </div>
@@ -234,8 +254,8 @@ const User = () => {
               getUserAds(receiverId);
             }} data-target="show_active">Active</a>
             <a href="#" onClick={(e) => {
-              handleAnchorClick(e);
               getUserAds(receiverId);
+              handleAnchorClick(e);
             }} data-target="show_pending" >Pending</a>
             <a href="#" onClick={(e) => {
               handleAnchorClick(e);
@@ -246,10 +266,38 @@ const User = () => {
               getUserAds(receiverId);
             }} data-target="show_rejected">Rejected</a>
           </div>
+          <div className="contentControle">
+            {userResult && userResult.map((result) => (
+              <div key={result._id} className="shownResultCard">
+                <div className="respActiveCard">
+                  <img src={`http://127.0.0.1:3000/${result.image}`} alt="" />
+                  <div className="respActiveCard_text">
+                    <p>{result.title}</p>
+                    <td>{result.description}</td>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
 
+
+          {activeDiv === "newDiv" && <div id="newDive"> {/**flag 1 */}
+            {userResult && userResult.map((result) => (
+              <div key={result._id} className="shownResultCard">
+                <div className="respActiveCard">
+                  <img src={`http://127.0.0.1:3000/${result.image}`} alt="" />
+                  <div className="respActiveCard_text">
+                    <p>{result.title}</p>
+                    <td>{result.description}</td>
+                    <Button2 onClick={() => deactivateAd(result._id)}>Deactivate</Button2>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>}
 
           {/*Start of requesting ads div */}
-          {activeDiv === "user_adver" && <div id="user_adver" >
+          {/* {activeDiv === "user_adver" && <div id="user_adver" >
             <div className="ads_title">
               <a onClick={handleAnchorClick} disabled={"inactive" ? true : false} data-target="createAds" id="create_newAdd">Create Ad</a>
 
@@ -273,7 +321,7 @@ const User = () => {
                 getUserAds(receiverId);
               }} data-target="show_rejected">Rejected</a>
             </div>
-          </div>}
+          </div>} */}
           {/*End of requesting ads div */}
 
 
@@ -434,7 +482,7 @@ const User = () => {
                   <button id="requesttheAd" onClick={handleAnchorClick}>Cancel</button>
                   <button id="requesttheAdn" onClick={createAd}>Request</button>
                 </div>
-                <p style={{color:"blue"}}>{res_message}</p>
+                <p style={{ color: "blue" }}>{res_message}</p>
               </div>
             </div>
           </div>}
