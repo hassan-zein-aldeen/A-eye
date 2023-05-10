@@ -1,5 +1,5 @@
 import './login.css';
-import React from "react";
+import React, { useEffect } from "react";
 import Button1 from "../../components/Button1/Button";
 import login_img from "../../images/logo.svg";
 import user_icon from "../../icons/user.svg";
@@ -14,8 +14,10 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+
   const submit = async (e) => {
     e.preventDefault();
+    setlogErr("");
 
     if (!username) {
       console.log("no user name");
@@ -30,7 +32,7 @@ const Login = () => {
 
     } else if (password.length <= 6) {
       console.log("Invalid Credentials");
-      setcredError("Invalid Credentials");
+      setlogErr("Invalid Credentials");
       return;
     }
 
@@ -47,6 +49,8 @@ const Login = () => {
       const id = response.data.role._id;
       const shopname = response.data.shopname.shopname;
       const status = response.data.status;
+      const responseMessage = response.message;
+      console.log('from backend', responseMessage);
       localStorage.setItem("token", token);
       localStorage.setItem("role", role.role);
       localStorage.setItem("username", username);
@@ -62,6 +66,7 @@ const Login = () => {
 
     } catch (e) {
       console.log(e);
+      setlogErr("Invalid Credentials");
     }
 
   }
@@ -71,13 +76,13 @@ const Login = () => {
 
       <div className="form">
         <a href="http://127.0.0.1:3001/Home">
-        <img
-          id="loginImg"
-          style={{ width: "11rem" }}
-          src={login_img}
-          alt="login Logo"
-        />
-      </a>
+          <img
+            id="loginImg"
+            style={{ width: "11rem" }}
+            src={login_img}
+            alt="login Logo"
+          />
+        </a>
         <p>Login</p>
         <div className="cred">
 
@@ -94,8 +99,8 @@ const Login = () => {
           </div>
         </div>
         <Button1 onClick={submit}>Login</Button1>
+        {logErr}
       </div>
-
     </div>
   );
 }
