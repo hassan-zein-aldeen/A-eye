@@ -14,25 +14,32 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  useEffect(() => {
+    if (logErr) {
+      const timer = setTimeout(() => {
+        setlogErr('');
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [logErr]);
+
 
   const submit = async (e) => {
     e.preventDefault();
     setlogErr("");
 
     if (!username) {
-      console.log("no user name");
-      setlogErr("Enter username");
+      setlogErr("Enter your username");
       return;
     }
 
     if (!password) {
-      console.log("no password");
-      setlogErr("Enter password");
+      setlogErr("Enter your password");
       return;
 
     } else if (password.length <= 6) {
-      console.log("Invalid Credentials");
-      setlogErr("Invalid Credentials");
+      setlogErr("Invalid Credentials!");
       return;
     }
 
@@ -66,7 +73,7 @@ const Login = () => {
 
     } catch (e) {
       console.log(e);
-      setlogErr("Invalid Credentials");
+      setlogErr("Invalid Credentials!");
     }
 
   }
@@ -97,9 +104,9 @@ const Login = () => {
             <input type="password" id="password" placeholder="Password"
               onChange={(e) => { setPassword(e.target.value) }} />
           </div>
+          <p style={{color:"#F2441D", fontSize:"1.5rem"}}>{logErr}</p>
         </div>
         <Button1 onClick={submit}>Login</Button1>
-        {logErr}
       </div>
     </div>
   );
