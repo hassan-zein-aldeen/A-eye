@@ -31,6 +31,7 @@ const User = () => {
   const [res_message, setRes_message] = useState("");
   const [rejectedResults, setRejectedResults] = useState("");
   const userStatus = localStorage.getItem("status");
+  const [isActive, setIsActive] = useState(true);
 
   const [userResult, setUserResult] = useState([{
     "_id": "",
@@ -82,6 +83,16 @@ const User = () => {
     }
   }
 
+  useEffect(() => {
+    if (errorMessage) {
+      const timer = setTimeout(() => {
+        setErrorMessage('');
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [errorMessage]);
+
 
   useEffect(() => {
 
@@ -115,6 +126,31 @@ const User = () => {
   };
 
   const createAd = async (e) => {
+
+    if (!userReqTitle) {
+      setErrorMessage("Missing Ad Title!");
+      return;
+    }
+
+    if (!userReqDesc) {
+      setErrorMessage("Missing Ad description!");
+      return
+    }
+
+    if (!gender) {
+      setErrorMessage("Missing Gender to be targeted!");
+      return
+    }
+
+    if (!age) {
+      setErrorMessage("Missing Age to be targeted!");
+      return
+    }
+
+    if(!adsImage){
+      setErrorMessage("Missing Image!");
+      return
+    }
 
     const config = {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
@@ -204,7 +240,15 @@ const User = () => {
     e.preventDefault();
     const target = e.target.getAttribute("data-target");
     setActiveDiv(target);
+    setIsActive(false);
   };
+
+  const handleMyAdsClick = (e) => {
+    e.preventDefault();
+    const target = e.target.getAttribute("data-target");
+    setActiveDiv(target);
+    setIsActive(true);
+  }
 
 
   function logout() {
@@ -236,8 +280,8 @@ const User = () => {
             <div className="userheader_links">
               <a onClick={(e) => {
                 getUserAds(receiverId);
-                handleAnchorClick(e);
-              }} data-target="newDiv">My Ads</a>
+                handleMyAdsClick(e);
+              }} data-target="isActive">My Ads</a>
               <a onClick={(event) => getMessages(event)} data-target="user_messages">Messages</a>
               <a onClick={logout}>Logout</a>
             </div>
@@ -266,19 +310,22 @@ const User = () => {
               getUserAds(receiverId);
             }} data-target="show_rejected">Rejected</a>
           </div>
-          <div className="contentControle">
-            {userResult && userResult.map((result) => (
-              <div key={result._id} className="shownResultCard">
-                <div className="respActiveCard">
-                  <img src={`http://127.0.0.1:3000/${result.image}`} alt="" />
-                  <div className="respActiveCard_text">
-                    <p>{result.title}</p>
-                    <td>{result.description}</td>
+          {isActive && <div className="isActive">
+            <div className="contentControle">
+              {userResult && userResult.map((result) => (
+                <div key={result._id} className="shownResultCard">
+                  <div className="respActiveCard">
+                    <img src={`http://127.0.0.1:3000/${result.image}`} alt="" />
+                    <div className="respActiveCard_text">
+                      <p>{result.title}</p>
+                      <td>{result.description}</td>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          </div>}
+
 
 
           {activeDiv === "newDiv" && <div id="newDive"> {/**flag 1 */}
@@ -384,66 +431,76 @@ const User = () => {
 
 
           {activeDiv === "show_active" && <div id="show_active">
-
-            {activeResults && activeResults.map((result) => (
-              <div key={result._id} className="shownResultCard">
-                <div className="respActiveCard">
-                  <img src={`http://127.0.0.1:3000/${result.image}`} alt="" />
-                  <div className="respActiveCard_text">
-                    <p>{result.title}</p>
-                    <td>{result.description}</td>
-                    <Button2 onClick={() => deactivateAd(result._id)}>Deactivate</Button2>
+            <div className="contentControle">
+              {activeResults && activeResults.map((result) => (
+                <div key={result._id} className="shownResultCard">
+                  <div className="respActiveCard">
+                    <img src={`http://127.0.0.1:3000/${result.image}`} alt="" />
+                    <div className="respActiveCard_text">
+                      <p>{result.title}</p>
+                      <td>{result.description}</td>
+                      <Button2 onClick={() => deactivateAd(result._id)}>Deactivate</Button2>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>}
 
 
           {activeDiv === "show_pending" && <div id="show_pending">
-            {pendingResults && pendingResults.map((result) => (
-              <div key={result._id} className="shownResultCard">
-                <div className="respActiveCard">
-                  <img src={`http://127.0.0.1:3000/${result.image}`} alt="" />
-                  <div className="respActiveCard_text">
-                    <p>{result.title}</p>
-                    <td>{result.description}</td>
-                    <Button2 onClick={() => deactivateAd(result._id)}>Delete Request</Button2>
+            <div className="contentControle">
+              {pendingResults && pendingResults.map((result) => (
+                <div key={result._id} className="shownResultCard">
+                  <div className="respActiveCard">
+                    <img className="elements" src={`http://127.0.0.1:3000/${result.image}`} alt="" />
+                    <div className="respActiveCard_text">
+                      <p className="elements">{result.title}</p>
+                      <td className="elements">{result.description}</td>
+                      <Button2 className="elements" id="pendBut" onClick={() => deactivateAd(result._id)}>Delete Request</Button2>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>}
 
 
           {activeDiv === "show_inActive" && <div id="show_inActive">
-            {inActiveResults && inActiveResults.map((result) => (
-              <div key={result._id} className="shownResultCard">
-                <div className="respActiveCard">
-                  <img src={`http://127.0.0.1:3000/${result.image}`} alt="" />
-                  <div className="respActiveCard_text">
-                    <p>{result.title}</p>
-                    <td>{result.description}</td>
-                    <Button2 onClick={() => requestInActiveAd(result._id)}>Request</Button2>
+            <div className="contentControle">
+              {inActiveResults && inActiveResults.map((result) => (
+                <div key={result._id} className="shownResultCard">
+                  <div className="respActiveCard">
+                    <img src={`http://127.0.0.1:3000/${result.image}`} alt="" />
+                    <div className="respActiveCard_text">
+                      <p>{result.title}</p>
+                      <td>{result.description}</td>
+                      <Button2 onClick={() => requestInActiveAd(result._id)}>Request</Button2>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>}
 
+
           {activeDiv === "show_rejected" && <div id="show_rejected">
-            {rejectedResults && rejectedResults.map((result) => (
-              <div key={result._id} className="shownResultCard">
-                <div className="respActiveCard">
-                  <img src={`http://127.0.0.1:3000/${result.image}`} alt="" />
-                  <div className="respActiveCard_text">
-                    <p>{result.title}</p>
-                    <td>{result.description}</td>
+            <div className="contentControle">
+              {rejectedResults && rejectedResults.map((result) => (
+                <div key={result._id} className="shownResultCard">
+                  <div className="respActiveCard">
+                    <img src={`http://127.0.0.1:3000/${result.image}`} alt="" />
+                    <div className="respActiveCard_text">
+                      <p>{result.title}</p>
+                      <td>{result.description}</td>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>}
+
+
           {activeDiv === "createTheAd" && <div id="createTheAd">
             <div className="createAdsBox">
               <p className="createBoxTitle">Create Your Ad</p>
@@ -482,7 +539,7 @@ const User = () => {
                   <button id="requesttheAd" onClick={handleAnchorClick}>Cancel</button>
                   <button id="requesttheAdn" onClick={createAd}>Request</button>
                 </div>
-                <p style={{ color: "blue" }}>{res_message}</p>
+                <p style={{textAlign:"center", color: "#F2441D" }}>{errorMessage}</p>
               </div>
             </div>
           </div>}

@@ -218,21 +218,25 @@
   width: 28.5rem;
   height: 28rem;
   border: 0.5px solid rgb(214, 214, 214);
+  position: relative;
 }
 
 .shownResultCard:hover {
   box-shadow: 0px 0px 5px #0367A6;
+  transition: 0.3s;
 }
 
 .respActiveCard {
   display: flex;
   flex-direction: column;
   width: 55%;
-  margin-top: 2rem;
+  padding: 2rem 1rem;
   height: 80%;
   gap: 1rem;
   justify-content: space-between;
   font-size: 1.2rem;
+  overflow: hidden;
+  position: absolute;
 }
 
 #show_active,
@@ -241,8 +245,6 @@
   display: flex;
   flex-direction: row;
   gap: 3rem;
-  margin-left: 8rem;
-  margin-top: 2rem;
 }
 
 .respActiveCard_text {
@@ -259,6 +261,13 @@
   font-size: 1.3rem;
   height: 100%;
   width: 100%;
+  font-family: "Inria Sans";
+}
+
+#children_button:hover {
+  cursor: pointer;
+  transition: 0.2s;
+  text-shadow: 0 0 10px #FFF, 0 0 20px #FFF, 0 0 30px #FFF;
 }
 
 #createTheAd {
