@@ -35,7 +35,7 @@ const Section2 = () => {
     <>
       <div className="section_ads">
         <div className="subsec_ads"></div>
-        <p className="title_ads">Add Ads</p>
+        <p className="title_ads">Create Ads</p>
         <div className="iconcard_ads">
           <div className='j_card2'>
             <Card

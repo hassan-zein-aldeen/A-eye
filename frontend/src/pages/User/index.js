@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./user.css";
 import Button1 from "../../components/Button1/Button";
-import axios from "axios";
+import axios, { isAxiosError } from "axios";
 import messIcon from "../../images/sent1.svg";
 import user_logo from "../../images/EditedLogo.svg";
 import Button2 from "../../components/Button2";
@@ -32,20 +32,9 @@ const User = () => {
   const [rejectedResults, setRejectedResults] = useState("");
   const userStatus = localStorage.getItem("status");
   const [isActive, setIsActive] = useState(true);
+  const { isActiveAds, setIsActiveAds } = useState(true);
 
   const [userResult, setUserResult] = useState([{
-    "_id": "",
-    "title": "",
-    "gender": "",
-    "age": "",
-    "description": "",
-    "status": "",
-    "user": "",
-    "timeReq": "",
-    "image": "",
-    "__v": 0
-  },
-  {
     "_id": "",
     "title": "",
     "gender": "",
@@ -147,7 +136,7 @@ const User = () => {
       return
     }
 
-    if(!adsImage){
+    if (!adsImage) {
       setErrorMessage("Missing Image!");
       return
     }
@@ -250,6 +239,14 @@ const User = () => {
     setIsActive(true);
   }
 
+  const handleMyMessageClick = (e) => {
+    e.preventDefault();
+    const target = e.target.getAttribute("data-target");
+    setActiveDiv(target);
+    setIsActive(false);
+
+  }
+
 
   function logout() {
     localStorage.removeItem('token');
@@ -286,91 +283,53 @@ const User = () => {
               <a onClick={logout}>Logout</a>
             </div>
           </div>
-          <div className="content_header">
-            <p className="title_userSection">My Ads</p>
-            <Button1 onClick={(e) => handleAnchorClick(e)}
-              className="New_User" data-target="createTheAd">
-              <button data-target="createTheAd" id="children_button">Create Ad</button></Button1>
-          </div>
-          <div className="directional_links">
-            <a href="#" onClick={(e) => {
-              handleAnchorClick(e);
-              getUserAds(receiverId);
-            }} data-target="show_active">Active</a>
-            <a href="#" onClick={(e) => {
-              getUserAds(receiverId);
-              handleAnchorClick(e);
-            }} data-target="show_pending" >Pending</a>
-            <a href="#" onClick={(e) => {
-              handleAnchorClick(e);
-              getUserAds(receiverId);
-            }} data-target="show_inActive">Archive</a>
-            <a href="#" onClick={(e) => {
-              handleAnchorClick(e);
-              getUserAds(receiverId);
-            }} data-target="show_rejected">Rejected</a>
-          </div>
-          {isActive && <div className="isActive">
-            <div className="contentControle">
-              {userResult && userResult.map((result) => (
-                <div key={result._id} className="shownResultCard">
-                  <div className="respActiveCard">
-                    <img src={`http://127.0.0.1:3000/${result.image}`} alt="" />
-                    <div className="respActiveCard_text">
-                      <p>{result.title}</p>
-                      <td>{result.description}</td>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>}
-
-
-
-          {activeDiv === "newDiv" && <div id="newDive"> {/**flag 1 */}
-            {userResult && userResult.map((result) => (
-              <div key={result._id} className="shownResultCard">
-                <div className="respActiveCard">
-                  <img src={`http://127.0.0.1:3000/${result.image}`} alt="" />
-                  <div className="respActiveCard_text">
-                    <p>{result.title}</p>
-                    <td>{result.description}</td>
-                    <Button2 onClick={() => deactivateAd(result._id)}>Deactivate</Button2>
-                  </div>
-                </div>
+          {activeDiv != "user_messages" && 
+            <div> {/*flag 2 */}
+              <div className="content_header">
+                <p className="title_userSection">My Ads</p>
+                <Button1 onClick={(e) => handleAnchorClick(e)}
+                  className="New_User" data-target="createTheAd">
+                  <button data-target="createTheAd" id="children_button">Create Ad</button></Button1>
               </div>
-            ))}
-          </div>}
+              <div className="directional_links">
+                <a href="#" onClick={(e) => {
+                  handleAnchorClick(e);
+                  getUserAds(receiverId);
+                }} data-target="show_active">Active</a>
+                <a href="#" onClick={(e) => {
+                  getUserAds(receiverId);
+                  handleAnchorClick(e);
+                }} data-target="show_pending" >Pending</a>
+                <a href="#" onClick={(e) => {
+                  handleAnchorClick(e);
+                  getUserAds(receiverId);
+                }} data-target="show_inActive">Archive</a>
+                <a href="#" onClick={(e) => {
+                  handleAnchorClick(e);
+                  getUserAds(receiverId);
+                }} data-target="show_rejected">Rejected</a>
+              </div>
+              {isActive && <div className="isActive">
+                <div className="contentControle">
+                  {userResult.map((result) => (
+                    <div key={result._id} className="shownResultCard">
+                      <div className="respActiveCard">
+                        <div className="imageSection" style={{
+                          backgroundImage: `url(http://127.0.0.1:3000/uploads/${result.image})`
+                        }}>
+                        </div>
+                        <div className="respActiveCard_text">
+                          <h4>{result.title}</h4>
+                          <p>{result.description}</p>
+                        </div>
 
-          {/*Start of requesting ads div */}
-          {/* {activeDiv === "user_adver" && <div id="user_adver" >
-            <div className="ads_title">
-              <a onClick={handleAnchorClick} disabled={"inactive" ? true : false} data-target="createAds" id="create_newAdd">Create Ad</a>
-
-              <a href="#" onClick={(e) => {
-                handleAnchorClick(e);
-                getUserAds(receiverId);
-              }} data-target="show_active">Active</a>
-
-              <a href="#" onClick={(e) => {
-                handleAnchorClick(e);
-                getUserAds(receiverId);
-              }} data-target="show_pending">Pending</a>
-
-              <a href="#" onClick={(e) => {
-                handleAnchorClick(e);
-                getUserAds(receiverId);
-              }} data-target="show_inActive">InActive</a>
-
-              <a href="#" onClick={(e) => {
-                handleAnchorClick(e);
-                getUserAds(receiverId);
-              }} data-target="show_rejected">Rejected</a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>}
             </div>
-          </div>} */}
-          {/*End of requesting ads div */}
-
+          }
 
 
 
@@ -435,10 +394,13 @@ const User = () => {
               {activeResults && activeResults.map((result) => (
                 <div key={result._id} className="shownResultCard">
                   <div className="respActiveCard">
-                    <img src={`http://127.0.0.1:3000/${result.image}`} alt="" />
+                    <div className="imageSection" style={{
+                      backgroundImage: `url(http://127.0.0.1:3000/uploads/${result.image})`
+                    }}>
+                    </div>
                     <div className="respActiveCard_text">
-                      <p>{result.title}</p>
-                      <td>{result.description}</td>
+                      <h4>{result.title}</h4>
+                      <p>{result.description}</p>
                       <Button2 onClick={() => deactivateAd(result._id)}>Deactivate</Button2>
                     </div>
                   </div>
@@ -453,10 +415,13 @@ const User = () => {
               {pendingResults && pendingResults.map((result) => (
                 <div key={result._id} className="shownResultCard">
                   <div className="respActiveCard">
-                    <img className="elements" src={`http://127.0.0.1:3000/${result.image}`} alt="" />
+                    <div className="imageSection" style={{
+                      backgroundImage: `url(http://127.0.0.1:3000/uploads/${result.image})`
+                    }}>
+                    </div>
                     <div className="respActiveCard_text">
-                      <p className="elements">{result.title}</p>
-                      <td className="elements">{result.description}</td>
+                      <h4>{result.title}</h4>
+                      <p>{result.description}</p>
                       <Button2 className="elements" id="pendBut" onClick={() => deactivateAd(result._id)}>Delete Request</Button2>
                     </div>
                   </div>
@@ -471,10 +436,13 @@ const User = () => {
               {inActiveResults && inActiveResults.map((result) => (
                 <div key={result._id} className="shownResultCard">
                   <div className="respActiveCard">
-                    <img src={`http://127.0.0.1:3000/${result.image}`} alt="" />
+                    <div className="imageSection" style={{
+                      backgroundImage: `url(http://127.0.0.1:3000/uploads/${result.image})`
+                    }}>
+                    </div>
                     <div className="respActiveCard_text">
-                      <p>{result.title}</p>
-                      <td>{result.description}</td>
+                      <h4>{result.title}</h4>
+                      <p>{result.description}</p>
                       <Button2 onClick={() => requestInActiveAd(result._id)}>Request</Button2>
                     </div>
                   </div>
@@ -489,10 +457,13 @@ const User = () => {
               {rejectedResults && rejectedResults.map((result) => (
                 <div key={result._id} className="shownResultCard">
                   <div className="respActiveCard">
-                    <img src={`http://127.0.0.1:3000/${result.image}`} alt="" />
+                    <div className="imageSection" style={{
+                      backgroundImage: `url(http://127.0.0.1:3000/uploads/${result.image})`
+                    }}>
+                    </div>
                     <div className="respActiveCard_text">
-                      <p>{result.title}</p>
-                      <td>{result.description}</td>
+                      <h4>{result.title}</h4>
+                      <p>{result.description}</p>
                     </div>
                   </div>
                 </div>
@@ -536,10 +507,11 @@ const User = () => {
                   />
                 </div>
                 <div className="buttonDivs">
-                  <button id="requesttheAd" onClick={handleAnchorClick}>Cancel</button>
+                  <button id="requesttheAd"
+                    onClick={handleAnchorClick}>Cancel</button>
                   <button id="requesttheAdn" onClick={createAd}>Request</button>
                 </div>
-                <p style={{textAlign:"center", color: "#F2441D" }}>{errorMessage}</p>
+                <p style={{ textAlign: "center", color: "#F2441D" }}>{errorMessage}</p>
               </div>
             </div>
           </div>}
