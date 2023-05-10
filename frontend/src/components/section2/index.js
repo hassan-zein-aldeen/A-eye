@@ -28,7 +28,7 @@ const Section2 = () => {
       "* A strong call to action is crucial for ads as it motivates your audience" +
       "to engage with your product or service.<br/><br/>",
     iconC1: require("../../icons/add_box.svg").default,
-    linkC1: 'Add your Ads',
+    linkC1: 'Create your Ads',
   };
 
   return (

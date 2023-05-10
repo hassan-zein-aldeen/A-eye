@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 function Slideshow() {
-  const [slides, setSlides] = useState(['Shop 1', 'Shop 2', 'Shop 3']);
+  const [slides, setSlides] = useState(['Shop A', 'Shop B', 'Shop C']);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   function nextSlide() {

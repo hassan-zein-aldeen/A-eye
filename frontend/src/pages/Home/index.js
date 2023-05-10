@@ -75,14 +75,14 @@ const Home = () => {
         </div>
         <div className="shop_pics">
           <div className="row_imgs">
-            <img className="shops_logos" src={image1} alt="pic" />
-            <img className="shops_logos" src={image4} alt="pic" />
-            <img className="shops_logos" src={image4} alt="pic" />
+            <p>Shopname A</p>
+            <p>Shopname B</p>
+            <p>Shopname C</p>
           </div>
           <div className="row_imgs">
-            <img className="shops_logos" src={image3} alt="pic" />
-            <img className="shops_logos" src={image5} alt="pic" />
-            <img className="shops_logos" src={image2} alt="pic" />
+            <p>Shopname D</p>
+            <p>Shopname E</p>
+            <p>Shopname F</p>
           </div>
         </div>
       </div>
