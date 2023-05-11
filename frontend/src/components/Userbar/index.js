@@ -21,7 +21,7 @@ const Userbar = ({ handleAnchorClick }) => {
       <a href="http://127.0.0.1:3001/Home">
         <img
           id="admin_logo"
-          style={{ width: "11rem" }}
+          style={{ width: "2rem" }}
           src={Logo}
           alt="Admin Logo"
         />

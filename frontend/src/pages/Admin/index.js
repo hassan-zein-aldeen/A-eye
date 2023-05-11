@@ -6,6 +6,7 @@ import Message from "../../components/Message";
 import Sidebar from "../../components/Sidebar";
 import userIcon from "../../images/user.svg";
 import Button2 from "../../components/Button2";
+import Button3 from "../../components/Button3";
 
 const Admin = () => {
 
@@ -273,16 +274,21 @@ const Admin = () => {
       <div className="admin">
         <Sidebar activeLink={actveLink} handleClick={handleClick} />
         <div className="admin_content">
-          {activeDiv === "allads" && <div id="allads">
-            <a href="#" style={{ color: "black" }}
+          <p className="titlesectionAds">All Ads</p>
+          <div className="directionalAdmin_links">
+            <a href="#"
               onClick={(e) => { handleClick(e); getAllRequests(e) }} data-target="activeAds">Active</a>
-            <a href="#" style={{ color: "black" }}
+            <a href="#"
               onClick={(e) => { handleClick(e); getAllRequests(e) }} data-target="pendingAds">Pending</a>
-            <a href="#" style={{ color: "black" }}
+            <a href="#"
               onClick={(e) => { handleClick(e); getAllRequests(e) }} data-target="inActiveAds">InActive</a>
-            <a href="#" style={{ color: "black" }}
+            <a href="#"
               onClick={(e) => { handleClick(e); getAllRequests(e) }} data-target="rejectedAds">Rejected</a>
-          </div>}
+          </div>
+
+          {/* {activeDiv === "allads" && <div id="allads">
+
+          </div>} */}
           {activeDiv === "s_notif" && <div id="nofitication">
             <Message />
           </div>}
@@ -455,51 +461,48 @@ const Admin = () => {
               </table>
             </div>
           </div>}
+
+
           {activeDiv === "activeAds" && <div id="activeAds">
-            <p className="titleOfActive">Active Ads</p>
-          {activeResults && activeResults.map((result) => (
-              <div key={result._id} className="shownResultCard">
+            {activeResults && activeResults.map((result) => (
+              <div key={result._id} className="shownResultCard shownResultCardAdmin">
                 <div className="respActiveCard">
-                  <img src={`http://127.0.0.1:3000/${result.image}`} alt="" />
+                  <div className="imageSection" style={{
+                    backgroundImage: `url(http://127.0.0.1:3000/uploads/${result.image})`
+                  }}>
+                  </div>
                   <div className="respActiveCard_text">
-                    <p>{result.title}</p>
-                    <td>{result.description}</td>
+                    <h4>{result.title}</h4>
+                    <p>{result.description}</p>
                     <Button2 onClick={() => deActivate(result._id)}>Deactivate</Button2>
                   </div>
                 </div>
               </div>
             ))}
           </div>}
+
           {activeDiv === "pendingAds" && <div id="pendingAds">
-            <a href="#" onClick={(e) => getAllRequests(e)} style={{ color: "black" }}>Pending</a>
-            <p style={{ color: "black" }}>Test1</p>
-            <table>
-              <thead>
-                <tr>
-                  <th>Shop Name</th>
-                  <th>Title</th>
-                  <th>Image</th>
-                  <th>Description</th>
-                  <th>Age</th>
-                  <th>Gender</th>
-                </tr>
-              </thead>
-              <tbody>
-                {pendingResults && pendingResults.map((ad) => (
-                  <tr key={ad._id}>
-                    <td>{ad.user.shopname}</td>
-                    <td>{ad.title}</td>
-                    <td><img src={`http://127.0.0.1:3000/${ad.image}`} alt="" /></td>
-                    <td>{ad.description}</td>
-                    <td>{ad.age}</td>
-                    <td>{ad.gender}</td>
-                    <Button1 onClick={() => acceptAd(ad._id)}>Accept Request</Button1>
-                    <Button1 onClick={() => rejectAd(ad._id)}>Reject Request</Button1>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            {pendingResults && pendingResults.map((ad) => (
+              <div key={ad._id} className="shownResultCard shownResultCardAdmin">
+                <div className="respActiveCard">
+                  <div className="imageSection" style={{
+                    backgroundImage: `url(http://127.0.0.1:3000/uploads/${ad.image})`
+                  }}>
+                  </div>
+                  <div className="respActiveCard_text">
+                    <h4>{ad.title}</h4>
+                    <p>{ad.description}</p>
+                    <Button3 onClick={() => acceptAd(ad._id)}>Accept Request</Button3>
+                    <Button2 onClick={() => rejectAd(ad._id)}>Reject Request</Button2>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>}
+
+
+
+
           {activeDiv === "inActiveAds" && <div id="inActiveAds">
             <a href="#" onClick={(e) => getAllRequests(e)} style={{ color: "black" }}>InActive</a>
             <p style={{ color: "black" }}>Test1</p>
@@ -558,7 +561,7 @@ const Admin = () => {
           </div>}
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 

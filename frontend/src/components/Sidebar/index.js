@@ -6,6 +6,16 @@ import "./sidebar.css";
 const Sidebar = ({ activeLink, handleClick, handleAccSubClick }) => {
   const [activeSubLink, setActiveSubLink] = useState();
 
+  function logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    localStorage.removeItem('status');
+    localStorage.removeItem('username');
+    localStorage.removeItem('shopname');
+    localStorage.removeItem('role');
+    window.location.href = 'http://localhost:3001/login';
+  }
+
   const handleAll = (e) => {
     handleClick(e);
     handleSubClick(e);
@@ -21,7 +31,7 @@ const Sidebar = ({ activeLink, handleClick, handleAccSubClick }) => {
       <a href="http://127.0.0.1:3001/Home">
         <img
           id="admin_logo"
-          style={{ width: "11rem" }}
+          style={{ width: "9rem" }}
           src={Logo}
           alt="Admin Logo"
         />
@@ -54,7 +64,7 @@ const Sidebar = ({ activeLink, handleClick, handleAccSubClick }) => {
           Message
         </a>
       </div>
-      <Button1 id="Logout">Logout</Button1>
+      <Button1 onClick={logout} id="Logout">Logout</Button1>
     </div>
   );
 };

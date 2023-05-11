@@ -283,7 +283,7 @@ const User = () => {
               <a onClick={logout}>Logout</a>
             </div>
           </div>
-          {activeDiv != "user_messages" && 
+          {activeDiv != "user_messages" &&
             <div> {/*flag 2 */}
               <div className="content_header">
                 <p className="title_userSection">My Ads</p>
@@ -342,31 +342,28 @@ const User = () => {
 
 
           {/*Start of messages div */}
-          {activeDiv === "user_messages" && <div id="user_messages">
-            <div className="messages">
-              <div className="titlediv">
-                <p href="#" className="message_title">
-                  Messages
-                </p>
+          {activeDiv === "user_messages" &&
+            <div id="user_messages">
+              <div className="content_header content_headerMessage">
+                <p className="title_userSection title_userSectionMessages">Messages</p>
               </div>
-              <div className="user_message">
+              <div className="contentControle">
                 <table className="usermess_table">
                   <tbody>
                     <tr>
-                      <th></th>
-                      <th>Date And Time</th>
-                      <th>Title</th>
+                      <th className="iconCell"></th>
+                      <th className = "date">Date And Time</th>
+                      <th  className="message">Title</th>
+                      <th  className="button"></th>
                     </tr>
                     {adminMessage.map(adminMess => (
                       <tr key={adminMess._id}>
                         <td className="iconCell"> <img className="message_icon" src={messIcon} /></td>
-                        <td>
-                          {adminMess.timeSent.slice(0, 10)}
-                          <br />
-                          {adminMess.timeSent.slice(11, 19)}
+                        <td className = "date">
+                          {adminMess.timeSent.slice(0, 10)}&nbsp;{adminMess.timeSent.slice(11, 19)}
                         </td>
-                        <td>{adminMess.title}</td>
-                        <td><Button1 onClick={() => handleOpen(adminMess._id)} disabled={isViewMess}>Read</Button1></td>
+                        <td className="message">{adminMess.title}</td>
+                        <td className="button"><Button1 onClick={() => handleOpen(adminMess._id)} disabled={isViewMess}>Read</Button1></td>
                       </tr>
                     ))}
                     {isBoxOpen && (<div className={`boxMessage ${isBoxOpen ? "show" : ""}`}>
@@ -376,8 +373,8 @@ const User = () => {
                   </tbody>
                 </table>
               </div>
-            </div>
-          </div>}
+
+            </div>}
           {/*End of messages div */}
 
 

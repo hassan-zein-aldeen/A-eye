@@ -1,4 +1,4 @@
-.admin_sidebar{
+.admin_sidebar {
   height: 80%;
   background-color: #0367A6;
   display: flex;
@@ -7,18 +7,24 @@
   align-items: center;
   text-align: center;
   padding: 7rem 2rem;
-  font-size: 1.5rem;
-  width: 22%;
+  font-size: 1.3rem;
+  width: 13%;
+  height: auto;
 }
 
-.accountslink_container{
+.admin_sidebar a {
+  color: white;
+}
+
+.accountslink_container {
   display: flex;
   flex-direction: column;
   text-align: left;
   margin-left: 1.3rem;
   font-size: 1.6rem;
   margin-top: 1rem;
-  color:#0367A6;
+  color: #0367A6;
+
 }
 
 

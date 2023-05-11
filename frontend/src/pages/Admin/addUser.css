@@ -1,8 +1,7 @@
 .admin {
-  width: 95%;
+  width: 100%;
   border-radius: 2rem;
   display: flex;
-  height: 130vh;
 }
 
 .feature {
@@ -27,7 +26,6 @@
 
 .admin a {
   text-decoration: none;
-  color: white;
 }
 
 .admin a:hover {
@@ -64,7 +62,12 @@
 
 .admin_content {
   width: 85%;
-  margin-right: 2rem;
+  margin-left: 4rem;
+  margin-top: 6.5rem;
+} 
+
+.admin_content a {
+  color: #F2441D;
 }
 
 .fields {
@@ -134,9 +137,6 @@ input[type="radio"] {
   width: 53rem;
 }
 
-nav a.active {
-  background-color: red;
-}
 
 .valid_input {
   display: flex;
@@ -217,17 +217,36 @@ nav a.active {
 }
 
 
-#admin_logo {
-  width: 20rem;
-}
-
 .userimage {
   width: 4rem;
 }
 
-.titleOfActive{
+.titleOfActive {
   font-size: 2.2rem;
   margin-top: 6.3rem;
-  margin-left: 2rem;
   font-weight: bold;
+}
+
+.titlesectionAds {
+  font-size: 2.6rem;
+  font-weight: bold;
+  letter-spacing: 0.2rem;
+}
+
+.directionalAdmin_links {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  font-size: 1.7rem;
+  color: #F2441D;
+}
+
+#activeAds {
+  margin-left: -1rem;
+  margin-top: 1rem;
+}
+
+#pendingAds {
+  margin-left: -1rem;
+  margin-top: 1rem;
 }

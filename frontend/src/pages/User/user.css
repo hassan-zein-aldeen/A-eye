@@ -53,8 +53,6 @@
 
 .messages {
   width: 50rem;
-  margin-left: 8rem;
-  margin-top: -7.4rem;
   background-color: white;
   position: absolute;
   width: 100%;
@@ -68,7 +66,7 @@
 }
 
 .usermess_table {
-  width: 100%;
+  width: 96%;
   margin-top: 3rem;
   padding: 1rem 0rem;
   color: #0367A6;
@@ -77,23 +75,45 @@
   margin-left: 0;
   text-align: left;
 }
-
+.shownResultCardAdmin{
+  width: 28% !important;
+  display: inline-block;
+  margin: 15px 13px;
+}
 .usermess_table th {
   font-size: 1.6rem;
   text-align: left;
-  width: 10rem;
+  /* width: 10rem; */
 }
 
 .usermess_table td {
-  height: 6rem;
+  /* height: 6rem; */
   font-size: 1.4rem;
-  width: 8rem;
+  /* width: 8rem; */
   text-align: left;
-  border-bottom: 1px solid rgb(158, 157, 157);
+  padding: 15px 0;
+  /*border-bottom: 1px solid rgb(158, 157, 157); */
 }
 
+.usermess_table th.iconCell {
+  width: 5%;
+}
+.usermess_table th.date {
+  width: 20%;
+}
+.usermess_table th.message{
+  width: 60%;
+}
+.usermess_table th.button{
+  width: 15%;
+}
+/* .usermess_table tbody tr{
+  background-color: #bebebe;
+  color: #000;
+} */
+
 .message_icon {
-  width: 4rem;
+  width: 35px;
 }
 
 .user_message {
@@ -176,9 +196,16 @@
   align-items: center;
   justify-content: center;
   margin-top: 2.5rem;
-  gap: 77.5rem;
+  gap: 70.5rem;
 }
 
+.content_headerMessage {
+  justify-content: left;
+}
+
+.title_userSectionMessages {
+  margin-left: 8rem;
+}
 
 .directional_links {
   display: flex;
@@ -209,16 +236,16 @@
 }
 
 .shownResultCard {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: left;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
+  /* text-align: left; */
   box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.2);
   border-radius: 2rem;
-  width: 28.5rem;
-  height: 28rem;
+  width: 25%;
+  /* height: 28rem; */
   border: 0.5px solid rgb(214, 214, 214);
-  position: relative;
+  /* position: relative;
 }
 
 .shownResultCard:hover {
@@ -227,7 +254,7 @@
 }
 
 .respActiveCard {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   width: 55%;
   padding: 2rem 1rem;
@@ -236,16 +263,41 @@
   justify-content: space-between;
   font-size: 1.2rem;
   overflow: hidden;
-  position: absolute;
+  position: absolute; */
+  padding: 20px;
 }
 
-#show_active,
+.respActiveCard .imageSection {
+  height: 335px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.respActiveCard .respActiveCard_text {}
+
+.respActiveCard .respActiveCard_text h4 {
+  text-align: left;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 5px;
+  font-weight: 800;
+  font-size: 20px;
+
+}
+
+.respActiveCard .respActiveCard_text p {
+  margin-bottom: 15px;
+}
+
+/* #show_active,
 #show_pending,
 #show_inActive {
   display: flex;
   flex-direction: row;
   gap: 3rem;
-}
+} */
 
 .respActiveCard_text {
   display: flex;
@@ -277,7 +329,7 @@
   z-index: 999;
   background-color: #fff;
   width: 32rem;
-  height: 35rem;
+  height: 36rem;
   box-shadow: 0 0 400px #0367A6;
   display: flex;
   flex-direction: column;
@@ -315,7 +367,8 @@
 
 .createAdsBox input {
   height: 2rem;
-  border-radius: 0.4rem;
+  border-radius: 10px;
+  padding: 5px;
 }
 
 .createBoxTitle {
@@ -324,7 +377,9 @@
 }
 
 .threeinput select {
-  height: 2rem;
+  height: 2.5rem;
+  border-radius: 10px;
+  padding: 5px;
 }
 
 
@@ -390,7 +445,7 @@
   flex-wrap: wrap;
   margin-left: 8rem;
   margin-top: 2rem;
-  gap: 2.1rem;
+  gap: 4.4rem;
   align-items: center;
   padding-bottom: 4rem;
 }
