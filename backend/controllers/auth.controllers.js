@@ -3,23 +3,23 @@ const jwt = require("jsonwebtoken");
 
 exports.login = async (req, res) => {
   const { username, password } = req.body;
-  const user = await User.findOne({ username });
   try {
+    const user = await User.findOne({ username });
     if (!user) return res.status(404).json({ message: "Invalid Credentials" });
     const isMatched = user.matchPassword(password);
 
     if (!isMatched) return res.status(404).json({ message: "Invalid Credentials" });
     const token = jwt.sign({ id: user._id, shopname: user.shopname, username: user.username, role: user.role }, process.env.SECRET_KEY);
-    const role = await User.findOne({username}).select("role");
-    const shopname = await User.findOne({username}).select("shopname");
-    const status = await User.findOne({username}).select("status");
+    const role = await User.findOne({ username }).select("role");
+    const shopname = await User.findOne({ username }).select("shopname");
+    const status = await User.findOne({ username }).select("status");
     res.json({ token, role, username, shopname, status });
   } catch (e) {
     console.error(e);
     res.status(425).json({ message: "Failed from login" });
   }
 
-  
+
 }
 
 exports.createUser = async (req, res) => {

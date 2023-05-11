@@ -22,14 +22,14 @@ exports.createAd = async (req, res, next) => {
     userReqAd.user = user;
 
     if (req.file) {
-      userReqAd.image = req.file.path
+       userReqAd.image = req.file.path.replace("uploads\\","");
     }
 
-    await userReqAd.save();
-    res.status(201).json({ message: "Ad created successfully!", userReqAd });
+     await userReqAd.save();
+     res.status(201).json({ message: "Ad created successfully!", userReqAd });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Internal server error" });
+     console.log(error);
+     res.status(500).json({ message: "Internal server error" });
   }
 
 }
