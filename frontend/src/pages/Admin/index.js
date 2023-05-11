@@ -500,64 +500,38 @@ const Admin = () => {
             ))}
           </div>}
 
-
-
-
           {activeDiv === "inActiveAds" && <div id="inActiveAds">
-            <a href="#" onClick={(e) => getAllRequests(e)} style={{ color: "black" }}>InActive</a>
-            <p style={{ color: "black" }}>Test1</p>
-            <table>
-              <thead>
-                <tr>
-                  <th>Shop Name</th>
-                  <th>Title</th>
-                  <th>Image</th>
-                  <th>Description</th>
-                  <th>Age</th>
-                  <th>Gender</th>
-                </tr>
-              </thead>
-              <tbody>
-                {inActiveResults && inActiveResults.map((ad) => (
-                  <tr key={ad._id}>
-                    <td>{ad.user.shopname}</td>
-                    <td>{ad.title}</td>
-                    <td><img src={`http://127.0.0.1:3000/${ad.image}`} alt="" /></td>
-                    <td>{ad.description}</td>
-                    <td>{ad.age}</td>
-                    <td>{ad.gender}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            {inActiveResults && inActiveResults.map((ad) => (
+              <div key={ad._id} className="shownResultCard shownResultCardAdmin">
+                <div className="respActiveCard">
+                  <div className="imageSection" style={{
+                    backgroundImage: `url(http://127.0.0.1:3000/uploads/${ad.image})`
+                  }}>
+                  </div>
+                  <div className="respActiveCard_text">
+                    <h4>{ad.title}</h4>
+                    <p>{ad.description}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>}
+
           {activeDiv === "rejectedAds" && <div id="rejectedAds">
-            <a href="#" onClick={(e) => getAllRequests(e)} style={{ color: "black" }}>Rejected</a>
-            <p style={{ color: "black" }}>Test1</p>
-            <table>
-              <thead>
-                <tr>
-                  <th>Shop Name</th>
-                  <th>Title</th>
-                  <th>Image</th>
-                  <th>Description</th>
-                  <th>Age</th>
-                  <th>Gender</th>
-                </tr>
-              </thead>
-              <tbody>
-                {rejectedResults && rejectedResults.map((ad) => (
-                  <tr key={ad._id}>
-                    <td>{ad.user.shopname}</td>
-                    <td>{ad.title}</td>
-                    <td><img src={`http://127.0.0.1:3000/${ad.image}`} alt="" /></td>
-                    <td>{ad.description}</td>
-                    <td>{ad.age}</td>
-                    <td>{ad.gender}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            {rejectedResults && rejectedResults.map((ad) => (
+              <div key={ad._id} className="shownResultCard shownResultCardAdmin">
+                <div className="respActiveCard">
+                  <div className="imageSection" style={{
+                    backgroundImage: `url(http://127.0.0.1:3000/uploads/${ad.image})`
+                  }}>
+                  </div>
+                  <div className="respActiveCard_text">
+                    <h4>{ad.title}</h4>
+                    <p>{ad.description}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>}
         </div>
       </div>

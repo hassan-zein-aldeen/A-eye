@@ -64,7 +64,7 @@
   width: 85%;
   margin-left: 4rem;
   margin-top: 6.5rem;
-} 
+}
 
 .admin_content a {
   color: #F2441D;
@@ -247,6 +247,11 @@ input[type="radio"] {
 }
 
 #pendingAds {
+  margin-left: -1rem;
+  margin-top: 1rem;
+}
+
+#inActiveAds {
   margin-left: -1rem;
   margin-top: 1rem;
 }
