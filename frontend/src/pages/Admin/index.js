@@ -19,6 +19,7 @@ const Admin = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
+  const [result, setResult] = useState("");
 
   const [errrole, seterrRole] = useState("");
   const [errshopname, seterrShopname] = useState("");
@@ -33,6 +34,7 @@ const Admin = () => {
   const [activeResults, setActiveResults] = useState("");
   const [inActiveResults, setinActiveResults] = useState("");
   const [rejectedResults, setRejectedResults] = useState("");
+  const [isActive, setIsActive] = useState(true);
 
   const [users, setUsers] = useState([]);
   const [activeUsers, setactiveUsers] = useState([]);
@@ -50,21 +52,16 @@ const Admin = () => {
     "timeReq": "",
     "image": "",
     "__v": 0
-  },
-  {
-    "_id": "",
-    "title": "",
-    "gender": "",
-    "age": "",
-    "description": "",
-    "status": "",
-    "user": "",
-    "timeReq": "",
-    "image": "",
-    "__v": 0
   }
   ]);
 
+
+  const handleDefaultClick = (e) => {
+    const target = e.target.getAttribute("data-target");
+    setIsActive(true);
+    setActiveDiv(target);
+  }
+  //  {/*flag 3 */}
 
 
   const handleClick = async (event) => {
@@ -74,6 +71,7 @@ const Admin = () => {
     await getUsers(event);
     await getActiveUsers(event);
     await getInctiveUsers(event);
+    setIsActive(false);
   }
 
 
@@ -225,6 +223,20 @@ const Admin = () => {
     }
   }
 
+  useEffect(() => {
+
+    const fetchData = async () => {
+      try {
+        const usersRequests = await getAllRequests();
+        setResult(usersRequests);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const acceptAd = async (adId) => {
     try {
       const activateAd = await axios.put(`http://127.0.0.1:3000/ads/accept/${adId}`);
@@ -272,9 +284,11 @@ const Admin = () => {
   return (
     <div>
       <div className="admin">
-        <Sidebar activeLink={actveLink} handleClick={handleClick} />
+        <Sidebar activeLink={actveLink} handleClick={handleClick} handleDefaultClick={handleDefaultClick}/>
         <div className="admin_content">
-          <p className="titlesectionAds">All Ads</p>
+          <p className="titlesectionAds">All Users' Ads</p>
+          {/* getUserAds(receiverId);
+          handleMyAdsClick(e); */}
           <div className="directionalAdmin_links">
             <a href="#"
               onClick={(e) => { handleClick(e); getAllRequests(e) }} data-target="activeAds">Active</a>
@@ -284,6 +298,30 @@ const Admin = () => {
               onClick={(e) => { handleClick(e); getAllRequests(e) }} data-target="inActiveAds">InActive</a>
             <a href="#"
               onClick={(e) => { handleClick(e); getAllRequests(e) }} data-target="rejectedAds">Rejected</a>
+          </div>
+
+
+
+
+          <div className="AllUserrequests">
+            {isActive && <div className="isActive">
+              <div className="adminContentControle">
+                {userReqResult.map((result) => (
+                  <div key={result._id} className="shownAdminResultCard">
+                    <div className="respActiveCard">
+                      <div className="imageSection" style={{
+                        backgroundImage: `url(http://127.0.0.1:3000/uploads/${result.image})`
+                      }}>
+                      </div>
+                      <div className="respActiveCard_text">
+                        <h4>{result.title}</h4>
+                        <p>{result.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>}
           </div>
 
           {/* {activeDiv === "allads" && <div id="allads">
@@ -421,6 +459,7 @@ const Admin = () => {
               </table>
             </div>
           </div>}
+
           {activeDiv === "inActive_users" && <div id="inactive_user">
             <p className="shopname-title">Shopname: <span> {title_name}</span></p>
             <div className="display_users">
@@ -461,6 +500,8 @@ const Admin = () => {
               </table>
             </div>
           </div>}
+
+
 
 
           {activeDiv === "activeAds" && <div id="activeAds">
@@ -533,6 +574,7 @@ const Admin = () => {
               </div>
             ))}
           </div>}
+
         </div>
       </div>
     </div >

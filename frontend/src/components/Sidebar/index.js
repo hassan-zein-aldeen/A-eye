@@ -3,7 +3,7 @@ import Logo from "../../images/EditedLogo.svg";
 import Button1 from "../Button1/Button";
 import "./sidebar.css";
 
-const Sidebar = ({ activeLink, handleClick, handleAccSubClick }) => {
+const Sidebar = ({ activeLink, handleClick, handleDefaultClick }) => {
   const [activeSubLink, setActiveSubLink] = useState();
 
   function logout() {
@@ -25,6 +25,9 @@ const Sidebar = ({ activeLink, handleClick, handleAccSubClick }) => {
     setActiveSubLink(e.target.dataset.target);
   };
 
+    
+
+
 
   return (
     <div className="admin_sidebar">
@@ -38,10 +41,10 @@ const Sidebar = ({ activeLink, handleClick, handleAccSubClick }) => {
       </a>
       <div className="admin_links">
         <a
-          href="#allAds"
+          href="#isActive"
           className={activeLink === "#allads" ? "active" : ""}
-          onClick={handleClick}
-          data-target="allads"
+          onClick={handleDefaultClick}
+          data-target="isActive"
         >
           All Ads
         </a>

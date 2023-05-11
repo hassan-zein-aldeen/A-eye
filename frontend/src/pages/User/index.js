@@ -6,6 +6,7 @@ import messIcon from "../../images/sent1.svg";
 import user_logo from "../../images/EditedLogo.svg";
 import Button2 from "../../components/Button2";
 import { ReactDOM } from "react";
+import Button3 from "../../components/Button3";
 
 
 
@@ -97,7 +98,6 @@ const User = () => {
     fetchData();
   }, []);
 
-  console.log('results from useEffect', userResult);
 
 
   const getMessages = async (e) => {
@@ -244,7 +244,6 @@ const User = () => {
     const target = e.target.getAttribute("data-target");
     setActiveDiv(target);
     setIsActive(false);
-
   }
 
 
@@ -262,8 +261,6 @@ const User = () => {
   return (
     <div>
       <div className="all_page">
-        <div>
-        </div> {/* for testng child comp */}
         <div className="content">
           <div className="userHeader">
             <a href="http://127.0.0.1:3001/Home">
@@ -322,7 +319,6 @@ const User = () => {
                           <h4>{result.title}</h4>
                           <p>{result.description}</p>
                         </div>
-
                       </div>
                     </div>
                   ))}
@@ -440,7 +436,7 @@ const User = () => {
                     <div className="respActiveCard_text">
                       <h4>{result.title}</h4>
                       <p>{result.description}</p>
-                      <Button2 onClick={() => requestInActiveAd(result._id)}>Request</Button2>
+                      <Button3 onClick={() => requestInActiveAd(result._id)}>Request</Button3>
                     </div>
                   </div>
                 </div>
