@@ -133,7 +133,7 @@
   border: none;
   text-shadow: 0 0 5px #FFF;
   transition: text-shadow 0.3s ease-out;
-  margin-left: 735px;
+  margin-left: 775px;
 }
 
 #message:hover {
@@ -156,7 +156,7 @@
 
 
 .messages_table {
-  width: 80%;
+  width: 90%;
   margin-top: 1.4rem;
   padding: 1rem 0.5rem;
   color: #0367A6;

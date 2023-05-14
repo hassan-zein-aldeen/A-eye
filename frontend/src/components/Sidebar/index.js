@@ -40,7 +40,7 @@ const Sidebar = ({ activeLink, handleClick, handleDefaultClick }) => {
         <a
           href="#isActive"
           className={activeLink === "#allads" ? "active" : ""}
-          onClick={handleDefaultClick}
+          onClick={(e) =>handleDefaultClick(e, '#allads')}
           data-target="isActive"
         >
           All Ads
@@ -49,7 +49,7 @@ const Sidebar = ({ activeLink, handleClick, handleDefaultClick }) => {
           <a
             href="#accounts"
             className={activeLink === "#accounts" ? "active" : ""}
-            onClick={handleClick}
+            onClick={(e)=>handleClick(e, '#accounts')}
             data-target="displayAccounts"
           >
             Accounts
@@ -58,7 +58,7 @@ const Sidebar = ({ activeLink, handleClick, handleDefaultClick }) => {
         <a
           href="#s_notif"
           className={activeLink === "#s_notif" ? "active" : ""}
-          onClick={handleClick}
+          onClick={(e) =>handleClick(e, "#s_notif")}
           data-target="s_notif"
         >
           Messages

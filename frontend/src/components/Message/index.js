@@ -231,7 +231,7 @@ const Message = () => {
               <div className='newMessageInputs'>
                 <input id='shopname_input' type='text' placeholder='Search for shop names' onChange={handleInputChange} autoComplete="off" />
                 <input id='title_input' type='text' placeholder='Enter message Title'
-                  onChange={(e) => setMessage_title(e.target.value)} />
+                  onChange={(e) => setMessage_title(e.target.value)} autoComplete="off"/>
               </div>
               <div className='mess_inputs'>
                 <div className='contacts'>
