@@ -4,6 +4,8 @@ import axios from "axios";
 import Button1 from '../Button1/Button';
 import messIcon from "../../images/sent1.svg";
 import Button2 from '../Button2';
+import Button3 from '../Button3';
+
 
 
 const Message = () => {
@@ -27,7 +29,8 @@ const Message = () => {
 
 
   //last step of testing
-
+  {/*Now testing new one */ }
+  {/*Now testing new two */ }
 
 
   const title_name = localStorage.getItem("shopname");
@@ -163,7 +166,7 @@ const Message = () => {
           {buttonVisible && (<button href='#' onClick={handleClick}
             data-target='mess_content' id='message'>New Message</button>)}
         </div>
-        {activeDiv === "old_messages" && <div id="old_messages">
+        <div id="old_messages" className={`background-div ${activeDiv === "mess_content" ? "active" : ""} ${activeDiv === "mess_content" ? "old_messages" : ""}`}>
           <table className="messages_table">
             <thead>
               <tr className='col_titles'>
@@ -193,7 +196,7 @@ const Message = () => {
             <p>{selectedMessage.txtContent}</p>
             <Button1 onClick={handleClose}>Close</Button1>
           </div>)}
-        </div>}
+        </div>
         {activeDiv === "mess_content" &&
           <div className='mess_content'>
             <div className='message_header'>
@@ -203,7 +206,7 @@ const Message = () => {
                 <label>Text:</label>
               </div>
               <div className='newMessageInputs'>
-                <input id='shopname_input' type='text' placeholder='Search for shop names' onChange={handleInputChange} />
+                <input id='shopname_input' type='text' placeholder='Search for shop names' onChange={handleInputChange}  autoComplete="off"/>
                 <input id='title_input' type='text' placeholder='Enter message Title'
                   onChange={(e) => setMessage_title(e.target.value)} />
               </div>
@@ -237,15 +240,17 @@ const Message = () => {
                   </ul>
                   <Button1 onClick={handleFilterClose}>Close</Button1>
                 </div>)}
-
               </div>
             </div>
             <div className='message_box'>
               <textarea id='text_input' placeholder='Insert Your Message' onChange={(e) => setMessage_content(e.target.value)} />
             </div>
             <div className='send_but'>
-              <Button2>Close</Button2>
-              <Button2 onClick={sendMessage}>Send</Button2>
+              <Button2 onClick={() => {
+                setActiveDiv("old_messages");
+                setButtonVisible(true);
+              }}>Close</Button2>
+              <Button3 onClick={sendMessage}>Send</Button3>
             </div>
           </div>}
       </div>
