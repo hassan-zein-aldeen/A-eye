@@ -2,25 +2,12 @@
   font-size: 2.2rem;
 }
 
-.header_title {
-  font-size: 2.2rem;
-  display: flex;
-  margin-top: 9rem;
-  align-items: center;
-  text-align: center;
-  margin-left: 12.2rem;
-  gap: 33rem;
-  border-bottom: 2px solid rgb(117, 116, 116) ;
-  width: 55rem;
-}
-
 .mess_content {
   background-color: #0367A6;
   border-radius: 2rem;
   padding: 1rem 2rem;
   font-size: 1.8rem;
   color: white;
-  margin-left: 12.3rem;
   margin-top: 3.4rem;
   width: 51rem;
 }
@@ -44,7 +31,9 @@
   flex-direction: column;
   background-color: transparent;
   gap: 1.5rem;
-  margin-bottom: 3rem;
+  overflow: auto;
+  width: 260px;
+  height: 200px;
 }
 
 .mess_inputs input {
@@ -98,7 +87,7 @@
 .send_but {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -107,20 +96,49 @@
   flex-direction: column;
 }
 
-#history,
+
 #message {
-  color: #F2441D;
-  font-size: 2.2rem;
+  width: 10rem;
+  height: 3.2rem;
+  border-radius: 0.8rem;
+  font-size: 1.5rem;
+  font-family: 'Inria Sans', sans-serif;
+  background-color: #F2441D;
+  color: white;
+  border: none;
+  text-shadow: 0 0 5px #FFF;
+  transition: text-shadow 0.3s ease-out;
+  margin-left: 735px;
 }
 
-.messages_table{
+#message:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 5px #0367A6;
+  transition: 0.2s;
+  text-shadow: 0 0 10px #FFF, 0 0 20px #FFF, 0 0 30px #FFF;
+}
+
+#message:active {
+  position: relative;
+  top: 2px;
+  left: 2px;
+  transition: 0.2s;
+}
+
+.header_title {
+  display: inherit;
+}
+
+
+.messages_table {
   width: 80%;
   margin-top: 1.4rem;
   padding: 1rem 0.5rem;
   color: #0367A6;
   border: none;
   align-items: start;
-  margin-left: 12rem;
+  margin-left: 0;
+  text-align: left;
 }
 
 .messages_table th {
@@ -140,28 +158,34 @@
 
 .messages_table td {
   border: none;
-  height: 4rem;
-  border-bottom: 1px solid #fafafa;
-  border-right: 1px solid #ffffff;
+  height: 6rem;
+  border-bottom: 1px solid #B4B4B4;
   font-size: 1.4rem;
 }
 
-.right_div{
+.right_div {
   width: 95%;
-  border-radius: 2rem ;
+  border-radius: 2rem;
   display: flex;
   flex-direction: column;
   height: 130vh;
 }
 
-.rightdiv_content{
+.rightdiv_content {
   width: 85%;
-  margin-right: 2rem; 
+  margin-right: 2rem;
 }
 
 #last_col {
   border-right: none;
   margin: 0.5rem 0.5rem;
+}
+
+#last_col:active {
+  position: relative;
+  top: 2px;
+  left: 2px;
+  transition: 0.2s;
 }
 
 .boxMessage,
@@ -199,22 +223,22 @@
   font-size: 1.2rem;
 }
 
-.checksend{
+.checksend {
   margin: 0px 0px;
   width: 1rem;
 }
 
-.key li{
+.key li {
   margin: 0px 0px;
 }
 
-.rowsend{
+.rowsend {
   font-size: 1.2rem;
   display: flex;
   gap: 2rem;
 }
 
-.selected_shop{
+.selected_shop {
   display: inline-block;
   font-size: 1.2rem;
   margin: 0px 4px;
@@ -225,33 +249,59 @@
   margin-bottom: 2px;
 }
 
-
-#sentIcon{
+#sentIcon {
   width: 4rem;
 }
 
-.old_messages{
+.old_messages {
   display: flex;
   flex-direction: row;
 }
 
-.contacts{
-  margin-bottom: 3rem;
-  margin-left: 5rem;
+.contacts {
+padding: 10px;
 }
 
-#shopname_input {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 25%;
-  z-index: 9999;
+.newMessageInputs {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  width: 35%;
+  background-color: transparent;
+  color: white;
 }
 
-#title_input{
-  position:absolute;
-  top: 55%;
-  left: 50%;
-  width: 25%;
-  z-index: 9999;
+#shopname_input,#title_input {
+  text-decoration: none;
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: 1.2rem;
 }
+
+#shopname_input::placeholder{
+  color: #a8a7a7;
+  font-size: 1remz;
+}
+
+#title_input::placeholder{
+  color: #a8a7a7;
+  font-size: 1remz;
+}
+
+#shopname_input:focus::placeholder{
+  color: transparent;
+}
+
+
+
+/* {/*text-decoration: none;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid white;
+    width: 20rem;
+    margin-top: -70px;
+    color: white;
+    font-size: 1.2rem;*/

@@ -20,15 +20,12 @@ const Sidebar = ({ activeLink, handleClick, handleDefaultClick }) => {
     handleClick(e);
     handleSubClick(e);
   }
-
+  
   const handleSubClick = (e) => {
     setActiveSubLink(e.target.dataset.target);
   };
 
-    
-
-
-
+  
   return (
     <div className="admin_sidebar">
       <a href="http://127.0.0.1:3001/Home">
@@ -52,8 +49,8 @@ const Sidebar = ({ activeLink, handleClick, handleDefaultClick }) => {
           <a
             href="#accounts"
             className={activeLink === "#accounts" ? "active" : ""}
-            onClick={handleAll}
-            data-target="accounts"
+            onClick={handleClick}
+            data-target="displayAccounts"
           >
             Accounts
           </a>
@@ -64,7 +61,7 @@ const Sidebar = ({ activeLink, handleClick, handleDefaultClick }) => {
           onClick={handleClick}
           data-target="s_notif"
         >
-          Message
+          Messages
         </a>
       </div>
       <Button1 onClick={logout} id="Logout">Logout</Button1>

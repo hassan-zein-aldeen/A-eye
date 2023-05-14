@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import axios from "axios";
 import Button1 from '../Button1/Button';
 import messIcon from "../../images/sent1.svg";
+import Button2 from '../Button2';
+
 
 const Message = () => {
 
@@ -21,6 +23,11 @@ const Message = () => {
   const [shopnameIds, setShopnamesIds] = useState([]);
   const [checkedBoxes, setCheckedBoxes] = useState([]);
   const [selectedShops, setSelectedShops] = useState([]);
+  const [buttonVisible, setButtonVisible] = useState(true);
+
+
+  //last step of testing
+
 
 
   const title_name = localStorage.getItem("shopname");
@@ -65,6 +72,7 @@ const Message = () => {
     const target = event.target.getAttribute("data-target");
     setActiveDiv(target);
     setActiveLink(event.target.hash);
+    setButtonVisible(false);
     await getSentMessages(senderId);
   }
 
@@ -100,6 +108,10 @@ const Message = () => {
       console.log(error);
     }
   }
+
+  useEffect(() => {
+    getSentMessages(senderId);
+  }, []);
 
 
   const sendMessage = async (e) => {
@@ -146,12 +158,10 @@ const Message = () => {
   return (
     <div>
       <div className='right_div'>
-        <p className="shopname-title">Shopname: <span> {title_name}</span></p>
         <div className='header_title'>
-          <div className='linking'>
-            <a href='#' onClick={handleClick} data-target='old_messages' id='history'>History</a>
-          </div>
-          <a href='#' onClick={handleClick} data-target='mess_content' id='message'>Send Message</a>
+          <p className='titlesectionAds'>Messages</p>
+          {buttonVisible && (<button href='#' onClick={handleClick}
+            data-target='mess_content' id='message'>New Message</button>)}
         </div>
         {activeDiv === "old_messages" && <div id="old_messages">
           <table className="messages_table">
@@ -174,7 +184,7 @@ const Message = () => {
                       {index !== da_ti.receiver.length - 1 && <br />}
                     </span>))}</td>
                   <td className="key" > {da_ti.title}</td>
-                  <td id='last_col'><Button1 onClick={() => handleOpen(da_ti._id)} disabled={isViewMess}>Read</Button1></td>
+                  <td id='last_col'><a onClick={() => handleOpen(da_ti._id)} disabled={isViewMess}>Read</a></td>
                 </tr>
               )).reverse()}
             </tbody>
@@ -192,6 +202,11 @@ const Message = () => {
                 <label>Title:</label>
                 <label>Text:</label>
               </div>
+              <div className='newMessageInputs'>
+                <input id='shopname_input' type='text' placeholder='Search for shop names' onChange={handleInputChange} />
+                <input id='title_input' type='text' placeholder='Enter message Title'
+                  onChange={(e) => setMessage_title(e.target.value)} />
+              </div>
               <div className='mess_inputs'>
                 <div className='contacts'>
                   {selectedShops.map((shop, index) => (
@@ -202,7 +217,6 @@ const Message = () => {
                     }}></span></div>
                   ))}
                 </div>
-                <input id='shopname_input' type='text' onChange={handleInputChange} />
                 {isOpenFilter && (<div className={`filter_box ${isOpenFilter ? "show" : ""}`}>
                   <ul className='key'>
                     {shopnameIds
@@ -223,14 +237,15 @@ const Message = () => {
                   </ul>
                   <Button1 onClick={handleFilterClose}>Close</Button1>
                 </div>)}
-                <input id='title_input' type='text' placeholder='Enter message Title' onChange={(e) => setMessage_title(e.target.value)} />
+
               </div>
             </div>
             <div className='message_box'>
               <textarea id='text_input' placeholder='Insert Your Message' onChange={(e) => setMessage_content(e.target.value)} />
             </div>
             <div className='send_but'>
-              <Button1 onClick={sendMessage}>Send</Button1>
+              <Button2>Close</Button2>
+              <Button2 onClick={sendMessage}>Send</Button2>
             </div>
           </div>}
       </div>

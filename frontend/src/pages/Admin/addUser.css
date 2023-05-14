@@ -44,21 +44,41 @@
 }
 
 .acc_title {
-  font-size: 2.2rem;
+  font-size: 1.7rem;
   display: flex;
-  margin-top: 9rem;
+  margin-top: 2rem;
   align-items: center;
   text-align: center;
-  justify-content: space-between;
-  margin-left: 6.2rem;
-  gap: 26rem;
-  border-bottom: 2px solid rgb(117, 116, 116);
+  gap: 44.5rem;
 }
 
 #create_user {
-  color: #F2441D;
-  font-weight: bold;
+  width: 10rem;
+  height: 3.2rem;
+  border-radius: 0.8rem;
+  font-size: 1.5rem;
+  font-family: 'Inria Sans', sans-serif;
+  background-color: #F2441D;
+  color: white;
+  border: none;
+  text-shadow: 0 0 5px #FFF;
+  transition: text-shadow 0.3s ease-out;
 }
+
+#create_user:hover{
+  cursor: pointer;
+  box-shadow: 2px 2px 5px #0367A6;
+  transition: 0.2s;
+  text-shadow: 0 0 10px #FFF, 0 0 20px #FFF, 0 0 30px #FFF;
+}
+
+#create_user:active {
+  position: relative;
+  top: 2px;
+  left: 2px;
+  transition: 0.2s;
+}
+
 
 .admin_content {
   width: 85%;
@@ -157,13 +177,6 @@ input[type="radio"] {
   color: rgb(2, 207, 2);
 }
 
-.display_users {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .display_users td {
   width: 11rem;
   color: #0367A6;
@@ -180,19 +193,17 @@ input[type="radio"] {
 }
 
 .users_table {
-  width: 80%;
-  margin-top: 1.4rem;
   padding: 1rem 0rem;
   color: #0367A6;
   border: none;
   align-items: start;
-  margin-left: 12rem;
+  margin-left: 0rem;
+  width: 95%;
 }
 
 .users_table td {
   height: 4rem;
   font-size: 1.4rem;
-  width: 50rem;
 }
 
 .users_table thead {
@@ -209,7 +220,7 @@ input[type="radio"] {
 .acc_sublinks {
   display: flex;
   flex-direction: row;
-  gap: 6rem;
+  gap: 5.3rem;
 }
 
 .acc_sublinks a {
@@ -249,11 +260,6 @@ input[type="radio"] {
   margin-top: 1rem;
 }
 
-
-
-
-
-
 .adminContentControle {
   display: flex;
   flex-direction: row;
@@ -270,4 +276,11 @@ input[type="radio"] {
   width: 28.5%;
   border: 0.5px solid rgb(214, 214, 214);
   padding: 20px;
+}
+
+.UsersAccouns{
+  font-size: 2.6rem;
+  font-weight: bold;
+  letter-spacing: 0.2rem;
+
 }

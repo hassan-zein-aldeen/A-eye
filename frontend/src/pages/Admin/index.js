@@ -10,7 +10,8 @@ import Button3 from "../../components/Button3";
 
 const Admin = () => {
 
-  const [activeDiv, setActiveDiv] = useState("requests");
+  const [activeDiv, setActiveDiv] = useState("requests"); // request ads
+
   const [actveLink, setActiveLink] = useState('#requests');
 
   const [role, setRole] = useState("");
@@ -55,13 +56,20 @@ const Admin = () => {
   }
   ]);
 
+  const handleSubUserAccounts = (e) => {
+    e.preventDefault();
+    const target = e.target.getAttribute("data-target");
+    setActiveDiv(true);
+    setIsActive(false);
+  }
+
 
   const handleDefaultClick = (e) => {
     const target = e.target.getAttribute("data-target");
     setIsActive(true);
     setActiveDiv(target);
   }
-  //  {/*flag 3 */}
+
 
 
   const handleClick = async (event) => {
@@ -73,6 +81,7 @@ const Admin = () => {
     await getInctiveUsers(event);
     setIsActive(false);
   }
+
 
 
   const getUsers = async (e) => {
@@ -188,6 +197,13 @@ const Admin = () => {
     }
   }
 
+  const handleMyAdsClick = (e) => {
+    e.preventDefault();
+    const target = e.target.getAttribute("data-target");
+    setIsActive(false);
+    setActiveDiv(target);
+  }
+
 
   const updateStatus = async (userId) => {
     console.log(userId)
@@ -279,66 +295,68 @@ const Admin = () => {
     }
   }
 
+  const newhandleclick = (e) => {
+    e.preventDefault();
+    const target = e.target.getAttribute("data-target");
+  }
+
 
 
   return (
     <div>
       <div className="admin">
-        <Sidebar activeLink={actveLink} handleClick={handleClick} handleDefaultClick={handleDefaultClick}/>
+        <Sidebar activeLink={actveLink} handleClick={handleClick} handleDefaultClick={handleDefaultClick} />
         <div className="admin_content">
-          <p className="titlesectionAds">All Users' Ads</p>
-          {/* getUserAds(receiverId);
-          handleMyAdsClick(e); */}
-          <div className="directionalAdmin_links">
-            <a href="#"
-              onClick={(e) => { handleClick(e); getAllRequests(e) }} data-target="activeAds">Active</a>
-            <a href="#"
-              onClick={(e) => { handleClick(e); getAllRequests(e) }} data-target="pendingAds">Pending</a>
-            <a href="#"
-              onClick={(e) => { handleClick(e); getAllRequests(e) }} data-target="inActiveAds">InActive</a>
-            <a href="#"
-              onClick={(e) => { handleClick(e); getAllRequests(e) }} data-target="rejectedAds">Rejected</a>
-          </div>
 
-
-
-
-          <div className="AllUserrequests">
-            {isActive && <div className="isActive">
-              <div className="adminContentControle">
-                {userReqResult.map((result) => (
-                  <div key={result._id} className="shownAdminResultCard">
-                    <div className="respActiveCard">
-                      <div className="imageSection" style={{
-                        backgroundImage: `url(http://127.0.0.1:3000/uploads/${result.image})`
-                      }}>
+          {activeDiv != "displayAccounts" && <div>
+            {activeDiv != "s_notif" && <div>
+              <div className="AllUserrequests">
+                <p className="titlesectionAds">All Users' Ads</p>
+                <div className="directionalAdmin_links">
+                  <a href="#"
+                    onClick={(e) => { handleClick(e); getAllRequests(e) }} data-target="activeAds">Active</a>
+                  <a href="#"
+                    onClick={(e) => { handleClick(e); getAllRequests(e) }} data-target="pendingAds">Pending</a>
+                  <a href="#"
+                    onClick={(e) => { handleClick(e); getAllRequests(e) }} data-target="inActiveAds">InActive</a>
+                  <a href="#"
+                    onClick={(e) => { handleClick(e); getAllRequests(e) }} data-target="rejectedAds">Rejected</a>
+                </div>
+                {isActive && <div className="isActive">
+                  <div className="adminContentControle">
+                    {userReqResult.map((result) => (
+                      <div key={result._id} className="shownAdminResultCard">
+                        <div className="respActiveCard">
+                          <div className="imageSection" style={{
+                            backgroundImage: `url(http://127.0.0.1:3000/uploads/${result.image})`
+                          }}>
+                          </div>
+                          <div className="respActiveCard_text">
+                            <h4>{result.title}</h4>
+                            <p>{result.description}</p>
+                          </div>
+                        </div>
                       </div>
-                      <div className="respActiveCard_text">
-                        <h4>{result.title}</h4>
-                        <p>{result.description}</p>
-                      </div>
-                    </div>
+                    ))}
                   </div>
-                ))}
+                </div>}
               </div>
             </div>}
-          </div>
-
-          {/* {activeDiv === "allads" && <div id="allads">
-
-          </div>} */}
+          </div>}
           {activeDiv === "s_notif" && <div id="nofitication">
             <Message />
           </div>}
-          {activeDiv === "accounts" && <div id="account">
-            <p className="shopname-title">Shopname: <span> {title_name}</span></p>
+
+
+          {activeDiv === "displayAccounts" && <div id="displayAccounts">
             <div className="display_users">
+              <p className="UsersAccouns">All Accounts</p>
               <div className="acc_title">
                 <div className="acc_sublinks">
-                  <a href="#" onClick={handleClick} data-target="active_users">Active</a>
-                  <a href="#" onClick={handleClick} data-target="inActive_users">Inactive</a>
+                  <a href="#" onClick={handleSubUserAccounts} data-target="active_users">Active</a> {/*click to show */}
+                  <a href="#" onClick={handleDefaultClick} data-target="inActive_users">Inactive</a>
                 </div>
-                <a id="create_user" href="#" onClick={handleClick} data-target="create">Create User</a>
+                <button id="create_user" href="#" onClick={handleDefaultClick} data-target="create">Create User</button>
               </div>
               <div>
                 <table className="users_table">
@@ -359,149 +377,116 @@ const Admin = () => {
                         <td id="last_bord">{user.email}</td>
                       </tr>
                     ))}
+                    {activeDiv === "active_users" && <div id="active_users">
+                      {activeUsers && activeUsers.map(user => (
+                        <tr key={user._id}>
+                          <td><img className="userimage" src={userIcon} /></td>
+                          <td className="key">{user.username}</td>
+                          <td>{user.shopname}</td>
+                          <td id="last_bord">{user.email}</td>
+                        </tr>
+                      ))}
+                    </div>}
                   </tbody>
                 </table>
               </div>
             </div>
-          </div>}
-          {activeDiv === "create" && <div id="new_user">
-            <p className="shopname-title">Shopname: <span> {title_name}</span></p>
-            <p className="form_title">New User</p>
-            <div className="fields">
-              <div className="user_type">
-                <label> User type :
-                  <input type="radio" name="type" value="user" id="user"
-                    onChange={(e) => setRole(e.target.value)} />
-                  User
-                </label>
-                <label>
-                  <input type="radio" name="type" value="admin" id="admin"
-                    onChange={(e) => setRole(e.target.value)} />
-                  Admin
-                </label>
-              </div>
-              <div className="add_form">
-                <div className="labels">
-                  <label for="shop_name">Shop Name: </label>
-                  <label for="username">Username: </label>
-                  <label for="password">Password: </label>
-                  <label for="email">Email: </label>
-                  <label for="address">Address: </label>
+
+            {activeDiv === "create" && <div id="create">
+              <p className="shopname-title">Shopname: <span> {title_name}</span></p>
+              <p className="form_title">New User</p>
+              <div className="fields">
+                <div className="user_type">
+                  <label> User type :
+                    <input type="radio" name="type" value="user" id="user"
+                      onChange={(e) => setRole(e.target.value)} />
+                    User
+                  </label>
+                  <label>
+                    <input type="radio" name="type" value="admin" id="admin"
+                      onChange={(e) => setRole(e.target.value)} />
+                    Admin
+                  </label>
                 </div>
-                <div className="inputs">
-                  <input type="text" id="shop_name" placeholder="Enter user's shop name"
-                    onChange={(e) => setShopname(e.target.value)} required />
-                  <input type="text" id="username" placeholder="Enter username"
-                    onChange={(e) => setUsername(e.target.value)} />
-                  <input type="text" id="password" placeholder="Enter password"
-                    onChange={(e) => setPassword(e.target.value)} />
-                  <input type="email" id="email" placeholder="Enter user's email"
-                    onChange={(e) => setEmail(e.target.value)} />
-                  <input type="text" id="address" placeholder="example(City/Mall/Floor)"
-                    onChange={(e) => setAddress(e.target.value)} />
+                <div className="add_form">
+                  <div className="labels">
+                    <label for="shop_name">Shop Name: </label>
+                    <label for="username">Username: </label>
+                    <label for="password">Password: </label>
+                    <label for="email">Email: </label>
+                    <label for="address">Address: </label>
+                  </div>
+                  <div className="inputs">
+                    <input type="text" id="shop_name" placeholder="Enter user's shop name"
+                      onChange={(e) => setShopname(e.target.value)} required />
+                    <input type="text" id="username" placeholder="Enter username"
+                      onChange={(e) => setUsername(e.target.value)} />
+                    <input type="text" id="password" placeholder="Enter password"
+                      onChange={(e) => setPassword(e.target.value)} />
+                    <input type="email" id="email" placeholder="Enter user's email"
+                      onChange={(e) => setEmail(e.target.value)} />
+                    <input type="text" id="address" placeholder="example(City/Mall/Floor)"
+                      onChange={(e) => setAddress(e.target.value)} />
+                  </div>
                 </div>
+                <div className="valid_input">
+                  <span>{errrole}</span>
+                  <span>{errshopname}</span>
+                  <span>{errusername}</span>
+                  <span>{errpassword}</span>
+                  <span>{erremail}</span>
+                  <span>{erraddress}</span>
+                  <span className="response_result"
+                    style={{
+                      backgroundColor: res_message === "User Created Successfully" ? "green" : "red",
+                      fontSize: "1.5rem",
+                      borderRadius: "0.5rem"
+                    }}>
+                    {res_message && <p>{res_message}</p>}</span>
+                </div>
+                <Button1 onClick={addNewUser}>Create</Button1>
               </div>
-              <div className="valid_input">
-                <span>{errrole}</span>
-                <span>{errshopname}</span>
-                <span>{errusername}</span>
-                <span>{errpassword}</span>
-                <span>{erremail}</span>
-                <span>{erraddress}</span>
+            </div>}
+
+            {activeDiv === "active_users" && <div id="active_users">
+              <p className="shopname-title">Shopname: <span> {title_name}</span></p>
+              <div className="display_users">
+                <div className="acc_title">
+                  <div className="acc_sublinks">
+                  </div>
+                  <a id="create_user" href="#" onClick={handleClick} data-target="create">Create User</a>
+                </div>
                 <span className="response_result"
                   style={{
-                    backgroundColor: res_message === "User Created Successfully" ? "green" : "red",
+                    backgroundColor: res_message === "User Status updated Successfully" ? "green" : "red",
+                    color: "white",
                     fontSize: "1.5rem",
-                    borderRadius: "0.5rem"
                   }}>
                   {res_message && <p>{res_message}</p>}</span>
-              </div>
-              <Button1 onClick={addNewUser}>Create</Button1>
-            </div>
-          </div>}
-          {activeDiv === "active_users" && <div id="active_user">
-            <p className="shopname-title">Shopname: <span> {title_name}</span></p>
-            <div className="display_users">
-              <div className="acc_title">
-                <div className="acc_sublinks">
-                  <a href="#" onClick={handleClick} data-target="active_users">Active</a>
-                  <a href="#" onClick={handleClick} data-target="inActive_users">Inactive</a>
-                </div>
-                <a id="create_user" href="#" onClick={handleClick} data-target="create">Create User</a>
-              </div>
-              <span className="response_result"
-                style={{
-                  backgroundColor: res_message === "User Status updated Successfully" ? "green" : "red",
-                  color: "white",
-                  fontSize: "1.5rem",
-                }}>
-                {res_message && <p>{res_message}</p>}</span>
-              <table className="users_table">
-                <thead>
-                  <tr className="col_titles">
-                    <th></th>
-                    <th>Username</th>
-                    <th>Shop Name</th>
-                    <th >Email</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {activeUsers && activeUsers.map(activeUser => (
-                    <tr key={activeUser._id}>
-                      <td><img className="userimage" src={userIcon} /></td>
-                      <td className="key">{activeUser.username}</td>
-                      <td >{activeUser.shopname}</td>
-                      <td >{activeUser.email}</td>
-                      <td id="last_bord"><Button1 onClick={() => updateStatus(activeUser._id)}>Deactivate</Button1></td>
+                <table className="users_table">
+                  <thead>
+                    <tr className="col_titles">
+                      <th></th>
+                      <th>Username</th>
+                      <th>Shop Name</th>
+                      <th>Email</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>}
-
-          {activeDiv === "inActive_users" && <div id="inactive_user">
-            <p className="shopname-title">Shopname: <span> {title_name}</span></p>
-            <div className="display_users">
-              <div className="acc_title">
-                <div className="acc_sublinks">
-                  <a href="#" onClick={handleClick} data-target="active_users">Active</a>
-                  <a href="#" onClick={handleClick} data-target="inActive_users">Inactive</a>
-                </div>
-                <a id="create_user" href="#" onClick={handleClick} data-target="create">Create User</a>
+                  </thead>
+                  <tbody>
+                    {inActiveUsers && inActiveUsers.map(inActiveUser => (
+                      <tr key={inActiveUser._id}>
+                        <td><img className="userimage" src={userIcon} /></td>
+                        <td className="key">{inActiveUser.username}</td>
+                        <td>{inActiveUser.shopname}</td>
+                        <td>{inActiveUser.email}</td>
+                        <td><Button1 onClick={() => updateStatus(inActiveUser._id)}>Activate</Button1></td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
-              <span className="response_result"
-                style={{
-                  backgroundColor: res_message === "User Status updated Successfully" ? "green" : "red",
-                  color: "white",
-                  fontSize: "1.5rem",
-                }}>
-                {res_message && <p>{res_message}</p>}</span>
-              <table className="users_table">
-                <thead>
-                  <tr className="col_titles">
-                    <th></th>
-                    <th>Username</th>
-                    <th>Shop Name</th>
-                    <th>Email</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {inActiveUsers && inActiveUsers.map(inActiveUser => (
-                    <tr key={inActiveUser._id}>
-                      <td><img className="userimage" src={userIcon} /></td>
-                      <td className="key">{inActiveUser.username}</td>
-                      <td>{inActiveUser.shopname}</td>
-                      <td>{inActiveUser.email}</td>
-                      <td><Button1 onClick={() => updateStatus(inActiveUser._id)}>Activate</Button1></td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            </div>}
           </div>}
-
-
 
 
           {activeDiv === "activeAds" && <div id="activeAds">
