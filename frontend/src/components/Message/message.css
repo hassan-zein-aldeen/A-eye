@@ -16,6 +16,28 @@
   box-shadow: 0 0 50px #0367A6;
 }
 
+.boxMessage{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-radius: 2rem;
+  padding: 2rem 2rem;
+  font-size: 1.4rem;
+  color: #0367a6;
+  width: 20rem;
+  height: 20rem;
+  position: fixed;
+  z-index: 1;
+  margin-left: 20rem;
+  box-shadow: 0 0 50px #0367A6;
+  justify-content: space-between;
+  position: absolute;
+  background-color: white;
+  top: 300px;
+  left: 300px;
+}
+
 .message_header {
   display: flex;
   flex-direction: row;
@@ -304,4 +326,18 @@
 #closeList:hover{
   transition: 0.2s;
   text-shadow: 0 0 10px #FFF, 0 0 20px #FFF, 0 0 30px #FFF;
+}
+
+#responseError{
+  color: red;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#Succeed{
+  color: green;
+  font-weight: bold;
+  text-align: center;
 }

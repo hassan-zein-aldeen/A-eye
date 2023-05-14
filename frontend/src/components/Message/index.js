@@ -1,5 +1,5 @@
 import './message.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from "axios";
 import Button1 from '../Button1/Button';
 import messIcon from "../../images/sent1.svg";
@@ -27,6 +27,7 @@ const Message = () => {
   const [selectedShops, setSelectedShops] = useState([]);
   const [buttonVisible, setButtonVisible] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
+  const [sentSucceed, setSentSucceed] = useState('');
 
 
   //last step of testing
@@ -63,7 +64,7 @@ const Message = () => {
   };
 
   const handleFilterClose = () => {
-    console.log("from handle filter close",checkedBoxes);
+    console.log("from handle filter close", checkedBoxes);
     setIsOpenFilter(false);
   }
 
@@ -119,17 +120,14 @@ const Message = () => {
     if (checkedBoxes.includes(shopId)) {
       setCheckedBoxes(checkedBoxes.filter(id => id !== shopId));
       setSelectedShops(selectedShops.filter(shop => shop._id !== shopId));
-      console.log(checkedBoxes);
     } else {
       setCheckedBoxes([...checkedBoxes, shopId]);
       const selectedShop = shopnameIds.find(shop => shop._id === shopId);
       setSelectedShops([...selectedShops, selectedShop]);
-      console.log(checkedBoxes);
     }
   }
 
   useEffect(() => {
-    console.log(checkedBoxes);
   }, [checkedBoxes]);
 
 
@@ -138,14 +136,13 @@ const Message = () => {
     setErrorMessage('');
 
     let errorMessage = '';
-    console.log(checkedBoxes.length);
 
     if (checkedBoxes.length === 0) {
-      errorMessage = "Choose shop names";
+      errorMessage = "Missing shop names!";
     } else if (!message_title) {
-      errorMessage = "Enter title";
+      errorMessage = "Please enter a title for your message";
     } else if (!message_content) {
-      errorMessage = "Enter text";
+      errorMessage = "Please enter text for your message";
     }
 
     setErrorMessage(errorMessage);
@@ -153,7 +150,7 @@ const Message = () => {
     if (errorMessage) {
       setTimeout(() => {
         setErrorMessage("");
-      }, 2000); // Display the error message for 2 seconds
+      }, 2000);
       return;
     }
 
@@ -164,14 +161,14 @@ const Message = () => {
       "txtContent": message_content
     }
 
-    console.log(mess_data);
-    console.log(senderId);
-    console.log(message_title);
-    console.log(message_content);
-
     try {
       const send = await axios.post("http://127.0.0.1:3000/message/", mess_data);
-      console.log("sent Successfully");
+      setSentSucceed('Your Message sent successfully!');
+
+      setTimeout(() => {
+        setActiveDiv('old_messages');
+      }, 2000);
+
     } catch (e) {
       console.log(e);
     }
@@ -275,10 +272,14 @@ const Message = () => {
               <Button2 onClick={() => {
                 setActiveDiv("old_messages");
                 setButtonVisible(true);
+                setSelectedShops([]);
+                setCheckedBoxes([]);
+                setSentSucceed('');
               }}>Close</Button2>
               <Button3 onClick={sendMessage}>Send</Button3>
             </div>
-            <p style={{ alignItems: "center" }}>{errorMessage}</p>
+            <div id='responseError'>{errorMessage}</div>
+            <div id='Succeed'>{sentSucceed}</div>
           </div>}
       </div>
     </div>
