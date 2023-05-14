@@ -26,15 +26,14 @@ const Message = () => {
   const [checkedBoxes, setCheckedBoxes] = useState([]);
   const [selectedShops, setSelectedShops] = useState([]);
   const [buttonVisible, setButtonVisible] = useState(true);
+  const [errorMessage, setErrorMessage] = useState('');
 
 
   //last step of testing
   {/*Now testing new one */ }
   {/*Now testing new two */ }
 
-
   const title_name = localStorage.getItem("shopname");
-
   const senderId = localStorage.getItem('id').toString();
 
   useEffect(() => {
@@ -64,10 +63,10 @@ const Message = () => {
   };
 
   const handleFilterClose = () => {
-    console.log(checkedBoxes);
+    console.log("from handle filter close",checkedBoxes);
     setIsOpenFilter(false);
-
   }
+
 
 
   const handleClick = async (event) => {
@@ -116,9 +115,47 @@ const Message = () => {
     getSentMessages(senderId);
   }, []);
 
+  function handleCheckboxChange(shopId) {
+    if (checkedBoxes.includes(shopId)) {
+      setCheckedBoxes(checkedBoxes.filter(id => id !== shopId));
+      setSelectedShops(selectedShops.filter(shop => shop._id !== shopId));
+      console.log(checkedBoxes);
+    } else {
+      setCheckedBoxes([...checkedBoxes, shopId]);
+      const selectedShop = shopnameIds.find(shop => shop._id === shopId);
+      setSelectedShops([...selectedShops, selectedShop]);
+      console.log(checkedBoxes);
+    }
+  }
+
+  useEffect(() => {
+    console.log(checkedBoxes);
+  }, [checkedBoxes]);
+
 
   const sendMessage = async (e) => {
     e.preventDefault();
+    setErrorMessage('');
+
+    let errorMessage = '';
+    console.log(checkedBoxes.length);
+
+    if (checkedBoxes.length === 0) {
+      errorMessage = "Choose shop names";
+    } else if (!message_title) {
+      errorMessage = "Enter title";
+    } else if (!message_content) {
+      errorMessage = "Enter text";
+    }
+
+    setErrorMessage(errorMessage);
+
+    if (errorMessage) {
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 2000); // Display the error message for 2 seconds
+      return;
+    }
 
     const mess_data = {
       "rec": checkedBoxes,
@@ -140,18 +177,7 @@ const Message = () => {
     }
   }
 
-  function handleCheckboxChange(shopId) {
-    if (checkedBoxes.includes(shopId)) {
-      setCheckedBoxes(checkedBoxes.filter(id => id !== shopId));
-      setSelectedShops(selectedShops.filter(shop => shop._id !== shopId));
-      console.log(checkedBoxes);
-    } else {
-      setCheckedBoxes([...checkedBoxes, shopId]);
-      const selectedShop = shopnameIds.find(shop => shop._id === shopId);
-      setSelectedShops([...selectedShops, selectedShop]);
-      console.log(checkedBoxes);
-    }
-  }
+
 
   function isChecked(shopId) {
     return checkedBoxes.includes(shopId);
@@ -206,7 +232,7 @@ const Message = () => {
                 <label>Text:</label>
               </div>
               <div className='newMessageInputs'>
-                <input id='shopname_input' type='text' placeholder='Search for shop names' onChange={handleInputChange}  autoComplete="off"/>
+                <input id='shopname_input' type='text' placeholder='Search for shop names' onChange={handleInputChange} autoComplete="off" />
                 <input id='title_input' type='text' placeholder='Enter message Title'
                   onChange={(e) => setMessage_title(e.target.value)} />
               </div>
@@ -238,7 +264,7 @@ const Message = () => {
                       ))
                     }
                   </ul>
-                  <Button1 onClick={handleFilterClose}>Close</Button1>
+                  <button id='closeList' onClick={handleFilterClose}>Close</button>
                 </div>)}
               </div>
             </div>
@@ -252,6 +278,7 @@ const Message = () => {
               }}>Close</Button2>
               <Button3 onClick={sendMessage}>Send</Button3>
             </div>
+            <p style={{ alignItems: "center" }}>{errorMessage}</p>
           </div>}
       </div>
     </div>

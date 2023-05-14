@@ -5,7 +5,7 @@
 .mess_content {
   background-color: #ffffff;
   border-radius: 2rem;
-  padding: 1rem 2rem;
+  padding: 2rem 2rem;
   font-size: 1.4rem;
   color: #0367a6;
   margin-top: 4.4rem;
@@ -28,7 +28,6 @@
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
-  margin-top: 2rem;
 }
 
 .mess_inputs {
@@ -192,37 +191,27 @@
   transition: 0.2s;
 }
 
-.boxMessage,
+
 .filter_box {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 35rem;
-  height: 35rem;
-  margin-top: 2rem;
   background-color: #fff;
   border: 1px solid #ccc;
-  padding: 3rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   color: #0367A6;
-  font-size: 1.4rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
-  transition: opacity 2s ease-in-out;
+  overflow: auto;
 }
 
-.boxMessage.show {
-  opacity: 1;
-}
 
 .filter_box {
   width: 10rem;
   height: 20vh;
   font-size: 1.2rem;
-  border-radius: 2rem;
+  border-radius: 1rem;
 }
 
 .checksend {
@@ -265,9 +254,6 @@
   opacity: 0.5; /* Adjust the opacity value as needed */
 }
 
-.contacts {
-padding: 10px;
-}
 
 .newMessageInputs {
   display: flex;
@@ -276,6 +262,7 @@ padding: 10px;
   width: 35%;
   background-color: transparent;
   color: #0367A6;
+  margin-bottom: 2rem;
 }
 
 #shopname_input,#title_input {
@@ -301,13 +288,20 @@ padding: 10px;
   color: transparent;
 }
 
+#closeList{
+  height: 2rem;
+  width: 6rem;
+  border-radius: 0.8rem;
+  font-size: 1rem;
+  font-family: 'Inria Sans', sans-serif;
+  background-color: #F2441D;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
 
-
-/* {/*text-decoration: none;
-    border: none;
-    background-color: transparent;
-    border-bottom: 1px solid white;
-    width: 20rem;
-    margin-top: -70px;
-    color: white;
-    font-size: 1.2rem;*/
+#closeList:hover{
+  transition: 0.2s;
+  text-shadow: 0 0 10px #FFF, 0 0 20px #FFF, 0 0 30px #FFF;
+}
