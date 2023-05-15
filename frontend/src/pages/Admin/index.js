@@ -59,8 +59,6 @@ const Admin = () => {
 
 
   useEffect(() => {
-    console.log('div', activeDiv);
-    console.log(' anchor  ', activeAnchor);
   }, [activeDiv, activeAnchor]);
 
   const handleCreateUserAccounts = (e, target) => {
@@ -68,9 +66,6 @@ const Admin = () => {
     const newTarget = e.target.getAttribute("data-target");
     setActiveAnchor(newTarget);
     setActiveDiv(newTarget);
-    console.log(newTarget);
-    console.log('active div is ', newTarget);
-    console.log('active anchor is ', newTarget)
   }
 
   const handleDefaultClick = (e) => {
@@ -83,7 +78,9 @@ const Admin = () => {
   const handleClick = async (event) => {
     const target = event.target.getAttribute("data-target");
     setActiveDiv(target);
+    console.log(target)
     setActiveLink(event.target.hash);
+    setActiveAnchor('users');
     await getUsers(event);
     await getActiveUsers(event);
     await getInctiveUsers(event);
@@ -195,8 +192,9 @@ const Admin = () => {
       const { user } = response.data;
       setRes_message("User Created Successfully");
       setTimeout(function () {
-        window.location.reload();
+        setActiveDiv('displayAccounts');
       }, 2000);
+
     } catch (error) {
       if (error.response && error.response.data && error.response.data.message) {
         setRes_message(error.response.data.message);
@@ -212,7 +210,6 @@ const Admin = () => {
     setIsActive(false);
     setActiveDiv(target);
   }
-
 
   const updateStatus = async (userId) => {
     console.log(userId)
@@ -353,7 +350,6 @@ const Admin = () => {
                 </div>
               </div>}
             </div>}
-
           </div>}
 
           {activeDiv === "s_notif" && <div id="nofitication">
