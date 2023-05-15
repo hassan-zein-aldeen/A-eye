@@ -75,19 +75,19 @@ const Home = () => {
         </div>
         <div className="shop_pics">
           <div className="row_imgs">
-            <p>Shopname A</p>
-            <p>Shopname B</p>
-            <p>Shopname C</p>
+            <p>Rêve</p>
+            <p>Lacoste</p>
+            <p>Adidas</p>
           </div>
           <div className="row_imgs">
-            <p>Shopname D</p>
-            <p>Shopname E</p>
-            <p>Shopname F</p>
+            <p>Wilson</p>
+            <p>Gucci</p>
+            <p>Kids Toy</p>
           </div>
         </div>
       </div>
       <div className="feedback">
-        <p className="feed_title">Feedback "</p>
+        <p className="feed_title">Feedback </p>
         <div id="feed_slider">
           <Slideshow >
             <p class="slide active">Shop One Feedback</p>

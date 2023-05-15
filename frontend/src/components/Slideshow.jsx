@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 function Slideshow() {
-  const [slides, setSlides] = useState(['Shop A', 'Shop B', 'Shop C']);
+  const [slides, setSlides] = useState
+  (['Outstanding service! Your attention to detail and promptness were impressive.',
+   'I am extremely satisfied with the service you provided. Thank you!',
+    'Your service exceeded my expectations, delivering excellent results. Thank you!']);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   function nextSlide() {
@@ -9,7 +12,7 @@ function Slideshow() {
   }
 
   useEffect(() => {
-    const slideInterval = setInterval(nextSlide, 4000);
+    const slideInterval = setInterval(nextSlide, 3000);
 
     return () => clearInterval(slideInterval);
   }, [currentSlide, slides.length]);
@@ -18,7 +21,7 @@ function Slideshow() {
     <div className="slideshow-container">
       <div className='slide-wrapper'>
         {slides.map((slide, index) => (
-          <p key={index} className={`slide ${index === currentSlide ? 'active' : ''}`}>
+          <p style={{fontSize:"1.5rem"}} key={index} className={`slide ${index === currentSlide ? 'active' : ''}`}>
             {slide}
           </p>
         ))}
