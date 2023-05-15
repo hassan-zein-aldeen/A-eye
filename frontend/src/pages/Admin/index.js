@@ -91,8 +91,13 @@ const Admin = () => {
 
   const getUsers = async (e) => {
     e.preventDefault();
+
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    }
+
     try {
-      const response = await axios.get('http://127.0.0.1:3000/user/');
+      const response = await axios.get('http://127.0.0.1:3000/user/', config);
       const users = response.data;
       setUsers(users);
       const userIds = users.map(user => user._id);
@@ -102,9 +107,14 @@ const Admin = () => {
   }
 
   const getActiveUsers = async (e) => {
+
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    }
+
     e.preventDefault();
     try {
-      const response = await axios.get('http://127.0.0.1:3000/user/activeusers');
+      const response = await axios.get('http://127.0.0.1:3000/user/activeusers', config);
       const activeUsers = response.data;
       setactiveUsers(activeUsers);
     } catch (error) {
@@ -114,8 +124,13 @@ const Admin = () => {
 
   const getInctiveUsers = async (e) => {
     e.preventDefault();
+
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    }
+
     try {
-      const response = await axios.get('http://127.0.0.1:3000/user/inactiveusers');
+      const response = await axios.get('http://127.0.0.1:3000/user/inactiveusers', config);
       const inActiveUsers = response.data;
       setinActiveUsers(inActiveUsers);
     } catch (error) {
@@ -136,6 +151,7 @@ const Admin = () => {
   }, [createUserErr]);
 
   const addNewUser = async (e) => {
+
 
     e.preventDefault();
 
@@ -217,9 +233,13 @@ const Admin = () => {
   }
 
   const updateStatus = async (userId) => {
-    console.log(userId)
+
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    }
+
     try {
-      const updatedUser = await axios.put(`http://127.0.0.1:3000/user/update/${userId}`);
+      const updatedUser = await axios.put(`http://127.0.0.1:3000/user/update/${userId}`, {}, config);
       setRes_message("User Status updated Successfully");
       setTimeout(() => {
         window.location.reload();

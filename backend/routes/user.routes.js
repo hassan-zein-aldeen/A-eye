@@ -5,9 +5,9 @@ const { getAllUsers, getActiveUsers, getInactiveUsers, updateUserStatus } = requ
 const { authMiddleware } = require("../middleware/auth.middleware");
 const { adminMiddleware } = require("../middleware/admin.middleware");
 
-router.get("/", getAllUsers);
-router.get("/activeusers", getActiveUsers);
-router.get("/inactiveusers", getInactiveUsers);
-router.put("/update/:id", updateUserStatus)
+router.get("/", authMiddleware, adminMiddleware, getAllUsers);
+router.get("/activeusers", authMiddleware, adminMiddleware, getActiveUsers);
+router.get("/inactiveusers", authMiddleware, adminMiddleware, getInactiveUsers);
+router.put("/update/:id", authMiddleware, adminMiddleware, updateUserStatus);
 
 module.exports = router;

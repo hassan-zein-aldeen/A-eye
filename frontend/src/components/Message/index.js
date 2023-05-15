@@ -93,9 +93,15 @@ const Message = () => {
     setIsviemess(false);
   }
 
+
   const getSentMessages = async (senderId) => {
+
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    }
+
     try {
-      const sent = await axios.get(`http://127.0.0.1:3000/message/sentMessages/${senderId}`);
+      const sent = await axios.get(`http://127.0.0.1:3000/message/sentMessages/${senderId}`, config);
       const sent_messages = sent.data;
       setSent_messages(sent_messages);
       const date_time = sent_messages.map((message) => message.timeSent);
@@ -161,8 +167,12 @@ const Message = () => {
       "txtContent": message_content
     }
 
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    }
+
     try {
-      const send = await axios.post("http://127.0.0.1:3000/message/", mess_data);
+      const send = await axios.post("http://127.0.0.1:3000/message/", mess_data, config);
       setSentSucceed('Your Message sent successfully!');
 
       setTimeout(() => {
@@ -231,7 +241,7 @@ const Message = () => {
               <div className='newMessageInputs'>
                 <input id='shopname_input' type='text' placeholder='Search for shop names' onChange={handleInputChange} autoComplete="off" />
                 <input id='title_input' type='text' placeholder='Enter message Title'
-                  onChange={(e) => setMessage_title(e.target.value)} autoComplete="off"/>
+                  onChange={(e) => setMessage_title(e.target.value)} autoComplete="off" />
               </div>
               <div className='mess_inputs'>
                 <div className='contacts'>
