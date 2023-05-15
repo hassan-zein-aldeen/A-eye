@@ -54,6 +54,7 @@ const User = () => {
     const config = {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     }
+    
     try {
       const requests = await axios.get(`http://127.0.0.1:3000/ads/userads/${userId}`, config);
       const req_data = requests.data;
@@ -141,6 +142,11 @@ const User = () => {
       return
     }
 
+    if(userStatus === "inactive"){
+      setErrorMessage("You are deactivated");
+      return
+    }
+
     const config = {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     }
@@ -170,11 +176,13 @@ const User = () => {
   }
 
   const deactivateAd = async (adId) => {
+    console.log(localStorage.getItem("token"));
     const config = {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     }
+
     try {
-      const deactivatedAd = await axios.put(`http://127.0.0.1:3000/ads/deactivate/${adId}`, config);
+      const deactivatedAd = await axios.put(`http://127.0.0.1:3000/ads/deactivate/${adId}`,{}, config);
       setRes_message("see here");
       console.log(res_message);
       console.log("this is deactivated");
@@ -191,7 +199,7 @@ const User = () => {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     }
     try {
-      const canceledAd = await axios.put(`http://127.0.0.1:3000/ads/request/${adId}`, config);
+      const canceledAd = await axios.put(`http://127.0.0.1:3000/ads/request/${adId}`,{}, config);
       setRes_message("InActive Ad requested Successfully");
       console.log(res_message);
       setTimeout(() => {
@@ -348,14 +356,14 @@ const User = () => {
                   <tbody>
                     <tr>
                       <th className="iconCell"></th>
-                      <th className = "date">Date And Time</th>
-                      <th  className="message">Title</th>
-                      <th  className="button"></th>
+                      <th className="date">Date And Time</th>
+                      <th className="message">Title</th>
+                      <th className="button"></th>
                     </tr>
                     {adminMessage.map(adminMess => (
                       <tr key={adminMess._id}>
                         <td className="iconCell"> <img className="message_icon" src={messIcon} /></td>
-                        <td className = "date">
+                        <td className="date">
                           {adminMess.timeSent.slice(0, 10)}&nbsp;{adminMess.timeSent.slice(11, 19)}
                         </td>
                         <td className="message">{adminMess.title}</td>
@@ -504,7 +512,7 @@ const User = () => {
                     onClick={handleAnchorClick}>Cancel</button>
                   <button id="requesttheAdn" onClick={createAd}>Request</button>
                 </div>
-                <p style={{ textAlign: "center", color: "#F2441D" }}>{errorMessage}</p>
+                <p style={{ marginBottom: "1rem", textAlign: "center", color: "#F2441D" }}>{errorMessage}</p>
               </div>
             </div>
           </div>}

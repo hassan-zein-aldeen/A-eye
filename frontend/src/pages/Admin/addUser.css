@@ -280,3 +280,10 @@ input[type="radio"] {
   letter-spacing: 0.2rem;
 
 }
+
+#status:active{
+  position: relative;
+  top: 2px;
+  left: 2px;
+  transition: 0.2s;
+}

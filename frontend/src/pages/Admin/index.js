@@ -226,8 +226,12 @@ const Admin = () => {
 
   const getAllRequests = async (e) => {
 
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    }
+
     try {
-      const response = await axios.get("http://127.0.0.1:3000/ads/allads")
+      const response = await axios.get("http://127.0.0.1:3000/ads/allads", config)
       const usersRequests = response.data;
       setUserReqResult(usersRequests);
       console.log(usersRequests);
@@ -260,8 +264,13 @@ const Admin = () => {
   }, []);
 
   const acceptAd = async (adId) => {
+
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    }
+
     try {
-      const activateAd = await axios.put(`http://127.0.0.1:3000/ads/accept/${adId}`);
+      const activateAd = await axios.put(`http://127.0.0.1:3000/ads/accept/${adId}`, {}, config);
       setRes_message("see here");
       console.log(res_message);
       console.log("this is Activated");
@@ -274,8 +283,13 @@ const Admin = () => {
   }
 
   const rejectAd = async (adId) => {
+
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    }
+
     try {
-      const rejectAd = await axios.put(`http://127.0.0.1:3000/ads/reject/${adId}`);
+      const rejectAd = await axios.put(`http://127.0.0.1:3000/ads/reject/${adId}`, {}, config);
       setRes_message("see here");
       console.log(res_message);
       console.log("this is rejected");
@@ -288,8 +302,13 @@ const Admin = () => {
   }
 
   const deActivate = async (adId) => {
+
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    }
+
     try {
-      const deactivated = await axios.put(`http://127.0.0.1:3000/ads/adminDeactivate/${adId}`);
+      const deactivated = await axios.put(`http://127.0.0.1:3000/ads/adminDeactivate/${adId}`, {}, config);
       setRes_message("see here");
       console.log(res_message);
       console.log("this is rejected");
@@ -397,7 +416,7 @@ const Admin = () => {
                         <td className="key">{user.username}</td>
                         <td>{user.shopname}</td>
                         <td id="last_bord">{user.email}</td>
-                        <td><a onClick={() => updateStatus(user._id)}>Deactivate</a></td> {/*try to solve */}
+                        <td><a id="status" onClick={() => updateStatus(user._id)}>Deactivate</a></td> {/*try to solve */}
                       </tr>
                     ))}
                     {activeAnchor === 'inActive_users' && inActiveUsers && inActiveUsers.map(user => (
@@ -406,7 +425,7 @@ const Admin = () => {
                         <td className="key">{user.username}</td>
                         <td>{user.shopname}</td>
                         <td id="last_bord">{user.email}</td>
-                        <td><a onClick={() => updateStatus(user._id)}>Activate</a></td> {/*try to solve */}
+                        <td><a id="status" onClick={() => updateStatus(user._id)}>Activate</a></td> {/*try to solve */}
                       </tr>
                     ))}
                   </tbody>
@@ -458,7 +477,7 @@ const Admin = () => {
                     borderRadius: "0.5rem"
                   }}>
                   {res_message && <p>{res_message}</p>}</span>
-                  <p style={{color:"red"}}>{createUserErr}</p>
+                <p style={{ color: "red" }}>{createUserErr}</p>
               </div>
               <Button1 onClick={addNewUser}>Create</Button1>
             </div>
