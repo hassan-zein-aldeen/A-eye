@@ -136,6 +136,7 @@ const Admin = () => {
   }, [createUserErr]);
 
   const addNewUser = async (e) => {
+
     e.preventDefault();
 
     setCreateUserErr("");
@@ -187,8 +188,12 @@ const Admin = () => {
       "address": address,
     };
 
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    }
+
     try {
-      const response = await axios.post('http://127.0.0.1:3000/auth/createUser', userData);
+      const response = await axios.post('http://127.0.0.1:3000/auth/createUser', userData, config);
       const { user } = response.data;
       setRes_message("User Created Successfully");
       setTimeout(function () {
