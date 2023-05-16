@@ -37,12 +37,12 @@
 ### Wireframes
 | Login screen  | User Main Page | Admin Main Page |
 | ---| ---| ---|
-| ![](./readme/demo/Login-w.png) | ![fsdaf](./readme/demo/userpage-w.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| ![](./readme/demo/Login-w.png) | ![fsdaf](./readme/demo/userpage-w.png) | ![fsdaf](./readme/demo/adminpage-w.png) |
 
 ### Mockups
 | Login screen  | User Main Page | Admin Main Page |
 | ---| ---| ---|
-| ![Landing](./readme/demo/Login-m.png) | ![fsdaf](./readme/demo/userpage-m.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| ![Landing](./readme/demo/Login-m.png) | ![fsdaf](./readme/demo/userpage-m.png) | ![fsdaf](./readme/demo/adminpage-m.png) |
 
 <br><br>
 
