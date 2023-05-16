@@ -63,7 +63,7 @@
 
 || Create advertisement - User |  Delete Request - User  |
 | ---| ---| ---|
-|  | ![fsdaf](./readme/gifs/createad.gif) | ![fsdaf](./readme/gifs/deletrequest.gif) |
+|  | ![fsdaf](./readme/demo/createad.gif) | ![fsdaf](./readme/demo/deletrequest.gif) |
 
 | ---| ---| ---|
 | Home screen  | Menu Screen | Order Screen |
