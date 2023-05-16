@@ -35,9 +35,9 @@
 > We designed A-Eye website using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
 
 ### Wireframes
-| Login screen  | Register screen |  Landing screen |
+| Login screen  | User Main Page | |
 | ---| ---| ---|
-| ![](./readme/demo/Login-w.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| ![](./readme/demo/Login-w.png) | ![fsdaf](./readme/demo/user page-w.png) | ![fsdaf](./readme/demo/1440x1024.png) |
 
 ### Mockups
 | Home screen  | Menu Screen | Order Screen |

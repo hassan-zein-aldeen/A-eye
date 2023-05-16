@@ -486,7 +486,7 @@ const Admin = () => {
                     onChange={(e) => setShopname(e.target.value)} required />
                   <input type="text" id="username" placeholder="Enter username"
                     onChange={(e) => setUsername(e.target.value)} />
-                  <input type="text" id="password" placeholder="Enter password"
+                  <input type="password" id="password" placeholder="Enter password"
                     onChange={(e) => setPassword(e.target.value)} />
                   <input type="email" id="email" placeholder="Enter user's email"
                     onChange={(e) => setEmail(e.target.value)} />
