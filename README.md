@@ -78,9 +78,10 @@
 | ---| ---| ---|
 | | ![Landing](./readme/demo/ar.gif) | ![Landing](./readme/demo/deactivatead-a.gif) |
 
-| | Landing Page | |
+| | Inacitve and Rejected Ads | Send Message |
 | ---| ---| ---|
-| | ![fsdaf](./readme/demo/landingpage.gif) | |
+| | ![Landing](./readme/demo/inactrejads.gif) | ![Landing](./readme/demo/msg.gif) |
+
 
 <br><br>
 
