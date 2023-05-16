@@ -67,7 +67,7 @@
 
 || Deactivate Advertisement - User |  Request Archived Ad - User  |
 | ---| ---| ---|
-|  | ![fsdaf](./readme/demo/deactivateActivead.gif) | ![fsdaf](./readme/demo/requestarchived.gif) |
+|  | ![fsdaf](./readme/demo/deactivateActivead.gif) | ![fsdaf](./readme/demo/requestarchivad.gif) |
 
 
 <br><br>
