@@ -69,6 +69,10 @@
 | ---| ---| ---|
 |  | ![fsdaf](./readme/demo/deactivateActivead.gif) | ![fsdaf](./readme/demo/requestarchivad.gif) |
 
+|| Rejected Requests - User |  Read Messages - User  |
+| ---| ---| ---|
+|  | ![fsdaf](./readme/demo/showrjctdrquest.gif) | ![fsdaf](./readme/demo/readmsg.gif) |
+
 
 <br><br>
 
