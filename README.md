@@ -61,18 +61,26 @@
 | ---| ---| ---|
 | | ![fsdaf](./readme/demo/landingpage.gif) | |
 
-|| Create Advertisement - User |  Delete Request - User  |
+|| Create Advertisement |  Delete Request  |
 | ---| ---| ---|
 |  | ![fsdaf](./readme/demo/createad.gif) | ![fsdaf](./readme/demo/deletrequestuser.gif) |
 
-|| Deactivate Advertisement - User |  Request Archived Ad - User  |
+|| Deactivate Advertisement |  Request Archived Ad  |
 | ---| ---| ---|
 |  | ![fsdaf](./readme/demo/deactivateActivead.gif) | ![fsdaf](./readme/demo/requestarchivad.gif) |
 
-|| Rejected Requests - User |  Read Messages - User  |
+|| Rejected Requests |  Read Messages  |
 | ---| ---| ---|
 |  | ![fsdaf](./readme/demo/showrjctdrquest.gif) | ![fsdaf](./readme/demo/readmsg.gif) |
 
+### Admin Screens 
+| | Accept or Reject user requests | Deactivate Advertisement |
+| ---| ---| ---|
+| | ![Landing](./readme/demo/ar.gif) | ![Landing](./readme/demo/deactivatead-a.gif) |
+
+| | Landing Page | |
+| ---| ---| ---|
+| | ![fsdaf](./readme/demo/landingpage.gif) | |
 
 <br><br>
 
