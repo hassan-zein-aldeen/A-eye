@@ -126,7 +126,9 @@ OpenCV is an open source library that provides a rich set of functions and algor
 2. npm install
 3. npm install nodemon mongoose
 4. nodemon .
-5. npm start for React - frontend
+
+- frontend "React"
+5. npm start 
 
 
 Now, you should be able to run A-Eye locally and explore its features.
