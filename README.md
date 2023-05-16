@@ -86,6 +86,11 @@
 | ---| ---| ---|
 | | ![Landing](./readme/demo/createuser.gif) | ![Landing](./readme/demo/actdeact.gif) |
 
+### Detecting and Analyzing faces - Gender & Age 
+| | Running Related Advertisements | |
+| ---| ---| ---|
+| | ![Landing](./readme/demo/target.gif) | |
+
 
 <br><br>
 
