@@ -50,7 +50,6 @@ const Message = () => {
       const response = await axios.get("http://127.0.0.1:3000/user/", config);
       const filteredUsers = response.data;
       setShopnamesIds(filteredUsers);
-      console.log(shopnameIds);
     };
 
     const debounceSearch = () => {
@@ -69,7 +68,6 @@ const Message = () => {
   };
 
   const handleFilterClose = () => {
-    console.log("from handle filter close", checkedBoxes);
     setIsOpenFilter(false);
   }
 

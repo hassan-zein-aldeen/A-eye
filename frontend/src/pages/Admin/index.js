@@ -78,7 +78,6 @@ const Admin = () => {
   const handleClick = async (event) => {
     const target = event.target.getAttribute("data-target");
     setActiveDiv(target);
-    console.log(target)
     setActiveLink(event.target.hash);
     setActiveAnchor('users');
     await getUsers(event);
@@ -259,7 +258,6 @@ const Admin = () => {
       const response = await axios.get("http://127.0.0.1:3000/ads/allads", config)
       const usersRequests = response.data;
       setUserReqResult(usersRequests);
-      console.log(usersRequests);
       const pend = usersRequests.filter(result => result.status === 'pending');
       setPendingResults(pend);
       const active = usersRequests.filter(result => result.status === 'active');
@@ -297,8 +295,6 @@ const Admin = () => {
     try {
       const activateAd = await axios.put(`http://127.0.0.1:3000/ads/accept/${adId}`, {}, config);
       setRes_message("see here");
-      console.log(res_message);
-      console.log("this is Activated");
       setTimeout(() => {
         window.location.reload();
       }, 2000);
@@ -316,8 +312,6 @@ const Admin = () => {
     try {
       const rejectAd = await axios.put(`http://127.0.0.1:3000/ads/reject/${adId}`, {}, config);
       setRes_message("see here");
-      console.log(res_message);
-      console.log("this is rejected");
       setTimeout(() => {
         window.location.reload();
       }, 2000);
@@ -335,8 +329,6 @@ const Admin = () => {
     try {
       const deactivated = await axios.put(`http://127.0.0.1:3000/ads/adminDeactivate/${adId}`, {}, config);
       setRes_message("see here");
-      console.log(res_message);
-      console.log("this is rejected");
       setTimeout(() => {
         window.location.reload();
       }, 2000);

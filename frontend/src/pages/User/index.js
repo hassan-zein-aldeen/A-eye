@@ -58,9 +58,7 @@ const User = () => {
     try {
       const requests = await axios.get(`http://127.0.0.1:3000/ads/userads/${userId}`, config);
       const req_data = requests.data;
-      console.log(req_data);
       setUserResult(req_data);
-      console.log("here is the user result of get ads", userResult);
       const pend = userResult.filter(result => result.status === 'pending');
       setPendingResults(pend);
       const active = userResult.filter(result => result.status === 'active');
@@ -166,17 +164,12 @@ const User = () => {
     formData.append("user", receiverId);
     formData.append('image', adsImage);
 
-    for (const [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`);
-    }
 
     const response = await axios.post("http://127.0.0.1:3000/ads/create", formData, config);
-    console.log(response.data.message);
     window.location.reload();
   }
 
   const deactivateAd = async (adId) => {
-    console.log(localStorage.getItem("token"));
     const config = {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     }
@@ -184,8 +177,6 @@ const User = () => {
     try {
       const deactivatedAd = await axios.put(`http://127.0.0.1:3000/ads/deactivate/${adId}`,{}, config);
       setRes_message("see here");
-      console.log(res_message);
-      console.log("this is deactivated");
       setTimeout(() => {
         window.location.reload();
       }, 2000);
@@ -201,7 +192,6 @@ const User = () => {
     try {
       const canceledAd = await axios.put(`http://127.0.0.1:3000/ads/request/${adId}`,{}, config);
       setRes_message("InActive Ad requested Successfully");
-      console.log(res_message);
       setTimeout(() => {
         window.location.reload();
       }, 2000);
@@ -213,12 +203,10 @@ const User = () => {
   const handleResult = async (e) => {
     e.preventDefault();
     await getUserAds(receiverId)
-    console.log("this is user result", userResult);
   }
 
   const handleOpen = (id) => {
     setSelectedMessage(adminMessage.find((message) => message._id === id));
-    console.log("hello 2");
     setIsBoxOpen(true);
     setIsViewMess(true);
   };

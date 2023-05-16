@@ -57,7 +57,6 @@ const Login = () => {
       const shopname = response.data.shopname.shopname;
       const status = response.data.status;
       const responseMessage = response.message;
-      console.log('from backend', responseMessage);
       localStorage.setItem("token", token);
       localStorage.setItem("role", role.role);
       localStorage.setItem("username", username);
