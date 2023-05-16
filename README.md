@@ -61,6 +61,10 @@
 | ---| ---| ---|
 | | ![fsdaf](./readme/demo/landingpage.gif) | |
 
+|| Create advertisement - User |  Delete Request - User  |
+| ---| ---| ---|
+|  | ![fsdaf](./readme/gifs/createad.gif) | ![fsdaf](./readme/gifs/deletrequest.gif) |
+
 | ---| ---| ---|
 | Home screen  | Menu Screen | Order Screen |
 | ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
