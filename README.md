@@ -65,6 +65,10 @@
 | ---| ---| ---|
 |  | ![fsdaf](./readme/demo/createad.gif) | ![fsdaf](./readme/demo/deletrequestuser.gif) |
 
+|| Deactivate Advertisement - User |  Request Archived Ad - User  |
+| ---| ---| ---|
+|  | ![fsdaf](./readme/demo/deactivateActivead.gif) | ![fsdaf](./readme/demo/requestarchived.gif) |
+
 | ---| ---| ---|
 | Home screen  | Menu Screen | Order Screen |
 | ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
