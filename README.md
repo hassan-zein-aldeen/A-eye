@@ -61,7 +61,7 @@
 | ---| ---| ---|
 | | ![fsdaf](./readme/demo/landingpage.gif) | |
 
-|| Create advertisement - User |  Delete Request - User  |
+|| Create Advertisement - User |  Delete Request - User  |
 | ---| ---| ---|
 |  | ![fsdaf](./readme/demo/createad.gif) | ![fsdaf](./readme/demo/deletrequestuser.gif) |
 
