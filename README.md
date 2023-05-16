@@ -69,9 +69,6 @@
 | ---| ---| ---|
 |  | ![fsdaf](./readme/demo/deactivateActivead.gif) | ![fsdaf](./readme/demo/requestarchived.gif) |
 
-| ---| ---| ---|
-| Home screen  | Menu Screen | Order Screen |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
 
 <br><br>
 
