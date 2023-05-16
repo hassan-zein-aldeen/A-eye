@@ -53,9 +53,13 @@
 
 
 ### User Screens 
-| Background Video | Register screen |  Landing screen |
+| Background Video |
 | ---| ---| ---|
-| ![Landing](./readme/demo/backgvideo.gif) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| ![Landing](./readme/demo/backgvideo.gif) |
+| Landing Page |
+| ---| ---| ---|
+ ![fsdaf](./readme/demo/landingpage.gif) | 
+| ---| ---| ---|
 | Home screen  | Menu Screen | Order Screen |
 | ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
 
