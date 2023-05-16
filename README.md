@@ -37,7 +37,7 @@
 ### Wireframes
 | Login screen  | User Main Page | |
 | ---| ---| ---|
-| ![](./readme/demo/Login-w.png) | ![fsdaf](./readme/demo/user page-w.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| ![](./readme/demo/Login-w.png) | ![fsdaf](./readme/demo/userpage-w.png) | ![fsdaf](./readme/demo/1440x1024.png) |
 
 ### Mockups
 | Home screen  | Menu Screen | Order Screen |
