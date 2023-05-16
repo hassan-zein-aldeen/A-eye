@@ -13,19 +13,17 @@
 - As a User, I want to apply for a new account for my shop.
 
 ### Shop Owner Stories
-- As a shop owner, I want to create advertisements and specify the target gender and age to enhance the efficiency of my ads.
+- As a shop owner, I want to create advertisements and specify the target "gender and age" to enhance the efficiency of my ads.
 - As a shop owner, I want to show advertisements after analyzing the face of a specific mall visitor, so that the running advertisements will be specific and targeted.
-- As a shop owner, I want to see all archived advertisements, so that I can request and run it whenever I want.
-- As a shop owner, I want my requests to be thoroughly reviewed by admin, so that I ensure the optimal display of advertisements on the screen.
+- As a shop owner, I want my requests to be throughly reviewed by admin, so that I ensure the optimal display of advertisements on the screen.
 - As a shop owner, I want to receive timely messages from the admin, particularly reminders for special occasions and important notes related to my ads, including both rejections and approvals.
 
 
 ### Admin Stories
-- As an admin, I want to see all current ads running on the screen for all shops, so that I can have a comprehensive overview of the advertising being displayed.
 - As an admin, I want to have visibility into all requests so that I can review and accept or reject them based on the best displayment and optimization of ads. 
 - As an admin, I want to create users according to requested applications, so that I can ensure proper access control and maintain a secure environment for the system.
-- As an admin, I want to have visibility into all active and in active users, so that I can activate deactivated users and Deactivate activated users.
-- As an admin, I want to send messages to shops to remind them about occasions and provide notifications regarding the approval or rejection of their requests.
+- As an admin, I want to have visibility into all active and inactive users, so that I can activate deactivated users to allow them requesting ads and Deactivate activated users.
+
 
 <br><br>
 
