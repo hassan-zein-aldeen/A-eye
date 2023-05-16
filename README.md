@@ -82,6 +82,10 @@
 | ---| ---| ---|
 | | ![Landing](./readme/demo/inactrejads.gif) | ![Landing](./readme/demo/msg.gif) |
 
+| | Create User | Activate or Deactivate User |
+| ---| ---| ---|
+| | ![Landing](./readme/demo/createuser.gif) | ![Landing](./readme/demo/actdeact.gif) |
+
 
 <br><br>
 
