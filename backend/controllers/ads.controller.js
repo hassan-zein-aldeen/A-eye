@@ -73,9 +73,6 @@ exports.deactivateAd = async (req, res) => {
 
 exports.getCondAds = async (req, res) =>{
   const {gender, age} = req.body;
-  console.log(gender);
-  console.log(age);
-
   try{
     const adsResult = await Ad.find({ gender: gender, age: age, status: "active" });
     res.status(200).json(adsResult);

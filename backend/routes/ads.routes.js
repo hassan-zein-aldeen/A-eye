@@ -16,5 +16,4 @@ router.put("/request/:id",authMiddleware, requestInactive);
 router.get("/userads/:id",authMiddleware, getUserAds); 
 router.post("/getCondAds", getCondAds); 
 
-
 module.exports = router;
