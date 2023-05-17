@@ -89,6 +89,11 @@
 | ---| ---| ---|
 | | ![Landing](./readme/demo/target.gif) | |
 
+### Detection in Action
+| | Running Related Advertisements | |
+| ---| ---| ---|
+| | ![Landing](./readme/demo/realScenario.gif) | |
+
 
 <br><br>
 
